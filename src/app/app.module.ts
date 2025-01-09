@@ -20,12 +20,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {ToggleButtonModule} from "primeng/togglebutton";
 import {FormsModule} from '@angular/forms';
 import { HomeComponent } from './home/home.component';
-import { NavBarAdminComponent } from './admin/nav-bar-admin/nav-bar-admin.component';
 import {SelectButtonModule} from 'primeng/selectbutton';
-import { AdminScenariosComponent } from './admin/admin-scenarios/admin-scenarios.component';
-import { AdminOldMapsComponent } from './admin/admin-old-maps/admin-old-maps.component';
-import { OldMapDialogComponent } from './admin/old-map-dialog/old-map-dialog.component';
-import { ScenarioDialogComponent } from './admin/scenario-dialog/scenario-dialog.component';
 import {DialogModule} from 'primeng/dialog';
 import {FileUploadModule} from 'primeng/fileupload';
 import {TableModule} from 'primeng/table';
@@ -52,11 +47,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     ScenariosComponent,
     ResetComponent,
     HomeComponent,
-    NavBarAdminComponent,
-    AdminScenariosComponent,
-    AdminOldMapsComponent,
-    OldMapDialogComponent,
-    ScenarioDialogComponent,
     ErrorComponent
   ],
     imports: [
