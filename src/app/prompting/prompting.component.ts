@@ -1,5 +1,5 @@
-import {Component, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
-import {PromptingService} from '../../services/prompting.service';
+import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {PromptingService} from '../services/prompting.service';
 
 @Component({
   selector: 'app-prompting',
@@ -18,7 +18,6 @@ export class PromptingComponent implements AfterViewInit {
   lineWidth = 10;
   lastX: number | null = null;
   lastY: number | null = null;
-
 
   @ViewChild('canvas', { static: false }) canvasRef!: ElementRef<HTMLCanvasElement>;
   @ViewChild('container', { static: false }) containerRef!: ElementRef<HTMLDivElement>;

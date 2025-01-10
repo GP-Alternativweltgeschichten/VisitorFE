@@ -4,12 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
-import { NavBarVisitorComponent } from './visitor/nav-bar-visitor/nav-bar-visitor.component';
-import { PromptingComponent } from './visitor/prompting/prompting.component';
-import { OldMapsComponent } from './visitor/old-maps/old-maps.component';
-import { ScenariosComponent } from './visitor/scenarios/scenarios.component';
+import { PromptingComponent } from './prompting/prompting.component';
 import {MenubarModule} from 'primeng/menubar';
-import { ResetComponent } from './visitor/reset/reset.component';
+import { ResetComponent } from './reset/reset.component';
 import {Button} from 'primeng/button';
 import {CardModule} from 'primeng/card';
 import {ImageModule} from 'primeng/image';
@@ -30,6 +27,7 @@ import { ErrorComponent } from './error/error.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CheckboxModule} from 'primeng/checkbox';
 import {InputTextModule} from "primeng/inputtext";
+import { ThematicWorldsComponent } from './thematic-worlds/thematic-worlds.component';
 
 // Factory function for ngx-translate
 export function HttpLoaderFactory(http: HttpClient) {
@@ -41,13 +39,11 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     TopBarComponent,
-    NavBarVisitorComponent,
     PromptingComponent,
-    OldMapsComponent,
-    ScenariosComponent,
     ResetComponent,
     HomeComponent,
-    ErrorComponent
+    ErrorComponent,
+    ThematicWorldsComponent
   ],
     imports: [
         BrowserModule,
