@@ -4,25 +4,13 @@
 </div>
 
 <div class="container">
-  <!-- Zoom controls -->
-  <div class="zoom-controls">
-    <button (click)="adjustZoom(-10)" [disabled]="zoomLevel <= minZoom">-</button>
-    <span>{{ zoomLevel }}%</span>
-    <button (click)="adjustZoom(10)" [disabled]="zoomLevel >= maxZoom">+</button>
-  </div>
 
   <!-- Map image container -->
   <div class="map-container"
-       #container
-       (mouseleave)="onMouseLeave()"
-       (mousedown)="onMouseDown($event)"
-       (mouseup)="onMouseUp()"
-       (mousemove)="onMouseMove($event)">
+       #container>
 
     <img src="assets/img/olpe.jpg"
       #img
-      (contextmenu)="onContextMenu($event)"
-      (click)="onImageClick()"
       class="map-image"/>
   </div>
 
