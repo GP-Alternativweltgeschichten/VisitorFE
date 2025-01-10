@@ -14,7 +14,10 @@ export class PromptingComponent implements AfterViewInit {
   drawing = false;
   erasing = false;
   ctx: CanvasRenderingContext2D | null = null;
-  lineWidth = 8;
+  lineWidth = 10;
+  lastX: number | null = null;
+  lastY: number | null = null;
+
 
   @ViewChild('canvas', { static: false }) canvasRef!: ElementRef<HTMLCanvasElement>;
   @ViewChild('container', { static: false }) containerRef!: ElementRef<HTMLDivElement>;
@@ -65,7 +68,6 @@ export class PromptingComponent implements AfterViewInit {
     this.ctx.beginPath();
     const { offsetX, offsetY } = event;
     this.ctx.moveTo(offsetX, offsetY);
-    this.ctx.strokeStyle = this.erasing ? 'rgba(0,0,0,0)' : 'rgba(0, 0, 0, 0.4)';
   }
 
   draw(event: MouseEvent): void {
@@ -73,11 +75,28 @@ export class PromptingComponent implements AfterViewInit {
     const { offsetX, offsetY } = event;
 
     if (this.erasing) {
-      this.ctx.clearRect(offsetX - this.lineWidth / 2, offsetY - this.lineWidth / 2, this.lineWidth, this.lineWidth); // Clear the drawn area to "erase"
+      //Clear the drawn area (smoothly)
+      this.ctx.globalCompositeOperation = 'destination-out'; // Erase mode
+
+      if (this.lastX !== null && this.lastY !== null) {
+        const distance = Math.hypot(offsetX - this.lastX, offsetY - this.lastY);
+        const steps = Math.ceil(distance / (this.lineWidth / 2));
+
+        for (let i = 1; i <= steps; i++) {
+          const x = this.lastX + (offsetX - this.lastX) * (i / steps);
+          const y = this.lastY + (offsetY - this.lastY) * (i / steps);
+          this.ctx.beginPath();
+          this.ctx.arc(x, y, this.lineWidth / 2, 0, Math.PI * 2);
+          this.ctx.fill();
+        }
+      }
     } else {
       this.ctx.lineTo(offsetX, offsetY);
       this.ctx.stroke();
     }
+
+    this.lastX = offsetX;
+    this.lastY = offsetY;
   }
 
   stopDrawing(): void {
@@ -85,6 +104,8 @@ export class PromptingComponent implements AfterViewInit {
 
     this.drawing = false;
     this.ctx.closePath();
+    this.lastX = null;
+    this.lastY = null;
   }
 
   changeLineWidth(width: number): void {
