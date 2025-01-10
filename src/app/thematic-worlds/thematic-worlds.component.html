@@ -1,0 +1,27 @@
+<div class="grid">
+  <div class="col-12">
+    <h1 style="text-align: center">{{ 'Themenwelten' | translate }}</h1>
+  </div>
+  <div class="col-12">
+    <p style="text-align: center">{{ 'ThemenweltWelcome' | translate }}</p>
+  </div>
+  <div class="col-12 overflow-x-scroll" style="max-height: 450px; display: flex">
+    <div *ngFor="let world of thematicWorlds">
+      <p-card [header]="world.name" [style]="{height: '400px', width: '500px'}">
+        <div class="grid" style="padding-bottom: 5px">
+          <div class="col-12">
+            <p-image [src]="createImageFromBlob(world.image)" alt="{{ 'Picture' | translate }} {{world.name}}"></p-image>
+          </div>
+          <div class="col-12">
+            <div>{{world.description}}</div>
+          </div>
+        </div>
+        <ng-template pTemplate="footer">
+          <div>
+            <p-button>{{ 'ThemenweltButton' | translate }}</p-button>
+          </div>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+</div>
