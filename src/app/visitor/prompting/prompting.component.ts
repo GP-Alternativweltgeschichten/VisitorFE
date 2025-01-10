@@ -110,9 +110,12 @@ export class PromptingComponent implements AfterViewInit {
     this.lastY = null;
   }
 
-  changeLineWidth(width: number): void {
-    this.lineWidth = width;
-    if (this.ctx) this.ctx.lineWidth = width;
+  changeLineWidth(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const newWidth = parseInt(target.value, 10);
+
+    this.lineWidth = newWidth;
+    if (this.ctx) this.ctx.lineWidth = newWidth;
   }
 
   enableEraser(): void {

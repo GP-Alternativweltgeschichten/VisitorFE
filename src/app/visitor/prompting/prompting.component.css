@@ -17,7 +17,7 @@
   position: relative;
   border: 2px solid #ccc;
   border-radius: 5px;
-  margin-bottom: 20px
+  margin-bottom: 10px
 }
 
 .map-image {
@@ -41,22 +41,35 @@
 .controls {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-bottom: 50px;
 }
 
-.controls button {
-  margin: 0 5px;
-  padding: 10px 15px;
-  font-size: 1rem;
-  background-color: #007bff;
-  color: white;
-  border: 1px solid #007bff;
-  border-radius: 5px;
+.controls input[type="range"] {
+  width: 150px;
   cursor: pointer;
 }
 
-.controls button:hover {
+/* General styles for icon buttons */
+.icon-button {
+  padding: 10px;
+  font-size: 1.2rem; /* Adjust icon size */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-button:hover {
   background-color: #0056b3;
+}
+
+.icon-button i {
+  pointer-events: none; /* Prevent interference from icon clicks */
 }
 
 /* Input container */
