@@ -11,9 +11,10 @@ export class PromptingComponent implements AfterViewInit {
   userPrompt: string = '';
   inputText: string = '';
 
+  ctx: CanvasRenderingContext2D | null = null;
+  selectedTool: 'draw' | 'eraser' = 'draw';
   drawing = false;
   erasing = false;
-  ctx: CanvasRenderingContext2D | null = null;
   lineWidth = 10;
   lastX: number | null = null;
   lastY: number | null = null;
@@ -120,10 +121,12 @@ export class PromptingComponent implements AfterViewInit {
 
   enableEraser(): void {
     this.erasing = true;
+    this.selectedTool = 'eraser';
   }
 
   enableDrawing(): void {
     this.erasing = false;
+    this.selectedTool = 'draw';
   }
 
   resetCanvas(): void {

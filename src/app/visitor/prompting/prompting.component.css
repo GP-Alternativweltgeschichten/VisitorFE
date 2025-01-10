@@ -34,7 +34,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: auto; /* Enable with JavaScript for interaction */
+  pointer-events: auto; /* Enable interaction */
+  cursor: pointer /* url('/assets/icons/pencil.png') 0 24, pointer; */
 }
 
 /* Controls container */
@@ -54,9 +55,9 @@
 .icon-button {
   padding: 10px;
   font-size: 1.2rem; /* Adjust icon size */
-  background-color: #007bff;
-  color: white;
-  border: none;
+  background-color: #ccc; /* Default gray tone */
+  color: black;
+  border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
   display: flex;
@@ -65,7 +66,13 @@
 }
 
 .icon-button:hover {
-  background-color: #0056b3;
+  background-color: #bbb;
+}
+
+.icon-button.selected {
+  background-color: #666;
+  color: white;
+  border: 1px solid #666;
 }
 
 .icon-button i {

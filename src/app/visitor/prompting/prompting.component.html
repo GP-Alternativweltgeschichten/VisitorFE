@@ -22,10 +22,12 @@
       (input)="changeLineWidth($event)"
     />
 
-    <button (click)="enableDrawing()" class="icon-button">
+    <button (click)="enableDrawing()" class="icon-button"
+            [ngClass]="{ selected: selectedTool === 'draw' }">
       <i class="fas fa-pencil-alt"></i>
     </button>
-    <button (click)="enableEraser()" class="icon-button">
+    <button (click)="enableEraser()" class="icon-button"
+            [ngClass]="{ selected: selectedTool === 'eraser' }" >
       <i class="fas fa-eraser"></i>
     </button>
     <button (click)="resetCanvas()" class="icon-button">
