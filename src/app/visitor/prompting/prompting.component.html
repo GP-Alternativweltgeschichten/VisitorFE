@@ -6,12 +6,19 @@
 <div class="container">
 
   <!-- Map image container -->
-  <div class="map-container"
-       #container>
+  <div class="map-container" #container>
+    <img src="assets/img/olpe.jpg" #img class="map-image" />
+    <canvas #canvas class="drawing-canvas"></canvas>
+  </div>
 
-    <img src="assets/img/olpe.jpg"
-      #img
-      class="map-image"/>
+  <!-- Drawing controls -->
+  <div class="controls">
+    <button (click)="changeLineWidth(2)">Thin</button>
+    <button (click)="changeLineWidth(5)">Medium</button>
+    <button (click)="changeLineWidth(10)">Thick</button>
+    <button (click)="enableEraser()">Eraser</button>
+    <button (click)="enableDrawing()">Draw</button>
+    <button (click)="resetCanvas()">Reset</button>
   </div>
 
   <!-- Input field with helper text and button -->
