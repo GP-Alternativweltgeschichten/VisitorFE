@@ -1,5 +1,5 @@
 import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
-import {PromptingService} from '../../services/prompting.service';
+import {PromptingService} from '../services/prompting.service';
 
 @Component({
   selector: 'app-prompting',

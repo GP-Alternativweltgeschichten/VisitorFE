@@ -1,8 +1,3 @@
-<div>
-  <app-nav-bar-visitor></app-nav-bar-visitor>
-  <app-reset></app-reset>
-</div>
-
 <div class="container">
   <!-- Zoom controls -->
   <div class="zoom-controls">
@@ -19,7 +14,7 @@
        (mouseup)="onMouseUp()"
        (mousemove)="onMouseMove($event)">
 
-    <img src="assets/img/olpe.jpg"
+    <img src="../../assets/img/olpe.jpg"
       #img
       (contextmenu)="onContextMenu($event)"
       (click)="onImageClick()"
@@ -44,4 +39,8 @@
         (click)="updatePrompt(scenarioInput)">{{ 'Generate' | translate }}</button> <!-- Update on Button Click -->
     </div>
   </div>
+</div>
+
+<div style="margin-top: 100px">
+  <app-thematic-worlds></app-thematic-worlds>
 </div>
