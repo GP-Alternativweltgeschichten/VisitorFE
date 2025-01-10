@@ -52,6 +52,7 @@ export class PromptingComponent implements AfterViewInit {
     if (this.ctx) {
       this.ctx.lineWidth = this.lineWidth;
       this.ctx.lineCap = 'round';
+      this.ctx.globalCompositeOperation = 'source-over';
 
       // Enable drawing
       canvas.addEventListener('mousedown', (e) => this.startDrawing(e));
@@ -91,6 +92,7 @@ export class PromptingComponent implements AfterViewInit {
         }
       }
     } else {
+      this.ctx.globalCompositeOperation = 'source-over';
       this.ctx.lineTo(offsetX, offsetY);
       this.ctx.stroke();
     }
