@@ -1,5 +1,6 @@
 import {Component, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
 import {PromptingService} from '../../services/prompting.service';
+import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-prompting',
@@ -10,6 +11,8 @@ import {PromptingService} from '../../services/prompting.service';
 export class PromptingComponent implements AfterViewInit {
   userPrompt: string = '';
   inputText: string = '';
+
+  shownMap: SafeUrl = "assets/img/olpe.jpg"
 
   ctx: CanvasRenderingContext2D | null = null;
   selectedTool: 'draw' | 'eraser' = 'draw';
@@ -23,7 +26,7 @@ export class PromptingComponent implements AfterViewInit {
   @ViewChild('canvas', { static: false }) canvasRef!: ElementRef<HTMLCanvasElement>;
   @ViewChild('container', { static: false }) containerRef!: ElementRef<HTMLDivElement>;
 
-  constructor(public promptingService: PromptingService) {}
+  constructor(public promptingService: PromptingService, private sanitizer: DomSanitizer) {}
 
   updatePrompt(inputField: HTMLInputElement): void {
     if (this.inputText.trim()) {
@@ -31,7 +34,12 @@ export class PromptingComponent implements AfterViewInit {
       this.inputText = '';
       inputField.value = '';
       console.log('Prompt Updated:', this.userPrompt);
-      this.promptingService.sendText(this.userPrompt)
+      this.promptingService.sendText(this.userPrompt).subscribe({
+        next: (byteArray) => {
+          let objectURL = 'data:image/png;base64,' + byteArray;
+          this.shownMap = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+        }
+      })
     }
   }
 

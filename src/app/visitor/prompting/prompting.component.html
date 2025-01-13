@@ -7,7 +7,7 @@
 
   <!-- Map image container -->
   <div class="map-container" #container>
-    <img src="assets/img/olpe.jpg" #img class="map-image" />
+    <img [src]="shownMap" #img class="map-image" />
     <canvas #canvas class="drawing-canvas"></canvas>
   </div>
 
