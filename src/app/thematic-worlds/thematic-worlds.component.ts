@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ThematicWorld} from '../services/ThematicWorld';
 import {ThematicWorldService} from '../services/thematicWorldService';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-thematic-worlds',
@@ -10,7 +11,7 @@ import {ThematicWorldService} from '../services/thematicWorldService';
 export class ThematicWorldsComponent implements OnInit {
   thematicWorlds: ThematicWorld[] = [];
 
-  constructor(private thematicWorldsService: ThematicWorldService) { }
+  constructor(private thematicWorldsService: ThematicWorldService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.thematicWorldsService.getThematicWorlds().subscribe({
@@ -22,19 +23,13 @@ export class ThematicWorldsComponent implements OnInit {
 
   }
 
-  createImageFromBlob(image: Blob): any {
+  createImageFromBlob(image: any): any {
     if (image === null) {
       return;
     }
     let map: any;
-    let reader = new FileReader();
-    reader.addEventListener("load", () => {
-      map = reader.result;
-    }, false);
-
-    if (image) {
-      reader.readAsDataURL(image);
-    }
+    let objectURL = 'data:image/png;base64,' + image;
+    map = this.sanitizer.bypassSecurityTrustUrl(objectURL);
 
     return map;
   }

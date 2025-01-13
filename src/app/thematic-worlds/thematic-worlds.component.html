@@ -5,12 +5,12 @@
   <div class="col-12">
     <p style="text-align: center">{{ 'ThemenweltWelcome' | translate }}</p>
   </div>
-  <div class="col-12 overflow-x-scroll" style="max-height: 450px; display: flex">
+  <div class="col-12 overflow-x-scroll" style="height: fit-content; display: flex">
     <div *ngFor="let world of thematicWorlds">
-      <p-card [header]="world.name" [style]="{height: '400px', width: '500px'}">
+      <p-card [header]="world.name" [style]="{width: '500px'}">
         <div class="grid" style="padding-bottom: 5px">
           <div class="col-12">
-            <p-image [src]="createImageFromBlob(world.image)" alt="{{ 'Picture' | translate }} {{world.name}}"></p-image>
+            <p-image [src]="createImageFromBlob(world.image)" alt="{{ 'Picture' | translate }} {{world.name}}" width="450px"></p-image>
           </div>
           <div class="col-12">
             <div>{{world.description}}</div>
