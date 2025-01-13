@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError as observableThrowError } from "rxjs";
 import { catchError } from "rxjs/operators";
+import {Scenario} from './Scenario';
 
 
 @Injectable({
@@ -44,14 +45,21 @@ export class CommunicationService {
       this.handleCustomheaders(customHeaders);
     }
     path = this.createPath(path);
-
     if (type) {
       // @ts-ignore
       this.options["responseType"] = type;
     }
-    return this.http
+    let result = this.http
       .post<returnType>(path, body, this.options)
       .pipe(catchError(err => observableThrowError(this.errorHandler(err))));
+
+    result.subscribe({
+      next: (data: any) => {
+        console.log(data)
+      }
+    });
+
+    return result
   }
 
   public put<returnType>(path: string, body: any, customHeaders?: HttpHeaders): Observable<returnType> {

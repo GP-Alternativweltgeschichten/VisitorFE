@@ -28,10 +28,10 @@ export class PromptingComponent implements AfterViewInit {
   updatePrompt(inputField: HTMLInputElement): void {
     if (this.inputText.trim()) {
       this.userPrompt = this.inputText.trim();
+      this.promptingService.sendText(this.userPrompt);
       this.inputText = '';
       inputField.value = '';
       console.log('Prompt Updated:', this.userPrompt);
-      this.promptingService.sendText(this.userPrompt)
     }
   }
 

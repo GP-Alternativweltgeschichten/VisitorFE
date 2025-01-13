@@ -7,10 +7,12 @@ import {Observable} from 'rxjs';
 })
 export class PromptingService {
 
-  constructor(private comService: CommunicationService) { }
+  constructor(private comService: CommunicationService) {
+  }
 
   sendText(text: string): Observable<String> {
-    return this.comService.post<String>('/prompting/text', text);
+    let msg = "{\"prompt\":\"" + text + "\"}";
+    return this.comService.post<String>('/prompting/text', msg);
   }
 
 }
