@@ -1,5 +1,5 @@
 import {PromptingService} from '../services/prompting.service';
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-prompting',
@@ -7,7 +7,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
   templateUrl: './prompting.component.html',
   styleUrl: './prompting.component.css'
 })
-export class PromptingComponent implements OnInit, AfterViewInit {
+export class PromptingComponent implements AfterViewInit {
   userPrompt: string = '';
   inputText: string = '';
 
