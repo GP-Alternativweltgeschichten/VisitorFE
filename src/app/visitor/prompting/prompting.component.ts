@@ -28,11 +28,13 @@ export class PromptingComponent implements AfterViewInit {
 
   constructor(public promptingService: PromptingService, private sanitizer: DomSanitizer) {}
 
-  updatePrompt(inputField: HTMLInputElement): void {
+  async updatePrompt(inputField: HTMLInputElement): Promise<void> {
     if (this.inputText.trim()) {
       this.userPrompt = this.inputText.trim();
       this.inputText = '';
       inputField.value = '';
+
+      //default
       console.log('Prompt Updated:', this.userPrompt);
       this.promptingService.sendText(this.userPrompt).subscribe({
         next: (byteArray) => {
@@ -40,11 +42,57 @@ export class PromptingComponent implements AfterViewInit {
           this.shownMap = this.sanitizer.bypassSecurityTrustUrl(objectURL);
         }
       })
+
+      //prompt with image and mask
+      /*
+      const canvas = this.getCanvasByteArray();
+      const image = await this.getImageByteArray();
+
+      const payload = {
+        prompt: this.userPrompt,
+        image: Array.from(image),
+        canvas: Array.from(canvas)
+      };
+
+      this.promptingService.sendImageMaskText(payload).subscribe({
+        next: (byteArray) => {
+          const objectURL = 'data:image/png;base64,' + byteArray;
+          this.shownMap = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+        },
+        error: (err) => {
+          console.error('Error sending prompt:', err);
+        },
+      });
+      */
     }
   }
 
   onInputChange(value: string): void {
     this.inputText = value;
+  }
+
+
+  /*****Convert Image/Canvas to ByteArray*****/
+  getCanvasByteArray(): Uint8Array {
+    if (!this.canvasRef) return new Uint8Array();
+
+    const canvas = this.canvasRef.nativeElement;
+    const dataUrl = canvas.toDataURL('image/png'); // Get the base64 string
+    const binaryString = atob(dataUrl.split(',')[1]); // Decode the base64 string
+    const len = binaryString.length;
+    const bytes = new Uint8Array(len);
+
+    for (let i = 0; i < len; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+    return bytes;
+  }
+
+  async getImageByteArray(): Promise<Uint8Array> {
+    const response = await fetch(this.shownMap.toString()); // Fetch the image as a blob
+    const blob = await response.blob();
+    const arrayBuffer = await blob.arrayBuffer();
+    return new Uint8Array(arrayBuffer);
   }
 
   /**********DRAW FEATURE**********/
