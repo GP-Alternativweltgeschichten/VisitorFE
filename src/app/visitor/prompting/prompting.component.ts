@@ -24,6 +24,7 @@ export class PromptingComponent implements AfterViewInit {
 
   @ViewChild('canvas', {static: false}) canvasRef!: ElementRef<HTMLCanvasElement>;
   @ViewChild('container', {static: false}) containerRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('img', { static: false }) imgElement: ElementRef<HTMLImageElement> | undefined;
 
   constructor(public promptingService: PromptingService) {
   }
@@ -35,10 +36,15 @@ export class PromptingComponent implements AfterViewInit {
       inputField.value = '';
 
       console.log('Prompt Updated:', this.userPrompt);
-      this.promptingService.sendText(this.userPrompt).subscribe((response: any) => {
-        const blob = new Blob([response], {type: 'image/png'});
-        this.shownMap = URL.createObjectURL(blob);
-      });
+      if (this.imgElement && this.imgElement.nativeElement) {
+        const img = this.imgElement.nativeElement;
+        const image = this.getImageAsDataURL(img);
+        const canvasURL = this.getCanvasAsDataURL()
+        this.promptingService.sendTextAndImageAndMask(this.userPrompt, image, canvasURL).subscribe((response: any) => {
+          const blob = new Blob([response], {type: 'image/png'});
+          this.shownMap = URL.createObjectURL(blob);
+        });
+      }
     }
   }
 
@@ -47,8 +53,8 @@ export class PromptingComponent implements AfterViewInit {
   }
 
   /*****Convert Image/Canvas to ByteArray*****/
-  getCanvasByteArray(): Uint8Array {
-    if (!this.canvasRef) return new Uint8Array();
+  getCanvasAsDataURL(): string {
+    if (!this.canvasRef) return String();
 
     const canvas = this.canvasRef.nativeElement;
     const dataUrl = canvas.toDataURL('image/png'); // Get the base64 string
@@ -59,14 +65,17 @@ export class PromptingComponent implements AfterViewInit {
     for (let i = 0; i < len; i++) {
       bytes[i] = binaryString.charCodeAt(i);
     }
-    return bytes;
+    return dataUrl;
   }
 
-  async getImageByteArray(): Promise<Uint8Array> {
-    const response = await fetch(this.shownMap.toString()); // Fetch the image as a blob
-    const blob = await response.blob();
-    const arrayBuffer = await blob.arrayBuffer();
-    return new Uint8Array(arrayBuffer);
+  getImageAsDataURL(img: HTMLImageElement): string {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext('2d');
+    // @ts-ignore
+    ctx.drawImage(img, 0, 0);
+    return canvas.toDataURL('image/png');
   }
 
   /**********DRAW FEATURE**********/
