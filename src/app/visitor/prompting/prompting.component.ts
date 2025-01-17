@@ -1,6 +1,5 @@
 import {Component, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
 import {PromptingService} from '../../services/prompting.service';
-import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-prompting',
@@ -12,7 +11,7 @@ export class PromptingComponent implements AfterViewInit {
   userPrompt: string = '';
   inputText: string = '';
 
-  shownMap: SafeUrl = "assets/img/olpe.jpg"
+  shownMap: string = "assets/img/olpe.jpg"
 
   ctx: CanvasRenderingContext2D | null = null;
   selectedTool: 'draw' | 'eraser' = 'draw';
@@ -23,10 +22,11 @@ export class PromptingComponent implements AfterViewInit {
   lastY: number | null = null;
 
 
-  @ViewChild('canvas', { static: false }) canvasRef!: ElementRef<HTMLCanvasElement>;
-  @ViewChild('container', { static: false }) containerRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('canvas', {static: false}) canvasRef!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('container', {static: false}) containerRef!: ElementRef<HTMLDivElement>;
 
-  constructor(public promptingService: PromptingService, private sanitizer: DomSanitizer) {}
+  constructor(public promptingService: PromptingService) {
+  }
 
   async updatePrompt(inputField: HTMLInputElement): Promise<void> {
     if (this.inputText.trim()) {
@@ -34,43 +34,17 @@ export class PromptingComponent implements AfterViewInit {
       this.inputText = '';
       inputField.value = '';
 
-      //default
       console.log('Prompt Updated:', this.userPrompt);
-      this.promptingService.sendText(this.userPrompt).subscribe({
-        next: (byteArray) => {
-          let objectURL = 'data:image/png;base64,' + byteArray;
-          this.shownMap = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-        }
-      })
-
-      //prompt with image and mask
-      /*
-      const canvas = this.getCanvasByteArray();
-      const image = await this.getImageByteArray();
-
-      const payload = {
-        prompt: this.userPrompt,
-        image: Array.from(image),
-        canvas: Array.from(canvas)
-      };
-
-      this.promptingService.sendImageMaskText(payload).subscribe({
-        next: (byteArray) => {
-          const objectURL = 'data:image/png;base64,' + byteArray;
-          this.shownMap = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-        },
-        error: (err) => {
-          console.error('Error sending prompt:', err);
-        },
+      this.promptingService.sendText(this.userPrompt).subscribe((response: any) => {
+        const blob = new Blob([response], {type: 'image/png'});
+        this.shownMap = URL.createObjectURL(blob);
       });
-      */
     }
   }
 
   onInputChange(value: string): void {
     this.inputText = value;
   }
-
 
   /*****Convert Image/Canvas to ByteArray*****/
   getCanvasByteArray(): Uint8Array {
@@ -124,13 +98,13 @@ export class PromptingComponent implements AfterViewInit {
 
     this.drawing = true;
     this.ctx.beginPath();
-    const { offsetX, offsetY } = event;
+    const {offsetX, offsetY} = event;
     this.ctx.moveTo(offsetX, offsetY);
   }
 
   draw(event: MouseEvent): void {
     if (!this.drawing || !this.ctx) return;
-    const { offsetX, offsetY } = event;
+    const {offsetX, offsetY} = event;
 
     if (this.erasing) {
       //Clear the drawn area (smoothly)

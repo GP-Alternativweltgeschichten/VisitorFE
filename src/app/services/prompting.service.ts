@@ -12,19 +12,17 @@ export class PromptingService {
   }
 
   sendText(text: string): Observable<any> {
-    let msg = "{\"prompt\":\"" + text + "\"}";
-    return this.comService.post<String>('/prompting/text', msg, null as unknown as HttpHeaders, 'arraybuffer');
+    const msg = {
+      prompt: text
+    };
+    return this.comService.post<String>('/prompting/text', msg, null as unknown as HttpHeaders, 'blob');
   }
 
-  /*
-  sendImageText(payload: { prompt: string; image: number[] }): Observable<any> {
-    console.log(JSON.stringify(payload));
-    return this.comService.post<any>('/prompting/imageText', JSON.stringify(payload), null as unknown as HttpHeaders, 'arraybuffer');
+  sendTextAndImage(text: string, image: string): Observable<any> {
+    const requestBody = {
+      prompt: text,
+      image: image
+    };
+    return this.comService.post<String>('/prompting/imageAndText', requestBody, null as unknown as HttpHeaders, 'arraybuffer');
   }
-
-  sendImageMaskText(payload: { prompt: string; image: number[]; canvas: number[] }): Observable<any> {
-    console.log(JSON.stringify(payload));
-    return this.comService.post<any>('/prompting/imageMaskText', JSON.stringify(payload), null as unknown as HttpHeaders, 'arraybuffer');
-  }
-  */
 }
