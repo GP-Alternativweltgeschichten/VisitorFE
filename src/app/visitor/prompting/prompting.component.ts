@@ -40,9 +40,11 @@ export class PromptingComponent implements AfterViewInit {
         const img = this.imgElement.nativeElement;
         const image = this.getImageAsDataURL(img);
         const canvasURL = this.getCanvasAsDataURL()
+
         this.promptingService.sendTextAndImageAndMask(this.userPrompt, image, canvasURL).subscribe((response: any) => {
           const blob = new Blob([response], {type: 'image/png'});
           this.shownMap = URL.createObjectURL(blob);
+          this.resetCanvas();
         });
       }
     }
@@ -69,12 +71,22 @@ export class PromptingComponent implements AfterViewInit {
   }
 
   getImageAsDataURL(img: HTMLImageElement): string {
+    const maxWidth = 1000;
+    const maxHeight = 1000;
+
+    const widthRatio = maxWidth / img.naturalWidth;
+    const heightRatio = maxHeight / img.naturalHeight;
+    const scaleFactor = Math.min(widthRatio, heightRatio);
+    const targetWidth = Math.round(img.naturalWidth * scaleFactor);
+    const targetHeight = Math.round(img.naturalHeight * scaleFactor);
+
     const canvas = document.createElement('canvas');
-    canvas.width = img.width;
-    canvas.height = img.height;
+    canvas.width = targetWidth;
+    canvas.height = targetHeight;
+
     const ctx = canvas.getContext('2d');
     // @ts-ignore
-    ctx.drawImage(img, 0, 0);
+    if (ctx) ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
     return canvas.toDataURL('image/png');
   }
 
