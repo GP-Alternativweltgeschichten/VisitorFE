@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OldMapsComponent } from './old-maps.component';
+import { ThematicWorldsComponent } from './thematic-worlds.component';
 
-describe('OldMapsComponent', () => {
-  let component: OldMapsComponent;
-  let fixture: ComponentFixture<OldMapsComponent>;
+describe('ThematicWorldsComponent', () => {
+  let component: ThematicWorldsComponent;
+  let fixture: ComponentFixture<ThematicWorldsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [OldMapsComponent]
+      declarations: [ThematicWorldsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(OldMapsComponent);
+    fixture = TestBed.createComponent(ThematicWorldsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
