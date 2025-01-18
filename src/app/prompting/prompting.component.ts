@@ -11,7 +11,7 @@ export class PromptingComponent implements AfterViewInit {
   userPrompt: string = '';
   inputText: string = '';
 
-  shownMap: string = "assets/img/olpe.jpg"
+  shownMap: string = "assets/img/olpe_140x140.png"
 
   ctx: CanvasRenderingContext2D | null = null;
   selectedTool: 'draw' | 'eraser' = 'draw';

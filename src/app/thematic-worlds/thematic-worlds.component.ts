@@ -19,8 +19,6 @@ export class ThematicWorldsComponent implements OnInit {
         this.thematicWorlds = data;
       }
     })
-
-
   }
 
   createImageFromBlob(image: any): any {
