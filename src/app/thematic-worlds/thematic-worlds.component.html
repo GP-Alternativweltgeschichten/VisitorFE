@@ -18,7 +18,7 @@
         </div>
         <ng-template pTemplate="footer">
           <div>
-            <p-button>{{ 'ThemenweltButton' | translate }}</p-button>
+            <p-button (onClick)="showMap(createImageFromBlob(world.image))">{{ 'ThemenweltButton' | translate }}</p-button>
           </div>
         </ng-template>
       </p-card>

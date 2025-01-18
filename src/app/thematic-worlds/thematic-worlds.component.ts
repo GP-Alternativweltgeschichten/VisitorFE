@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ThematicWorld} from '../services/ThematicWorld';
 import {ThematicWorldService} from '../services/thematicWorldService';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -9,6 +9,8 @@ import {DomSanitizer} from '@angular/platform-browser';
   styleUrl: './thematic-worlds.component.css'
 })
 export class ThematicWorldsComponent implements OnInit {
+  @Output() mapToShow = new EventEmitter<any>();
+
   thematicWorlds: ThematicWorld[] = [];
 
   constructor(private thematicWorldsService: ThematicWorldService, private sanitizer: DomSanitizer) { }
@@ -30,6 +32,10 @@ export class ThematicWorldsComponent implements OnInit {
     map = this.sanitizer.bypassSecurityTrustUrl(objectURL);
 
     return map;
+  }
+
+  showMap(map: any): void {
+    this.mapToShow.emit(map);
   }
 
 }

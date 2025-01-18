@@ -186,4 +186,9 @@ export class PromptingComponent implements AfterViewInit {
     const canvas = this.canvasRef.nativeElement;
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
+
+  showMap(map: any): void {
+    this.shownMap = map;
+    this.imgElement?.nativeElement.setAttribute('src', map);
+  }
 }
