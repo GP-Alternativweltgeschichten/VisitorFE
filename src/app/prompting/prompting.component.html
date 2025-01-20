@@ -1,13 +1,23 @@
 <div class="container">
-
   <!-- Map image container -->
   <div class="map-container" #container>
-    <img [src]="shownMap" #img class="map-image" />
+    <img alt="Karte von Olpe" [src]="shownMap" #img class="map-image" />
     <canvas #canvas class="drawing-canvas"></canvas>
+  </div>
+</div>
+
+<div style="margin-top: 20px">
+  <div class="language-switcher">
+    <button (click)="switchLanguage('en')">
+      <img src="assets/icons/uk-flag.png" alt="English" width="30">
+    </button>
+    <button (click)="switchLanguage('de')">
+      <img src="assets/icons/german-flag.png" alt="Deutsch" width="30">
+    </button>
   </div>
 
   <!-- Drawing controls -->
-  <div class="controls" style="margin-top: 20px">
+  <div class="controls">
     <input
       id="lineWidthRange"
       type="range"
@@ -42,12 +52,24 @@
         placeholder="{{ 'WhatIf' | translate }}"
         #scenarioInput
         (input)="onInputChange(scenarioInput.value)"
-        (keydown.enter)="updatePrompt(scenarioInput)"> <!-- Update on Enter -->
+        (keydown.enter)="updatePrompt(scenarioInput)"
+      > <!-- Update on Enter -->
 
       <button
         class="generate-button"
         [disabled]="!inputText.trim()"
-        (click)="updatePrompt(scenarioInput)">{{ 'Generate' | translate }}</button> <!-- Update on Button Click -->
+        (click)="updatePrompt(scenarioInput)"
+      >
+        {{ 'Generate' | translate }}
+      </button> <!-- Update on Button Click -->
+
+      <div class="flex justify-content-end flex-wrap" style="padding: 5px; margin-right: 20px">
+        <p-button
+          label="Reset"
+          severity="danger"
+          (click)="resetPrompt()"
+        ></p-button>
+      </div>
     </div>
   </div>
 </div>

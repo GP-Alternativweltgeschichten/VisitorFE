@@ -50,6 +50,13 @@
   cursor: pointer;
 }
 
+.language-switcher {
+  display: flex; /* Aligns the buttons in a row */
+  gap: 10px; /* Optional: adds space between the buttons */
+  justify-content: right;
+  margin-right: 20px;
+}
+
 /* General styles for icon buttons */
 .icon-button {
   padding: 10px;

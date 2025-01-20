@@ -1,5 +1,6 @@
 import {Component, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
 import {PromptingService} from '../services/prompting.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-prompting',
@@ -26,7 +27,13 @@ export class PromptingComponent implements AfterViewInit {
   @ViewChild('container', {static: false}) containerRef!: ElementRef<HTMLDivElement>;
   @ViewChild('img', { static: false }) imgElement: ElementRef<HTMLImageElement> | undefined;
 
-  constructor(public promptingService: PromptingService) {
+  constructor(public promptingService: PromptingService, private translate: TranslateService) {
+    // Default language
+    this.translate.setDefaultLang('de');
+  }
+
+  switchLanguage(language: string): void {
+    this.translate.use(language);
   }
 
   async updatePrompt(inputField: HTMLInputElement): Promise<void> {
@@ -191,4 +198,11 @@ export class PromptingComponent implements AfterViewInit {
     this.shownMap = map;
     this.imgElement?.nativeElement.setAttribute('src', map);
   }
+
+  resetPrompt(): void {
+    this.userPrompt = '';
+    this.shownMap = "assets/img/olpe_140x140.png";
+    this.resetCanvas();
+  }
+
 }
