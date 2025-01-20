@@ -2,16 +2,16 @@
   <div class="col-12">
     <h1 style="text-align: center">{{ 'Themenwelten' | translate }}</h1>
   </div>
-  <div class="col-12">
-    <p style="text-align: center">{{ 'ThemenweltWelcome' | translate }}</p>
-  </div>
+<!--  <div class="col-12">-->
+<!--    <p style="text-align: center">{{ 'ThemenweltWelcome' | translate }}</p>-->
+<!--  </div>-->
   <div class="col-12 overflow-x-scroll" style="height: fit-content; display: flex">
     <div *ngFor="let world of thematicWorlds">
-      <p-card [header]="world.name" [style]="{width: '500px'}">
+      <p-card [header]="world.name" [style]="{width: '350px', heigth: '350px'}">
         <div class="grid" style="padding-bottom: 5px">
-          <div class="col-12">
-            <p-image [src]="createImageFromBlob(world.image)" alt="{{ 'Picture' | translate }} {{world.name}}" width="450px"></p-image>
-          </div>
+<!--          <div class="col-12">-->
+<!--            <p-image [src]="createImageFromBlob(world.image)" alt="{{ 'Picture' | translate }} {{world.name}}" width="200px"></p-image>-->
+<!--          </div>-->
           <div class="col-12">
             <div>{{world.description}}</div>
           </div>
