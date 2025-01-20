@@ -17,7 +17,7 @@
   </div>
 
   <!-- Drawing controls -->
-  <div class="controls">
+  <div *ngIf="!generatePossible" class="controls">
     <input
       id="lineWidthRange"
       type="range"
