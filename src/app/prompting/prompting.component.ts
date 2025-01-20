@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import {PromptingService} from '../services/prompting.service';
 import {TranslateService} from '@ngx-translate/core';
 
@@ -68,15 +68,20 @@ export class PromptingComponent implements  AfterViewInit {
     if (!this.canvasRef) return String();
 
     const canvas = this.canvasRef.nativeElement;
-    const dataUrl = canvas.toDataURL('image/png'); // Get the base64 string
-    const binaryString = atob(dataUrl.split(',')[1]); // Decode the base64 string
-    const len = binaryString.length;
-    const bytes = new Uint8Array(len);
+    const context = canvas.getContext('2d');
 
-    for (let i = 0; i < len; i++) {
-      bytes[i] = binaryString.charCodeAt(i);
+    // Prüfen, ob das Canvas leer ist
+    // @ts-ignore
+    const imageData = context.getImageData(0, 0, canvas.width, canvas.height).data;
+    const isEmpty = imageData.every((value: number, index: number) => index % 4 === 3 ? value === 0 : true);
+
+    if (isEmpty) {
+      console.log('Canvas is empty.');
+      return '';
     }
-    return dataUrl;
+
+    // Get the base64 string
+    return canvas.toDataURL('image/png');
   }
 
   getImageAsDataURL(img: HTMLImageElement): string {
