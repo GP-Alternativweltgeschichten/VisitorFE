@@ -10,6 +10,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class ThematicWorldsComponent implements OnInit {
   @Output() mapToShow = new EventEmitter<any>();
+  @Output() isMapEditable = new EventEmitter<boolean>();
 
   thematicWorlds: ThematicWorld[] = [];
 
@@ -34,8 +35,14 @@ export class ThematicWorldsComponent implements OnInit {
     return map;
   }
 
-  showMap(map: any): void {
-    this.mapToShow.emit(map);
+  showThematicWorld(thematicWorld: ThematicWorld): void {
+    this.mapToShow.emit(this.createImageFromBlob(thematicWorld.image));
+
+    if (thematicWorld.editable) {
+      this.isMapEditable.emit(false);
+    } else {
+      this.isMapEditable.emit(true);
+    }
   }
 
 }

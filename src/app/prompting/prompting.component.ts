@@ -8,7 +8,9 @@ import {TranslateService} from '@ngx-translate/core';
   templateUrl: './prompting.component.html',
   styleUrl: './prompting.component.css'
 })
-export class PromptingComponent implements AfterViewInit {
+export class PromptingComponent implements  AfterViewInit {
+  generatePossible: boolean = false;
+
   userPrompt: string = '';
   inputText: string = '';
 
@@ -197,6 +199,10 @@ export class PromptingComponent implements AfterViewInit {
   showMap(map: any): void {
     this.shownMap = map;
     this.imgElement?.nativeElement.setAttribute('src', map);
+  }
+
+  setGeneratedMapEditable(isEditable: boolean): void {
+    this.generatePossible = isEditable;
   }
 
   resetPrompt(): void {

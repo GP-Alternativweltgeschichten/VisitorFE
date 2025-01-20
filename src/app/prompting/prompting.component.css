@@ -137,3 +137,9 @@
 .generate-button:hover {
   background-color: #0056b3;
 }
+
+.generate-button:disabled {
+  background-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
+}
