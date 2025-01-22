@@ -1,0 +1,42 @@
+/* Wrapper for p-card */
+.card-wrapper {
+  position: relative;
+  border: 2px solid transparent;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  border-radius: 8px; /* Matches p-card's rounded corners */
+  overflow: hidden;
+  margin: 10px; /* spacing between cards */
+}
+
+/* Default state for cards */
+.card-wrapper {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for unselected cards */
+  background-color: white;
+  border: 1px solid #ddd;
+}
+
+/* Hover effect */
+.card-wrapper:hover {
+  transform: scale(1.03); /* Slightly enlarge on hover */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Selected card */
+.card-wrapper.selected {
+  border: 3px solid #007bff; /* Blue border for selected state */
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5);
+  transform: scale(1.05); /* Slightly larger when selected */
+}
+
+/* PrimeNG's p-card adjustments */
+.p-card {
+  background-color: white;
+  border-radius: 8px;
+  width: 100%; /* Ensure p-card fills the wrapper */
+}
+
+/* Description adjustments */
+.card-wrapper p {
+  font-size: 1rem; /* Smaller font size for description */
+  margin: 0; /* Remove extra margin */
+}

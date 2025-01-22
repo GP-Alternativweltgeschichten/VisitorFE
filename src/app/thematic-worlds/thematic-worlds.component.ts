@@ -13,6 +13,7 @@ export class ThematicWorldsComponent implements OnInit {
   @Output() isMapEditable = new EventEmitter<boolean>();
 
   thematicWorlds: ThematicWorld[] = [];
+  selectedWorld: ThematicWorld | null = null; // Tracks the selected world
 
   constructor(private thematicWorldsService: ThematicWorldService, private sanitizer: DomSanitizer) { }
 
@@ -20,8 +21,9 @@ export class ThematicWorldsComponent implements OnInit {
     this.thematicWorldsService.getThematicWorlds().subscribe({
       next: (data: ThematicWorld[]) => {
         this.thematicWorlds = data;
+        if (this.thematicWorlds.length > 0) this.showThematicWorld(data[0]);
       }
-    })
+    });
   }
 
   createImageFromBlob(image: any): any {
@@ -36,6 +38,7 @@ export class ThematicWorldsComponent implements OnInit {
   }
 
   showThematicWorld(thematicWorld: ThematicWorld): void {
+    this.selectedWorld = thematicWorld;
     this.mapToShow.emit(this.createImageFromBlob(thematicWorld.image));
 
     if (thematicWorld.editable) {
@@ -44,5 +47,4 @@ export class ThematicWorldsComponent implements OnInit {
       this.isMapEditable.emit(true);
     }
   }
-
 }

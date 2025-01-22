@@ -13,5 +13,4 @@ export class ThematicWorldService {
   getThematicWorlds(): Observable<ThematicWorld[]> {
     return this.comService.get('/thematicworlds');
   }
-
 }

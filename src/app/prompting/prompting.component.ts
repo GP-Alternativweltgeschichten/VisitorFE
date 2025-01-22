@@ -1,6 +1,8 @@
 import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import {PromptingService} from '../services/prompting.service';
 import {TranslateService} from '@ngx-translate/core';
+import { ThematicWorldService } from '../services/thematicWorldService';
+import { ThematicWorld } from '../services/ThematicWorld';
 
 @Component({
   selector: 'app-prompting',
@@ -10,10 +12,8 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class PromptingComponent implements  AfterViewInit {
   generatePossible: boolean = false;
-
   userPrompt: string = '';
   inputText: string = '';
-
   shownMap: string = "assets/img/olpe_140x140.png"
 
   ctx: CanvasRenderingContext2D | null = null;
@@ -29,7 +29,10 @@ export class PromptingComponent implements  AfterViewInit {
   @ViewChild('container', {static: false}) containerRef!: ElementRef<HTMLDivElement>;
   @ViewChild('img', { static: false }) imgElement: ElementRef<HTMLImageElement> | undefined;
 
-  constructor(public promptingService: PromptingService, private translate: TranslateService) {
+  constructor(
+    public promptingService: PromptingService,
+    private thematicWorldService: ThematicWorldService,
+    private translate: TranslateService) {
     // Default language
     this.translate.setDefaultLang('de');
   }
@@ -85,8 +88,8 @@ export class PromptingComponent implements  AfterViewInit {
   }
 
   getImageAsDataURL(img: HTMLImageElement): string {
-    const maxWidth = 1000;
-    const maxHeight = 1000;
+    const maxWidth = 950;
+    const maxHeight = 950;
 
     const widthRatio = maxWidth / img.naturalWidth;
     const heightRatio = maxHeight / img.naturalHeight;
@@ -193,6 +196,7 @@ export class PromptingComponent implements  AfterViewInit {
     this.erasing = false;
     this.selectedTool = 'draw';
   }
+  /**************************************/
 
   resetCanvas(): void {
     if (!this.ctx || !this.canvasRef) return;
@@ -214,6 +218,6 @@ export class PromptingComponent implements  AfterViewInit {
     this.userPrompt = '';
     this.shownMap = "assets/img/olpe_140x140.png";
     this.resetCanvas();
+    //TODO: reset selected World
   }
-
 }
