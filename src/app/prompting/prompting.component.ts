@@ -2,7 +2,6 @@ import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import {PromptingService} from '../services/prompting.service';
 import {TranslateService} from '@ngx-translate/core';
 import { ThematicWorldService } from '../services/thematicWorldService';
-import { ThematicWorld } from '../services/ThematicWorld';
 
 @Component({
   selector: 'app-prompting',
@@ -23,6 +22,8 @@ export class PromptingComponent implements  AfterViewInit {
   lineWidth = 10;
   lastX: number | null = null;
   lastY: number | null = null;
+
+  reload: boolean = false;
 
 
   @ViewChild('canvas', {static: false}) canvasRef!: ElementRef<HTMLCanvasElement>;
@@ -218,6 +219,7 @@ export class PromptingComponent implements  AfterViewInit {
     this.userPrompt = '';
     this.shownMap = "assets/img/olpe_140x140.png";
     this.resetCanvas();
+    this.reload = !this.reload;
     //TODO: reset selected World
   }
 }

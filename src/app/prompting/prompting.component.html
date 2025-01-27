@@ -76,6 +76,7 @@
 
 <div style="margin-top: 10px">
   <app-thematic-worlds
+    [reload]="reload"
     (mapToShow)="showMap($event)"
     (isMapEditable)="setGeneratedMapEditable($event)"
   ></app-thematic-worlds>
