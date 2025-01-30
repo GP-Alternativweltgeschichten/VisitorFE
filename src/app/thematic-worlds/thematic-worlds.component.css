@@ -1,3 +1,12 @@
+/* Helper text */
+.helper-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 18px;
+}
+
 /* Wrapper for p-card */
 .card-wrapper {
   position: relative;

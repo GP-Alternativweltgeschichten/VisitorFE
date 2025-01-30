@@ -3,5 +3,6 @@ export interface ThematicWorld {
   name: string;
   description: string;
   image: any;
+  isScenario: boolean;
   editable: boolean;
 }

@@ -20,22 +20,22 @@ export class ThematicWorldsComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.thematicWorldsService.getThematicWorlds().subscribe({
-      next: (data: ThematicWorld[]) => {
-        this.thematicWorlds = data;
-        if (this.thematicWorlds.length > 0) this.showThematicWorld(data[0]);
-      }
-    });
+    this.fetchThematicWorlds();
   }
 
   ngOnChanges(): void {
+    this.fetchThematicWorlds();
+  }
+
+  private fetchThematicWorlds(): void {
     this.thematicWorldsService.getThematicWorlds().subscribe({
       next: (data: ThematicWorld[]) => {
-        this.thematicWorlds = data;
-        if (this.thematicWorlds.length > 0) this.showThematicWorld(data[0]);
+        this.thematicWorlds = data.sort(({ isScenario: a = false }, { isScenario: b = false }) =>
+          Number(b) - Number(a)
+        ); // Sort by scenario
+        if (this.thematicWorlds.length > 0) this.showThematicWorld(this.thematicWorlds[0]);
       }
     });
-
   }
 
   createImageFromBlob(image: any): any {

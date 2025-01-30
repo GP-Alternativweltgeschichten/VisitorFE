@@ -217,9 +217,8 @@ export class PromptingComponent implements  AfterViewInit {
 
   resetPrompt(): void {
     this.userPrompt = '';
-    this.shownMap = "assets/img/olpe_140x140.png";
+    //this.shownMap = "assets/img/olpe_140x140.png";
     this.resetCanvas();
     this.reload = !this.reload;
-    //TODO: reset selected World
   }
 }
