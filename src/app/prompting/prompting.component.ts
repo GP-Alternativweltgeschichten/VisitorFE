@@ -215,10 +215,13 @@ export class PromptingComponent implements  AfterViewInit {
     this.generatePossible = isEditable;
   }
 
-  resetPrompt(): void {
+  resetPrompt(inputField: HTMLInputElement): void {
     this.userPrompt = '';
+    this.inputText = '';
+    inputField.value = '';
     //this.shownMap = "assets/img/olpe_140x140.png";
     this.resetCanvas();
+    this.enableDrawing();
     this.reload = !this.reload;
   }
 }
