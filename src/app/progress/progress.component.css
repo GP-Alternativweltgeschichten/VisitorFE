@@ -1,18 +1,17 @@
-.progress-spinner {
+.progress-bar {
   position: fixed;
   z-index: 999;
-  height: 2em;
-  width: 2em;
   overflow: show;
   margin: auto;
-  top: 0;
+  width: 50%;
+  top: 800px;
   left: 0;
-  bottom: 0;
+  bottom: 800px;
   right: 0;
 }
 
 /* Transparent Overlay */
-.progress-spinner:before {
+.progress-bar:before {
   content: '';
   display: block;
   position: fixed;
