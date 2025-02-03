@@ -48,8 +48,6 @@ export class PromptingComponent implements  AfterViewInit {
     this.progress = true;
     if (this.inputText.trim()) {
       this.userPrompt = this.inputText.trim();
-      this.inputText = '';
-      inputField.value = '';
 
       console.log('Prompt Updated:', this.userPrompt);
       if (this.imgElement && this.imgElement.nativeElement) {
@@ -62,6 +60,8 @@ export class PromptingComponent implements  AfterViewInit {
           this.shownMap = URL.createObjectURL(blob);
           this.resetCanvas();
           this.progress = false;
+          this.inputText = '';
+          inputField.value = '';
         });
       }
     }
