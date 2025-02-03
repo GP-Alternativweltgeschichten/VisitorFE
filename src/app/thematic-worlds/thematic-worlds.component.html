@@ -2,23 +2,24 @@
   <div class="col-12">
     <div class="helper-text">{{ 'Themenwelten' | translate }}</div>
   </div>
-<!--  <div class="col-12">-->
-<!--    <p style="text-align: center">{{ 'ThemenweltWelcome' | translate }}</p>-->
-<!--  </div>-->
-  <div class="col-12 overflow-x-scroll" style="height: fit-content; display: flex">
+  <!--  <div class="col-12">-->
+  <!--    <p style="text-align: center">{{ 'ThemenweltWelcome' | translate }}</p>-->
+  <!--  </div>-->
+  <div class="col-12" style="height: fit-content; display: flex; overflow-x: scroll">
     <div *ngFor="let world of thematicWorlds">
       <div class="card-wrapper" [ngClass]="{ selected: selectedWorld === world }" (click)="showThematicWorld(world)">
         <p-card
           [header]="world.name"
-          [style]="{width: '280px'}">
-<!--       <div class="grid">-->
-<!--          <div class="col-12">-->
-<!--            <p-image [src]="createImageFromBlob(world.image)" alt="{{ 'Picture' | translate }} {{world.name}}" width="200px"></p-image>-->
-<!--          </div>-->
-<!--       <div class="col-12">-->
-          <p>{{world.description}}</p>
-<!--       </div>-->
-<!--         </div>-->
+          [style]="{width: '280px', height: '350px'}">
+          <div class="grid">
+            <div class="col-12">
+              <p-image [src]="createImageFromBlob(world.image)" alt="{{ 'Picture' | translate }} {{world.name}}"
+                       width="200px"></p-image>
+            </div>
+            <div class="col-12">
+              <p>{{ world.description }}</p>
+            </div>
+          </div>
             <!--<ng-template pTemplate="footer">
                    <div>
                        <p-button
@@ -26,8 +27,8 @@
                           {{ 'ThemenweltButton' | translate }}</p-button>
                    </div>
               </ng-template>-->
-      </p-card>
+        </p-card>
+      </div>
     </div>
   </div>
-</div>
 </div>
