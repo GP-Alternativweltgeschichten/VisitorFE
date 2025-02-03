@@ -77,9 +77,13 @@
       </div>
     </div>
   </div>
+  <div class="input-container">
+    <label>{{ 'Realistisch' | translate }}</label>
+    <p-slider [(ngModel)]="realism" [step]="20" styleClass="w-14rem"></p-slider>
+  </div>
 </div>
 
-<div style="margin-top: 10px">
+<div style="margin-top: 20px">
   <app-thematic-worlds
     [reload]="reload"
     (mapToShow)="showMap($event)"
