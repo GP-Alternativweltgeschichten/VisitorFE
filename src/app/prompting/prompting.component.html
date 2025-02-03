@@ -4,6 +4,11 @@
     <img alt="Karte von Olpe" [src]="shownMap" #img class="map-image" />
     <canvas #canvas class="drawing-canvas"></canvas>
   </div>
+  <div>
+    <app-progress
+    [progress]="progress"
+    ></app-progress>
+  </div>
 </div>
 
 <div style="margin-top: 20px">

@@ -28,6 +28,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CheckboxModule} from 'primeng/checkbox';
 import {InputTextModule} from "primeng/inputtext";
 import { ThematicWorldsComponent } from './thematic-worlds/thematic-worlds.component';
+import { ProgressComponent } from './progress/progress.component';
 
 // Factory function for ngx-translate
 export function HttpLoaderFactory(http: HttpClient) {
@@ -43,7 +44,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ResetComponent,
     HomeComponent,
     ErrorComponent,
-    ThematicWorldsComponent
+    ThematicWorldsComponent,
+    ProgressComponent
   ],
     imports: [
         BrowserModule,

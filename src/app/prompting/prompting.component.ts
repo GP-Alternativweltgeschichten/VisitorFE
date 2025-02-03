@@ -25,6 +25,8 @@ export class PromptingComponent implements  AfterViewInit {
 
   reload: boolean = false;
 
+  progress: boolean = false;
+
 
   @ViewChild('canvas', {static: false}) canvasRef!: ElementRef<HTMLCanvasElement>;
   @ViewChild('container', {static: false}) containerRef!: ElementRef<HTMLDivElement>;
@@ -43,6 +45,7 @@ export class PromptingComponent implements  AfterViewInit {
   }
 
   async updatePrompt(inputField: HTMLInputElement): Promise<void> {
+    this.progress = true;
     if (this.inputText.trim()) {
       this.userPrompt = this.inputText.trim();
       this.inputText = '';
@@ -58,6 +61,7 @@ export class PromptingComponent implements  AfterViewInit {
           const blob = new Blob([response], {type: 'image/png'});
           this.shownMap = URL.createObjectURL(blob);
           this.resetCanvas();
+          this.progress = false;
         });
       }
     }
