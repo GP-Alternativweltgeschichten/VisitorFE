@@ -56,7 +56,7 @@ export class PromptingComponent implements  AfterViewInit {
         const image = this.getImageAsDataURL(img);
         const canvasURL = this.getCanvasAsDataURL()
 
-        this.promptingService.sendTextAndImageAndMask(this.userPrompt, image, canvasURL).subscribe((response: any) => {
+        this.promptingService.sendTextAndImageAndMaskAndRealism(this.userPrompt, image, canvasURL, this.realism).subscribe((response: any) => {
           const blob = new Blob([response], {type: 'image/png'});
           this.shownMap = URL.createObjectURL(blob);
           this.resetCanvas();
