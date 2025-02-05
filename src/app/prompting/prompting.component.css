@@ -29,7 +29,7 @@
 /* Canvas overlay */
 .drawing-canvas {
   position: absolute;
-  opacity: 0.5;
+  opacity: 0.8;
   top: 0;
   left: 0;
   width: 100%;
@@ -52,9 +52,30 @@
 
 .language-switcher {
   display: flex; /* Aligns the buttons in a row */
-  gap: 10px; /* Optional: adds space between the buttons */
+  gap: 10px;
   justify-content: right;
   margin-right: 20px;
+}
+
+.language-switcher button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  border-radius: 4px; /* Slightly rounded edges */
+  transition: box-shadow 0.2s, transform 0.1s;
+}
+
+.language-switcher button img {
+  display: block;
+  border-radius: 4px; /* Ensures the image follows the button's border-radius */
+}
+
+/* Hover effect */
+.language-switcher button:hover {
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05); /* Slight zoom effect */
 }
 
 /* General styles for icon buttons */
@@ -142,4 +163,70 @@
   background-color: #ccc;
   color: #888;
   cursor: not-allowed;
+}
+
+/* Realism Section Styling */
+.realism-toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 30px;
+  margin-top: 15px;
+}
+
+/* Realism Label Styling */
+.realism-label {
+  font-size: 15px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+/* Toggle Switch Styling */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 40px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: gray; /* Default OFF color */
+  transition: 0.4s;
+  border-radius: 40px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 30px;
+  left: 5px;
+  bottom: 5px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+/* When ON: Change to Blue */
+input:checked + .slider {
+  background-color: #007bff;
+}
+
+/* Move toggle button to the right when ON */
+input:checked + .slider:before {
+  transform: translateX(40px);
 }

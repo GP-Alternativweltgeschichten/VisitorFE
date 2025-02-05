@@ -11,18 +11,28 @@
   </div>
 </div>
 
-<div style="margin-top: 20px">
+<div style="margin-top: 10px"> <!--20px-->
   <div class="language-switcher">
     <button (click)="switchLanguage('en')">
-      <img src="assets/icons/uk-flag.png" alt="English" width="30">
+      <img src="assets/icons/uk-flag.png" alt="English" width="36">
     </button>
     <button (click)="switchLanguage('de')">
-      <img src="assets/icons/german-flag.png" alt="Deutsch" width="30">
+      <img src="assets/icons/german-flag.png" alt="Deutsch" width="36">
     </button>
   </div>
 
+  <div class="realism-toggle">
+    <label class="realism-label">{{ 'Zufälligkeit' | translate }}</label>
+    <div class="toggle-container">
+      <label class="switch">
+        <input type="checkbox" (change)="toggleRealism()" [checked]="realism === 10" />
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
   <!-- Drawing controls -->
-  <div *ngIf="!generatePossible" class="controls">
+  <div *ngIf="!generateEnabled" class="controls">
     <input
       id="lineWidthRange"
       type="range"
@@ -43,6 +53,7 @@
     <button (click)="resetCanvas()" class="icon-button">
       <i class="fas fa-trash-alt"></i>
     </button>
+
   </div>
 </div>
 
@@ -57,12 +68,12 @@
         placeholder="{{ 'WhatIf' | translate }}"
         #scenarioInput
         (input)="onInputChange(scenarioInput.value)"
-        (keydown.enter)="updatePrompt(scenarioInput)"
+        (keydown)="handleKeyDown($event, scenarioInput)"
       > <!-- Update on Enter -->
 
       <button
         class="generate-button"
-        [disabled]="generatePossible"
+        [disabled]="generateEnabled || !generatePermitted"
         (click)="updatePrompt(scenarioInput)"
       >
         {{ 'Generate' | translate }}
@@ -77,10 +88,10 @@
       </div>
     </div>
   </div>
-  <div class="input-container">
+  <!--<div class="input-container">
     <label>{{ 'Realistisch' | translate }}</label>
     <p-slider [(ngModel)]="realism" [step]="20" styleClass="w-14rem"></p-slider>
-  </div>
+  </div>-->
 </div>
 
 <div style="margin-top: 20px">

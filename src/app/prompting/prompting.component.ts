@@ -10,7 +10,6 @@ import { ThematicWorldService } from '../services/thematicWorldService';
   styleUrl: './prompting.component.css'
 })
 export class PromptingComponent implements  AfterViewInit {
-  generatePossible: boolean = false;
   userPrompt: string = '';
   inputText: string = '';
   shownMap: string = "assets/img/olpe_140x140.png"
@@ -25,8 +24,9 @@ export class PromptingComponent implements  AfterViewInit {
   lastY: number | null = null;
 
   reload: boolean = false;
-
   progress: boolean = false;
+  generateEnabled: boolean = false;
+  generatePermitted: boolean = false;
 
 
   @ViewChild('canvas', {static: false}) canvasRef!: ElementRef<HTMLCanvasElement>;
@@ -43,6 +43,10 @@ export class PromptingComponent implements  AfterViewInit {
 
   switchLanguage(language: string): void {
     this.translate.use(language);
+  }
+
+  toggleRealism(): void {
+    this.realism = this.realism === 0 ? 10 : 0;
   }
 
   async updatePrompt(inputField: HTMLInputElement): Promise<void> {
@@ -70,6 +74,27 @@ export class PromptingComponent implements  AfterViewInit {
 
   onInputChange(value: string): void {
     this.inputText = value;
+    this.updateGeneratePermitted();
+  }
+
+  isCanvasEmpty(): boolean {
+    if (!this.canvasRef) return true;
+
+    const canvas = this.canvasRef.nativeElement;
+    const context = canvas.getContext('2d');
+
+    if (!context) return true;
+
+    const imageData = context.getImageData(0, 0, canvas.width, canvas.height).data;
+    return imageData.every((value: number, index: number) => index % 4 === 3 ? value === 0 : true);
+  }
+
+  isInputEmpty(): boolean {
+    return this.inputText.trim() === '';
+  }
+
+  updateGeneratePermitted(): void {
+    this.generatePermitted = !this.isCanvasEmpty() && !this.isInputEmpty();
   }
 
   /*****Convert Image/Canvas to ByteArray*****/
@@ -127,6 +152,7 @@ export class PromptingComponent implements  AfterViewInit {
     if (this.ctx) {
       this.ctx.lineWidth = this.lineWidth;
       this.ctx.lineCap = 'round';
+      this.ctx.strokeStyle = 'red'; //black
       this.ctx.globalCompositeOperation = 'source-over';
 
       // Enable drawing
@@ -144,6 +170,7 @@ export class PromptingComponent implements  AfterViewInit {
     this.ctx.beginPath();
     const {offsetX, offsetY} = event;
     this.ctx.moveTo(offsetX, offsetY);
+    this.updateGeneratePermitted();
   }
 
   draw(event: MouseEvent): void {
@@ -174,6 +201,7 @@ export class PromptingComponent implements  AfterViewInit {
 
     this.lastX = offsetX;
     this.lastY = offsetY;
+    this.updateGeneratePermitted();
   }
 
   stopDrawing(): void {
@@ -183,6 +211,7 @@ export class PromptingComponent implements  AfterViewInit {
     this.ctx.closePath();
     this.lastX = null;
     this.lastY = null;
+    this.updateGeneratePermitted();
   }
 
   changeLineWidth(event: Event): void {
@@ -209,6 +238,7 @@ export class PromptingComponent implements  AfterViewInit {
 
     const canvas = this.canvasRef.nativeElement;
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+    this.updateGeneratePermitted();
   }
 
   showMap(map: any): void {
@@ -217,7 +247,15 @@ export class PromptingComponent implements  AfterViewInit {
   }
 
   setGeneratedMapEditable(isEditable: boolean): void {
-    this.generatePossible = isEditable;
+    this.generateEnabled = isEditable;
+  }
+
+  handleKeyDown(event: KeyboardEvent, inputField: HTMLInputElement): void {
+    if (event.key === 'Enter' && !this.generatePermitted) {
+      event.preventDefault();
+    } else if (event.key === 'Enter') {
+      this.updatePrompt(inputField);
+    }
   }
 
   resetPrompt(inputField: HTMLInputElement): void {
@@ -227,6 +265,8 @@ export class PromptingComponent implements  AfterViewInit {
     //this.shownMap = "assets/img/olpe_140x140.png";
     this.resetCanvas();
     this.enableDrawing();
+    this.updateGeneratePermitted();
     this.reload = !this.reload;
+    this.realism = 0;
   }
 }

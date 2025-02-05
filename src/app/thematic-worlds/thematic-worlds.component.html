@@ -10,16 +10,9 @@
       <div class="card-wrapper" [ngClass]="{ selected: selectedWorld === world }" (click)="showThematicWorld(world)">
         <p-card
           [header]="world.name"
-          [style]="{width: '280px', height: '350px'}">
-          <div class="grid">
-            <div class="col-12">
-              <p-image [src]="createImageFromBlob(world.image)" alt="{{ 'Picture' | translate }} {{world.name}}"
-                       width="200px"></p-image>
-            </div>
-            <div class="col-12">
-              <p>{{ world.description }}</p>
-            </div>
-          </div>
+          [style]="{width: '270px', height: '380px'}">
+          <p-image [src]="createImageFromBlob(world.image)" alt="{{ 'Picture' | translate }} {{world.name}}" width="230px"></p-image>
+          <p>{{ world.description }}</p>
             <!--<ng-template pTemplate="footer">
                    <div>
                        <p-button
@@ -27,8 +20,8 @@
                           {{ 'ThemenweltButton' | translate }}</p-button>
                    </div>
               </ng-template>-->
-        </p-card>
-      </div>
+      </p-card>
     </div>
   </div>
+</div>
 </div>
