@@ -119,8 +119,8 @@ export class PromptingComponent implements  AfterViewInit {
   }
 
   getImageAsDataURL(img: HTMLImageElement): string {
-    const maxWidth = 950;
-    const maxHeight = 950;
+    const maxWidth = img.clientWidth;
+    const maxHeight = img.clientHeight;
 
     const widthRatio = maxWidth / img.naturalWidth;
     const heightRatio = maxHeight / img.naturalHeight;
