@@ -10,8 +10,8 @@
 
 /* Map container */
 .map-container {
-  width: 950px;
-  height: 950px;
+  width: 96vw;
+  aspect-ratio: 1/1;
   display: flex;
   overflow: hidden; /* Prevents image from spilling out */
   position: relative;
