@@ -1,7 +1,6 @@
 import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import {PromptingService} from '../services/prompting.service';
 import {TranslateService} from '@ngx-translate/core';
-import { ThematicWorldService } from '../services/thematicWorldService';
 
 @Component({
   selector: 'app-prompting',
@@ -35,7 +34,6 @@ export class PromptingComponent implements  AfterViewInit {
 
   constructor(
     public promptingService: PromptingService,
-    private thematicWorldService: ThematicWorldService,
     private translate: TranslateService) {
     // Default language
     this.translate.setDefaultLang('de');
@@ -167,9 +165,8 @@ export class PromptingComponent implements  AfterViewInit {
     if (!this.ctx) return;
 
     this.drawing = true;
-    this.ctx.beginPath();
-    const {offsetX, offsetY} = event;
-    this.ctx.moveTo(offsetX, offsetY);
+    this.lastX = event.offsetX;
+    this.lastY = event.offsetY;
     this.updateGeneratePermitted();
   }
 
@@ -195,7 +192,15 @@ export class PromptingComponent implements  AfterViewInit {
       }
     } else {
       this.ctx.globalCompositeOperation = 'source-over';
-      this.ctx.lineTo(offsetX, offsetY);
+      this.ctx.beginPath();
+
+      if (this.lastX !== null && this.lastY !== null) {
+        this.ctx.moveTo(this.lastX, this.lastY);
+        this.ctx.quadraticCurveTo(this.lastX, this.lastY, offsetX, offsetY);
+      } else {
+        this.ctx.moveTo(offsetX, offsetY);
+      }
+
       this.ctx.stroke();
     }
 
