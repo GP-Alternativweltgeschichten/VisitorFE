@@ -46,6 +46,10 @@
             [ngClass]="{ selected: selectedTool === 'draw' }">
       <i class="fas fa-pencil-alt"></i>
     </button>
+    <button (click)="enableClosedShape()" class="icon-button"
+            [ngClass]="{ selected: selectedTool === 'closed' }">
+      <i class="fas fa-draw-polygon"></i>
+    </button>
     <button (click)="enableEraser()" class="icon-button"
             [ngClass]="{ selected: selectedTool === 'eraser' }" >
       <i class="fas fa-eraser"></i>

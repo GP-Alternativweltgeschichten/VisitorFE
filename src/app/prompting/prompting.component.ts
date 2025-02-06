@@ -15,12 +15,13 @@ export class PromptingComponent implements  AfterViewInit {
   realism: number = 0;
 
   ctx: CanvasRenderingContext2D | null = null;
-  selectedTool: 'draw' | 'eraser' = 'draw';
+  selectedTool: 'draw' | 'closed' | 'eraser' = 'draw';
   drawing = false;
   erasing = false;
   lineWidth = 10;
   lastX: number | null = null;
   lastY: number | null = null;
+  closedPoints: { x: number, y: number }[] = [];
 
   reload: boolean = false;
   progress: boolean = false;
@@ -163,20 +164,25 @@ export class PromptingComponent implements  AfterViewInit {
 
   startDrawing(event: MouseEvent): void {
     if (!this.ctx) return;
+    if (!(event.buttons & 1)) return;
 
     this.drawing = true;
     this.lastX = event.offsetX;
     this.lastY = event.offsetY;
+    if (this.selectedTool === 'closed') {
+      this.closedPoints = [{ x: event.offsetX, y: event.offsetY }];
+    }
     this.updateGeneratePermitted();
   }
 
   draw(event: MouseEvent): void {
     if (!this.drawing || !this.ctx) return;
+    if (!(event.buttons & 1)) return;
     const {offsetX, offsetY} = event;
 
     if (this.erasing) {
-      //Clear the drawn area (smoothly)
-      this.ctx.globalCompositeOperation = 'destination-out'; // Erase mode
+      //Eraser mode – using circles for smooth erasing
+      this.ctx.globalCompositeOperation = 'destination-out';
 
       if (this.lastX !== null && this.lastY !== null) {
         const distance = Math.hypot(offsetX - this.lastX, offsetY - this.lastY);
@@ -190,7 +196,40 @@ export class PromptingComponent implements  AfterViewInit {
           this.ctx.fill();
         }
       }
+    } else if (this.selectedTool === 'closed') { // Closed shape mode
+      // Add current point to the closedPoints array
+      this.closedPoints.push({ x: offsetX, y: offsetY });
+      // Draw a line segment from the last point to the current point
+      if (this.closedPoints.length > 1) {
+        const lastPoint = this.closedPoints[this.closedPoints.length - 2];
+        this.ctx.beginPath();
+        this.ctx.moveTo(lastPoint.x, lastPoint.y);
+        this.ctx.lineTo(offsetX, offsetY);
+        this.ctx.stroke();
+      }
+      // Check if the current point is close to the starting point
+      const tolerance = 20;
+      const firstPoint = this.closedPoints[0];
+      const dx = offsetX - firstPoint.x;
+      const dy = offsetY - firstPoint.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance < tolerance && this.closedPoints.length > 2) {
+        // Close the shape and fill it
+        this.ctx.beginPath();
+        this.ctx.moveTo(firstPoint.x, firstPoint.y);
+        for (const pt of this.closedPoints) {
+          this.ctx.lineTo(pt.x, pt.y);
+        }
+        this.ctx.closePath();
+        this.ctx.fillStyle = 'red';
+        this.ctx.fill();
+        this.drawing = false;
+        this.closedPoints = [];
+        this.updateGeneratePermitted();
+        return;
+      }
     } else {
+      // Normal drawing mode (using quadratic curves for smooth lines)
       this.ctx.globalCompositeOperation = 'source-over';
       this.ctx.beginPath();
 
@@ -212,11 +251,13 @@ export class PromptingComponent implements  AfterViewInit {
   stopDrawing(): void {
     if (!this.ctx) return;
 
-    this.drawing = false;
-    this.ctx.closePath();
-    this.lastX = null;
-    this.lastY = null;
-    this.updateGeneratePermitted();
+    if (this.selectedTool !== 'closed') {
+      this.drawing = false;
+      this.ctx.closePath();
+      this.lastX = null;
+      this.lastY = null;
+      this.updateGeneratePermitted();
+    }
   }
 
   changeLineWidth(event: Event): void {
@@ -235,6 +276,11 @@ export class PromptingComponent implements  AfterViewInit {
   enableDrawing(): void {
     this.erasing = false;
     this.selectedTool = 'draw';
+  }
+
+  enableClosedShape(): void {
+    this.erasing = false;
+    this.selectedTool = 'closed';
   }
   /**************************************/
 
