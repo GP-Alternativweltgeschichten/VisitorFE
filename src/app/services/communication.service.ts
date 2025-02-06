@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable, throwError as observableThrowError } from "rxjs";
-import { catchError } from "rxjs/operators";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Injectable} from "@angular/core";
+import {Observable, throwError as observableThrowError} from "rxjs";
+import {catchError} from "rxjs/operators";
 
 
 @Injectable({
@@ -48,17 +48,9 @@ export class CommunicationService {
       // @ts-ignore
       this.options["responseType"] = type;
     }
-    let result = this.http
+    return this.http
       .post<returnType>(path, body, this.options)
-      .pipe(catchError(err => observableThrowError(this.errorHandler(err))));
-
-    result.subscribe({
-      next: (data: any) => {
-        console.log(data)
-      }
-    });
-
-    return result
+      .pipe(catchError(err => observableThrowError(this.errorHandler(err))))
   }
 
   public put<returnType>(path: string, body: any, customHeaders?: HttpHeaders): Observable<returnType> {
