@@ -1,52 +1,57 @@
 # Angular Application
 
-## 📌 Project Description
-This is an Angular application designed to give the musuem visitor the possiblity to explore the visualization of alternative world stories of Olpe. The thematic worlds shown in the application can be edited in the corresponding employee webpage. It provides features such as showing differetn thematic worlds and generating new alternative world stories with the help of AI.
+## 📌 Projektbeschreibung
+Diese Angular-Anwendung wurde entwickelt, um den Museumsbesuchern die Möglichkeit zu geben, alternative Welten und Geschichten rund um Olpe zu erkunden. Die verschiedenen thematischen Welten, die in der Anwendung gezeigt werden, können auf der entsprechenden Mitarbeiter-Webseite bearbeitet werden. Die Anwendung bietet Funktionen wie das Anzeigen von verschiedenen thematischen Welten und das Generieren neuer alternativer Weltgeschichten mithilfe von KI.
 
-## 📖 Table of Contents
+## 📖 Inhalt
 - [Installation](#installation)
-- [Running the Application](#running-the-application)
-- [Project Structure](#project-structure)
+- [Anwendung ausführen](#anwendung-ausfüehren)
+- [Projektstruktur](#projektstruktur)
 
 ## ⚙️ Installation
-1. Ensure that Node.js is installed
-2. Clone the repository:
+1. Stellen Sie sicher, dass Node.js installiert ist
+   Besuchen Sie Node.js Download-Seite und laden Sie die aktuelle LTS-Version herunter.
+2. Repository klonen
+   Klonen Sie das Repository in Ihr Projektverzeichnis:
    ```sh
    git clone https://github.com/GP-Alternativweltgeschichten/VisitorFE.git
    cd VisitorFE
    ```
-3. Install dependencies:
+3. Abhängigkeiten installieren
+   Stellen Sie sicher, dass alle erforderlichen Pakete installiert werden:
    ```sh
    npm install
    ```
-4. Make sure you have Angular CLI installed:
+4. Angular CLI installieren
+   Vergewissern Sie sich, dass Angular CLI auf Ihrem System installiert ist:
    ```sh
    npm install -g @angular/cli
    ```
 
-## 🚀 Running the Application
-Start the development server:
+## 🚀 Anwendung ausführen
+Starten Sie den Entwicklungsserver:
 ```sh
 ng serve
 ```
-By default, the application runs on `http://localhost:4201/`.
+Die Anwendung wird standardmäßig unter http://localhost:4201/ ausgeführt.
 
-## 📂 Project Structure
+## 📂 Projektstruktur
 ```
 src/
-  app/                  # Main Angular application files
-    error/              # Catches errors in the URL
-    home/               # Starting page
-    progress/           # Progress display for generating new results
-    prompting/          # Editig the current map and adding a prompt fot the AI
-    reset/              # Button to reset the application for the next user
-    services/           # Services for the application
-    thematic-worlds/    # Overview of the thematic worlds shown in the application
-    top-bar/            # Top-Bar with general information
-  assets/               # Static assets (images, fonts, etc.)
-angular.json            # Angular project configuration
-package.json            # Dependencies and scripts
-README.md               # Documentation
+  app/                  # Hauptverzeichnis der Angular-Anwendungsdateien. Enthält verschiedene Module für verschiedene Funktionen.
+    error/              # Bearbeitet Fehler, die durch ungültige URLs oder fehlerhafte Anfragen entstehen.
+    home/               # Startseite der Anwendung.
+    progress/           # Zeigt den Fortschritt, wenn neue Welten oder Geschichten generiert werden.
+    prompting/          # Ermöglicht das Bearbeiten der aktuellen Weltkarte und das Hinzufügen eines neuen Prompts für die KI.
+    reset/              # Schaltfläche, um die Anwendung für den nächsten Benutzer zurückzusetzen.
+    services/           # Beinhaltet die Dienste, die in der Anwendung verwendet werden (z. B. API-Aufrufe oder Authentifizierung).
+    thematic-worlds/    # Stellt die verschiedenen thematischen Welten vor, die in der Anwendung angezeigt werden.
+
+    top-bar/            # Der obere Bereich der Anwendung, der allgemeine Informationen bietet (z. B. Anwendungsname, Benutzermenu).
+  assets/               # Enthält statische Assets wie Bilder, Schriftarten und andere Ressourcen.
+angular.json            # Die Konfigurationsdatei für das Angular-Projekt.
+package.json            # Listet die Abhängigkeiten und Skripte, die im Projekt verwendet werden.
+README.md               # Dokumentation und Hinweise für das Projekt.
 ```
 
 ## ...
