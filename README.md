@@ -33,7 +33,7 @@ Starten Sie den Entwicklungsserver:
 ```sh
 ng serve
 ```
-Die Anwendung wird standardmäßig unter http://localhost:4201/ ausgeführt.
+Die Anwendung wird standardmäßig unter http://localhost:4200/ ausgeführt.
 
 ## 📂 Projektstruktur
 ```
@@ -46,7 +46,6 @@ src/
     reset/              # Schaltfläche, um die Anwendung für den nächsten Benutzer zurückzusetzen.
     services/           # Beinhaltet die Dienste, die in der Anwendung verwendet werden (z. B. API-Aufrufe oder Authentifizierung).
     thematic-worlds/    # Stellt die verschiedenen thematischen Welten vor, die in der Anwendung angezeigt werden.
-
     top-bar/            # Der obere Bereich der Anwendung, der allgemeine Informationen bietet (z. B. Anwendungsname, Benutzermenu).
   assets/               # Enthält statische Assets wie Bilder, Schriftarten und andere Ressourcen.
 angular.json            # Die Konfigurationsdatei für das Angular-Projekt.
