@@ -12,6 +12,20 @@
 </div>
 
 <div style="margin-top: 10px"> <!--20px-->
+  <div class="qr-code">
+    <button
+      type="button"
+      pButton
+      class="button-columns-button-icon"
+      icon="pi pi-qrcode"
+      style="font-size: 0.65em; margin-right: 5px"
+      (click)="panel.toggle($event)"
+    ></button>
+    <p-overlayPanel #panel>
+      <img src="assets/img/qr-code.png" alt="Map" style="max-width: 350px; max-height: 350px">
+    </p-overlayPanel>
+  </div>
+
   <div class="language-switcher">
     <button (click)="switchLanguage('en')">
       <img src="assets/icons/uk-flag.png" alt="English" width="36">

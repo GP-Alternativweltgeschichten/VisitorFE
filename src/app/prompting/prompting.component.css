@@ -50,6 +50,12 @@
   cursor: pointer;
 }
 
+.qr-code {
+  display: flex;
+  justify-content: left;
+  margin-left: 20px;
+}
+
 .language-switcher {
   display: flex; /* Aligns the buttons in a row */
   gap: 10px;
