@@ -128,12 +128,12 @@ export class PromptingComponent implements  AfterViewInit {
     const targetHeight = Math.round(img.naturalHeight * scaleFactor);
 
     const canvas = document.createElement('canvas');
-    canvas.width = targetWidth;
-    canvas.height = targetHeight;
+    canvas.width = maxWidth;
+    canvas.height = maxHeight;
 
     const ctx = canvas.getContext('2d');
     // @ts-ignore
-    if (ctx) ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+    if (ctx) ctx.drawImage(img, 0, 0, maxWidth, maxHeight);
     return canvas.toDataURL('image/png');
   }
 
