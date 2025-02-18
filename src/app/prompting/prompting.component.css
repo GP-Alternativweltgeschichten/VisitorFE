@@ -29,7 +29,7 @@
 /* Canvas overlay */
 .drawing-canvas {
   position: absolute;
-  opacity: 0.8;
+  opacity: 0.6;
   top: 0;
   left: 0;
   width: 100%;

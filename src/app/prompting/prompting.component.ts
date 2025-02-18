@@ -204,7 +204,7 @@ export class PromptingComponent implements  AfterViewInit {
         const lastPoint = this.closedPoints[this.closedPoints.length - 2];
         this.ctx.beginPath();
         this.ctx.moveTo(lastPoint.x, lastPoint.y);
-        this.ctx.lineTo(offsetX, offsetY);
+        this.ctx.quadraticCurveTo(lastPoint.x, lastPoint.y, offsetX, offsetY);
         this.ctx.stroke();
       }
       // Check if the current point is close to the starting point
