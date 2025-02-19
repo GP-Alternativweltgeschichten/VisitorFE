@@ -25,6 +25,7 @@ export class PromptingService {
       mask: mask,
       model: model
     };
+    console.log('Prompt sent:', text, model);
     return this.comService.post<String>('/prompting/inpainting', requestBody, null as unknown as HttpHeaders, 'blob');
   }
 }

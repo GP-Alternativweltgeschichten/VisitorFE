@@ -1,10 +1,10 @@
 <app-top-bar></app-top-bar>
 
-<div>
-  <h1>Prototyp zum GP Alternativweltgeschichten</h1>
-  <h4>Diese Angular-Anwendung wurde entwickelt, um den Museumsbesuchern die Möglichkeit zu geben, alternative Welten und Geschichten rund um Olpe zu erkunden. Die verschiedenen thematischen Welten, die in der Anwendung gezeigt werden, können auf der entsprechenden Mitarbeiter-Webseite bearbeitet werden. Die Anwendung bietet Funktionen wie das Anzeigen von verschiedenen thematischen Welten und das Generieren neuer alternativer Weltgeschichten mithilfe von KI.</h4>
+<div class="prototype-container">
+  <h1>{{ 'Prototype' | translate }}</h1>
+  <h4>{{ 'ReasoningText' | translate }}</h4>
   <p-button
-    label="Zum Prototyp"
+    label="{{ 'Navigate_Prototype' | translate }}"
     icon="pi pi-arrow-right"
     (click)="navigateToPrototype()"></p-button>
 </div>

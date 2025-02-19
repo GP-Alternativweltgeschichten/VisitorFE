@@ -54,7 +54,6 @@ export class PromptingComponent implements  AfterViewInit {
     if (this.inputText.trim()) {
       this.userPrompt = this.inputText.trim();
 
-      console.log('Prompt Updated:', this.userPrompt);
       if (this.imgElement && this.imgElement.nativeElement) {
         const img = this.imgElement.nativeElement;
         const image = this.getImageAsDataURL(img);
