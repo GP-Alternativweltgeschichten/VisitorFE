@@ -198,7 +198,7 @@
   background-color: #007bff;
   color: white;
   border-left: none; /* No border between input and button */
-  border-radius: 0 5px 5px 0; /* Rounded corners for right side */
+  border-radius: 5px 5px 5px 5px; /* Rounded corners for right side */
   cursor: pointer;
 }
 

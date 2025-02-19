@@ -31,6 +31,7 @@ import { ThematicWorldsComponent } from './thematic-worlds/thematic-worlds.compo
 import { ProgressComponent } from './progress/progress.component';
 import {SliderModule} from 'primeng/slider';
 import {OverlayPanelModule} from "primeng/overlaypanel";
+import {AutoCompleteModule} from 'primeng/autocomplete';
 import {RadioButtonModule} from 'primeng/radiobutton';
 
 // Factory function for ngx-translate
@@ -78,6 +79,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     InputTextModule,
     SliderModule,
     OverlayPanelModule,
+    AutoCompleteModule,
     RadioButtonModule
   ],
   providers: [],

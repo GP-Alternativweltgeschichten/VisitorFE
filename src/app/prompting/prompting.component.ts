@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import {PromptingService} from '../services/prompting.service';
 import {TranslateService} from '@ngx-translate/core';
+import {AutoComplete, AutoCompleteCompleteEvent} from 'primeng/autocomplete';
 
 @Component({
   selector: 'app-prompting',
@@ -32,6 +33,16 @@ export class PromptingComponent implements  AfterViewInit {
   generateEnabled: boolean = false;
   generatePermitted: boolean = false;
 
+  predefinedPrompts: any[] = [
+    'Fluss',
+    'Wasser',
+    'Kirche',
+    'Parkplatz',
+    'Haus',
+    'Häuser'
+  ]
+  filteredPrompts: any[] = []
+
 
   @ViewChild('canvas', {static: false}) canvasRef!: ElementRef<HTMLCanvasElement>;
   @ViewChild('container', {static: false}) containerRef!: ElementRef<HTMLDivElement>;
@@ -49,7 +60,7 @@ export class PromptingComponent implements  AfterViewInit {
   }
 
 
-  async updatePrompt(inputField: HTMLInputElement): Promise<void> {
+  async updatePrompt(inputField: AutoComplete): Promise<void> {
     this.progress = true;
     if (this.inputText.trim()) {
       this.userPrompt = this.inputText.trim();
@@ -72,6 +83,7 @@ export class PromptingComponent implements  AfterViewInit {
   }
 
   onInputChange(value: string): void {
+    console.log(value)
     this.inputText = value;
     this.updateGeneratePermitted();
   }
@@ -301,7 +313,7 @@ export class PromptingComponent implements  AfterViewInit {
     this.generateEnabled = isEditable;
   }
 
-  handleKeyDown(event: KeyboardEvent, inputField: HTMLInputElement): void {
+  handleKeyDown(event: KeyboardEvent, inputField: any): void {
     if (event.key === 'Enter' && !this.generatePermitted) {
       event.preventDefault();
     } else if (event.key === 'Enter') {
@@ -309,7 +321,7 @@ export class PromptingComponent implements  AfterViewInit {
     }
   }
 
-  resetPrompt(inputField: HTMLInputElement): void {
+  resetPrompt(inputField: AutoComplete): void {
     this.userPrompt = '';
     this.inputText = '';
     inputField.value = '';
@@ -320,5 +332,16 @@ export class PromptingComponent implements  AfterViewInit {
     this.reload = !this.reload;
     this.selectedModel = 0;
     this.lineWidth = 10;
+  }
+
+  filterPrompts(event: AutoCompleteCompleteEvent){
+    let filtered = []
+    for (let i = 0; i < (this.predefinedPrompts as any[]).length; i++) {
+      let prompt = (this.predefinedPrompts as any[])[i]
+      if (this.predefinedPrompts.filter(prompt => prompt.toLowerCase().includes(event.query.toLowerCase()))) {
+        filtered.push(prompt)
+      }
+    }
+    this.filteredPrompts = filtered
   }
 }
