@@ -18,12 +18,12 @@ export class PromptingService {
     return this.comService.post<String>('/prompting/text', msg, null as unknown as HttpHeaders, 'blob');
   }
 
-  sendTextAndImageAndMaskAndRealism(text: string, image: string, mask: string, realism: number): Observable<any> {
+  sendTextAndImageAndMaskAndModel(text: string, image: string, mask: string, model: number): Observable<any> {
     const requestBody = {
       prompt: text,
       image: image,
       mask: mask,
-      realism: realism
+      model: model
     };
     return this.comService.post<String>('/prompting/inpainting', requestBody, null as unknown as HttpHeaders, 'blob');
   }

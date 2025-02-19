@@ -12,7 +12,11 @@ export class PromptingComponent implements  AfterViewInit {
   userPrompt: string = '';
   inputText: string = '';
   shownMap: string = "assets/img/olpe_140x140.png"
-  realism: number = 0;
+  selectedModel: number = 0; // Default for Olpe-AI
+  modelOptions = [
+    { label: 'Olpe AI', value: 0 },
+    { label: 'ChatGPT', value: 1 }
+  ];
 
   ctx: CanvasRenderingContext2D | null = null;
   selectedTool: 'draw' | 'closed' | 'eraser' = 'draw';
@@ -44,9 +48,6 @@ export class PromptingComponent implements  AfterViewInit {
     this.translate.use(language);
   }
 
-  toggleRealism(): void {
-    this.realism = this.realism === 0 ? 10 : 0;
-  }
 
   async updatePrompt(inputField: HTMLInputElement): Promise<void> {
     this.progress = true;
@@ -59,7 +60,7 @@ export class PromptingComponent implements  AfterViewInit {
         const image = this.getImageAsDataURL(img);
         const canvasURL = this.getCanvasAsDataURL()
 
-        this.promptingService.sendTextAndImageAndMaskAndRealism(this.userPrompt, image, canvasURL, this.realism).subscribe((response: any) => {
+        this.promptingService.sendTextAndImageAndMaskAndModel(this.userPrompt, image, canvasURL, this.selectedModel).subscribe((response: any) => {
           const blob = new Blob([response], {type: 'image/png'});
           this.shownMap = URL.createObjectURL(blob);
           this.resetCanvas();
@@ -318,6 +319,7 @@ export class PromptingComponent implements  AfterViewInit {
     this.enableDrawing();
     this.updateGeneratePermitted();
     this.reload = !this.reload;
-    this.realism = 0;
+    this.selectedModel = 0;
+    this.lineWidth = 10;
   }
 }

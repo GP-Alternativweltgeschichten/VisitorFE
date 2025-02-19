@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 2px;
+  padding-top: 0px;
   box-sizing: border-box;
 }
 
@@ -39,28 +39,41 @@
 }
 
 /* Controls container */
-.controls {
+.draw-controls {
   display: flex;
   justify-content: center;
   gap: 10px;
 }
 
-.controls input[type="range"] {
+.draw-controls input[type="range"] {
   width: 150px;
   cursor: pointer;
+}
+
+.bottom-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  width: 100%;
+  margin-top: 20px;
+  padding: 0 20px;
 }
 
 .qr-code {
   display: flex;
   justify-content: left;
-  margin-left: 20px;
+}
+
+.right-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .language-switcher {
   display: flex; /* Aligns the buttons in a row */
   gap: 10px;
   justify-content: right;
-  margin-right: 20px;
 }
 
 .language-switcher button {
@@ -83,6 +96,34 @@
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
   transform: scale(1.05); /* Slight zoom effect */
 }
+
+.ai-model-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 20px;
+  align-items: flex-start; /* Align to left */
+}
+
+.ai-model-label {
+  font-weight: bold;
+  font-size: 0.95em;
+  margin-bottom: 2px;
+  align-self: center; /* Centers the label */
+  text-align: center;
+}
+
+.ai-options {
+  display: flex;
+  align-items: center; /* Align radio buttons and labels */
+  gap: 6px; /* Space between button and label */
+}
+
+.ai-option-label {
+  font-size: 0.8em;
+  vertical-align: middle;
+}
+
 
 /* General styles for icon buttons */
 .icon-button {
@@ -118,7 +159,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 18px;
+  margin-top: 0px;
 }
 
 /* Helper text */
@@ -169,70 +210,4 @@
   background-color: #ccc;
   color: #888;
   cursor: not-allowed;
-}
-
-/* Realism Section Styling */
-.realism-toggle {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  right: 30px;
-  margin-top: 15px;
-}
-
-/* Realism Label Styling */
-.realism-label {
-  font-size: 15px;
-  margin-bottom: 5px;
-  text-align: center;
-}
-
-/* Toggle Switch Styling */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 80px;
-  height: 40px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: gray; /* Default OFF color */
-  transition: 0.4s;
-  border-radius: 40px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 30px;
-  width: 30px;
-  left: 5px;
-  bottom: 5px;
-  background-color: white;
-  transition: 0.4s;
-  border-radius: 50%;
-}
-
-/* When ON: Change to Blue */
-input:checked + .slider {
-  background-color: #007bff;
-}
-
-/* Move toggle button to the right when ON */
-input:checked + .slider:before {
-  transform: translateX(40px);
 }
