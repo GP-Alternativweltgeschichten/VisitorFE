@@ -71,8 +71,8 @@
             [suggestions]="filteredPrompts"
             (completeMethod)="filterPrompts($event); onInputChange(scenarioInput.value)"
             (onKeyUp)="handleKeyDown($event, scenarioInput)"
-            (onSelect)="updatePrompt(scenarioInput)"
-          />
+            (onSelect)="onInputChange(scenarioInput.value)"
+          /> <!--updatePrompt(scenarioInput)-->
 
           <button
             class="generate-button"
