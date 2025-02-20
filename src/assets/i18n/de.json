@@ -60,5 +60,7 @@
   "AI Model": "AI-Modell",
   "Navigate_Prototype": "Zum Prototyp",
   "Prototype": "Prototyp zum GP Alternativweltgeschichten",
-  "ReasoningText": "Diese Angular-Anwendung wurde entwickelt, um den Museumsbesuchern die Möglichkeit zu geben, alternative Welten und Geschichten rund um Olpe zu erkunden. Die verschiedenen thematischen Welten, die in der Anwendung gezeigt werden, können auf der entsprechenden Mitarbeiter-Webseite bearbeitet werden. Die Anwendung bietet Funktionen wie das Anzeigen von verschiedenen thematischen Welten und das Generieren neuer alternativer Weltgeschichten mithilfe von KI."
+  "ReasoningText": "Diese Angular-Anwendung wurde entwickelt, um den Museumsbesuchern die Möglichkeit zu geben, alternative Welten und Geschichten rund um Olpe zu erkunden. Die verschiedenen thematischen Welten, die in der Anwendung gezeigt werden, können auf der entsprechenden Mitarbeiter-Webseite bearbeitet werden. Die Anwendung bietet Funktionen wie das Anzeigen von verschiedenen thematischen Welten und das Generieren neuer alternativer Weltgeschichten mithilfe von KI.",
+  "Show": "Anzeigen",
+  "Hide": "Verbergen"
 }

@@ -3,8 +3,16 @@
 <div class="prototype-container">
   <h1>{{ 'Prototype' | translate }}</h1>
   <h4>{{ 'ReasoningText' | translate }}</h4>
+  <div>
+    <p>Zeige Model-Auswahl</p>
+    <p-inputSwitch
+      [(ngModel)]="showModels"
+      (onChange)="toggleModels()">
+    </p-inputSwitch>
+  </div>
   <p-button
     label="{{ 'Navigate_Prototype' | translate }}"
     icon="pi pi-arrow-right"
-    (click)="navigateToPrototype()"></p-button>
+    (click)="navigateToPrototype()">
+  </p-button>
 </div>

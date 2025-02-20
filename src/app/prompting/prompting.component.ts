@@ -19,6 +19,7 @@ export class PromptingComponent implements  OnInit, AfterViewInit {
     { label: 'Olpe AI', value: 0 },
     { label: 'ChatGPT', value: 1 }
   ];
+  showModelSelector: boolean | undefined
 
   ctx: CanvasRenderingContext2D | null = null;
   selectedTool: 'draw' | 'closed' | 'eraser' = 'draw';
@@ -63,16 +64,12 @@ export class PromptingComponent implements  OnInit, AfterViewInit {
         }
       }
     )
+    this.showModelSelector = this.promptingService.getShowModels()
   }
 
   setAIModel(event: RadioButtonClickEvent): void {
     this.selectedModel = event.value;
-    this.promptingService.saveAIModel(this.selectedModel).subscribe({
-        next: (model) => {
-          console.log('Model saved:', model)
-        }
-      }
-    )
+    this.promptingService.saveAIModel(this.selectedModel)
   }
 
   switchLanguage(language: string): void {
