@@ -10,9 +10,9 @@
       <div class="card-wrapper" [ngClass]="{ selected: selectedWorld === world }" (click)="showThematicWorld(world)">
         <p-card
           [header]="world.name"
-          [style]="{width: '350px', height: '350px'}">
+          [style]="{width: '350px', height: '115px'}"> <!--350px-->
           <div style="display: flex; justify-content: center">
-            <p-image  [src]="createImageFromBlob(world.image)" alt="{{ 'Picture' | translate }} {{world.name}}" width="230px"></p-image>
+            <!--<p-image  [src]="createImageFromBlob(world.image)" alt="{{ 'Picture' | translate }} {{world.name}}" width="230px"></p-image>-->
           </div>
           <p>{{ world.description }}</p>
       </p-card>
