@@ -1,7 +1,8 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {PromptingService} from '../services/prompting.service';
 import {TranslateService} from '@ngx-translate/core';
 import {AutoComplete, AutoCompleteCompleteEvent} from 'primeng/autocomplete';
+import {RadioButtonClickEvent} from 'primeng/radiobutton';
 
 @Component({
   selector: 'app-prompting',
@@ -9,7 +10,7 @@ import {AutoComplete, AutoCompleteCompleteEvent} from 'primeng/autocomplete';
   templateUrl: './prompting.component.html',
   styleUrl: './prompting.component.css'
 })
-export class PromptingComponent implements  AfterViewInit {
+export class PromptingComponent implements  OnInit, AfterViewInit {
   userPrompt: string = '';
   inputText: string = '';
   shownMap: string = "assets/img/olpe_140x140.png"
@@ -53,6 +54,25 @@ export class PromptingComponent implements  AfterViewInit {
     private translate: TranslateService) {
     // Default language
     this.translate.setDefaultLang('de');
+  }
+
+  ngOnInit() {
+    this.promptingService.getAIModel().subscribe({
+        next: (model) => {
+          this.selectedModel = model
+        }
+      }
+    )
+  }
+
+  setAIModel(event: RadioButtonClickEvent): void {
+    this.selectedModel = event.value;
+    this.promptingService.saveAIModel(this.selectedModel).subscribe({
+        next: (model) => {
+          console.log('Model saved:', model)
+        }
+      }
+    )
   }
 
   switchLanguage(language: string): void {

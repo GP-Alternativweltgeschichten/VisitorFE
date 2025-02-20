@@ -110,6 +110,7 @@
           [name]="'aiModel'"
           [value]="option.value"
           [(ngModel)]="selectedModel"
+          (onClick)="setAIModel($event)"
         ></p-radioButton>
         <label class="ai-option-label">{{ option.label }}</label>
       </div>
