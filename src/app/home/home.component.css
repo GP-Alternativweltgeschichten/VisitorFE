@@ -2,22 +2,24 @@
   padding: 0 20px;
 }
 
-.prototype-button {
+.prototype-nav-button {
   margin-top: 20px;
 }
 
 .ai-model-selector {
+  display: flex;
+  flex-direction: column;
   gap: 5px;
   margin-top: 20px;
-  margin-left: 20px;
+  align-items: flex-start;
 }
 
 .ai-model-label {
   font-weight: bold;
   font-size: 0.95em;
   margin-bottom: 2px;
-  align-self: center; /* Centers the label */
-  text-align: center;
+  align-self: start; /* Centers the label */
+  text-align: start;
 }
 
 .ai-options {
