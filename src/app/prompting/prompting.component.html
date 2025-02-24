@@ -69,6 +69,7 @@
             [dropdown]="true"
             [showClear]="true"
             [suggestions]="filteredPrompts"
+            [readonly]="progress"
             (completeMethod)="filterPrompts($event); onInputChange(scenarioInput.value)"
             (onKeyUp)="handleKeyDown($event, scenarioInput)"
             (onSelect)="onInputChange(scenarioInput.value)"
