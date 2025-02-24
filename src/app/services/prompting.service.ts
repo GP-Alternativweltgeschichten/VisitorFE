@@ -7,8 +7,18 @@ import {HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class PromptingService {
+  showModels: boolean = true;
 
   constructor(private comService: CommunicationService) {
+  }
+
+  getShowModels(): boolean {
+    return this.showModels;
+  }
+
+  setShowModels(showModels: boolean): void {
+    console.log('Set showModels:', showModels);
+    this.showModels = showModels;
   }
 
   sendText(text: string): Observable<any> {
@@ -27,5 +37,13 @@ export class PromptingService {
     };
     console.log('Prompt sent:', text, model);
     return this.comService.post<String>('/prompting/inpainting', requestBody, null as unknown as HttpHeaders, 'blob');
+  }
+
+  getAIModel(): Observable<number> {
+    return this.comService.get<number>('/prompting/aiModel');
+  }
+
+  saveAIModel(model: number): Observable<Number> {
+    return this.comService.post<Number>('/prompting/aiModel', model);
   }
 }

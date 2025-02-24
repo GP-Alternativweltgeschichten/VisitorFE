@@ -33,6 +33,7 @@ import {SliderModule} from 'primeng/slider';
 import {OverlayPanelModule} from "primeng/overlaypanel";
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {RadioButtonModule} from 'primeng/radiobutton';
+import {InputSwitchModule} from "primeng/inputswitch";
 
 // Factory function for ngx-translate
 export function HttpLoaderFactory(http: HttpClient) {
@@ -51,37 +52,38 @@ export function HttpLoaderFactory(http: HttpClient) {
     ThematicWorldsComponent,
     ProgressComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    MenubarModule,
-    Button,
-    CardModule,
-    ImageModule,
-    HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-    ToggleButtonModule,
-    FormsModule,
-    SelectButtonModule,
-    DialogModule,
-    FileUploadModule,
-    TableModule,
-    ProgressSpinnerModule,
-    CalendarModule,
-    CheckboxModule,
-    InputTextModule,
-    SliderModule,
-    OverlayPanelModule,
-    AutoCompleteModule,
-    RadioButtonModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        MenubarModule,
+        Button,
+        CardModule,
+        ImageModule,
+        HttpClientModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+        ToggleButtonModule,
+        FormsModule,
+        SelectButtonModule,
+        DialogModule,
+        FileUploadModule,
+        TableModule,
+        ProgressSpinnerModule,
+        CalendarModule,
+        CheckboxModule,
+        InputTextModule,
+        SliderModule,
+        OverlayPanelModule,
+        AutoCompleteModule,
+        RadioButtonModule,
+        InputSwitchModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -103,17 +103,20 @@
         <img src="assets/icons/german-flag.png" alt="Deutsch" width="36">
       </button>
     </div>
-    <div class="ai-model-selector">
-      <label class="ai-model-label">{{ 'AI Model' | translate }}</label>
-      <div class="ai-options" *ngFor="let option of modelOptions">
-        <p-radioButton
-          [name]="'aiModel'"
-          [value]="option.value"
-          [(ngModel)]="selectedModel"
-        ></p-radioButton>
-        <label class="ai-option-label">{{ option.label }}</label>
+    @if (showModelSelector) {
+      <div class="ai-model-selector">
+        <label class="ai-model-label">{{ 'AI Model' | translate }}</label>
+        <div class="ai-options" *ngFor="let option of modelOptions">
+          <p-radioButton
+            [name]="'aiModel'"
+            [value]="option.value"
+            [(ngModel)]="selectedModel"
+            (onClick)="setAIModel($event)"
+          ></p-radioButton>
+          <label class="ai-option-label">{{ option.label }}</label>
+        </div>
       </div>
-    </div>
+    }
   </div>
 </div>
 

@@ -3,11 +3,24 @@
 <div class="prototype-container">
   <h1>{{ 'Prototype' | translate }}</h1>
   <h4>{{ 'ReasoningText' | translate }}</h4>
+  <div>
+    <div class="ai-model-selector">
+      <label class="ai-model-label">{{ 'AI Model' | translate }}</label>
+      <div class="ai-options" *ngFor="let option of modelOptions">
+        <p-radioButton
+          [name]="'aiModel'"
+          [value]="option.value"
+          [(ngModel)]="showModels"
+          (onClick)="toggleModels($event)"
+        ></p-radioButton>
+        <label class="ai-option-label">{{ option.label }}</label>
+      </div>
+    </div>
+  </div>
   <p-button
+    class="prototype-button"
     label="{{ 'Navigate_Prototype' | translate }}"
     icon="pi pi-arrow-right"
-    (click)="navigateToPrototype()"></p-button>
+    (click)="navigateToPrototype()">
+  </p-button>
 </div>
-
-
-
