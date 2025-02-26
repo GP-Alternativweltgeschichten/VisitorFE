@@ -17,7 +17,7 @@ export class PromptingComponent implements  OnInit, AfterViewInit {
   selectedModel: number = 0; // Default for Olpe-AI
   modelOptions = [
     { label: 'Olpe AI', value: 0 },
-    { label: 'ChatGPT', value: 1 }
+    { label: 'Dall-E', value: 1 }
   ];
   showModelSelector: boolean | undefined
 

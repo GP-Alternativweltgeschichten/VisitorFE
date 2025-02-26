@@ -63,18 +63,20 @@
       <div class="input-container">
         <div class="helper-text">{{ 'ScenarioEnter' | translate }}</div>
         <div class="input-wrapper">
-          <p-autoComplete
-            #scenarioInput
-            [(ngModel)]="inputText"
-            placeholder="{{ 'WhatIf' | translate }}"
-            [dropdown]="true"
-            [showClear]="true"
-            [suggestions]="filteredPrompts"
-            [readonly]="progress"
-            (completeMethod)="filterPrompts($event); onInputChange(scenarioInput.value)"
-            (onKeyUp)="handleKeyDown($event, scenarioInput)"
-            (onSelect)="onInputChange(scenarioInput.value)"
-          /> <!--updatePrompt(scenarioInput)-->
+          <div class="autoComplete">
+            <p-autoComplete
+              #scenarioInput
+              [(ngModel)]="inputText"
+              placeholder="{{ 'WhatIf' | translate }}"
+              [dropdown]="true"
+              [showClear]="true"
+              [suggestions]="filteredPrompts"
+              [readonly]="progress"
+              (completeMethod)="filterPrompts($event); onInputChange(scenarioInput.value)"
+              (onKeyUp)="handleKeyDown($event, scenarioInput)"
+              (onSelect)="onInputChange(scenarioInput.value)"
+            /> <!--updatePrompt(scenarioInput)-->
+          </div>
 
           <button
             class="generate-button"
@@ -97,14 +99,14 @@
   </div>
 
   <div class="right-controls">
-    <div class="language-switcher">
+    <!--<div class="language-switcher">
       <button (click)="switchLanguage('en')">
         <img src="assets/icons/uk-flag.png" alt="English" width="36">
       </button>
       <button (click)="switchLanguage('de')">
         <img src="assets/icons/german-flag.png" alt="Deutsch" width="36">
       </button>
-    </div>
+    </div>-->
     @if (showModelSelector) {
       <div class="ai-model-selector">
         <label class="ai-model-label">{{ 'AI Model' | translate }}</label>

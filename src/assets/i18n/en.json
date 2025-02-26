@@ -17,7 +17,7 @@
   "Themenwelten": "Thematic Worlds",
   "ThemenweltWelcome": "Here you can find an overview of the thematic worlds.",
   "ThemenweltButton": "Show Thematic World",
-  "WhatIf": "What should be created here?",
+  "WhatIf": "What should be created?",
   "Generate": "Generate",
   "Modus": "Mode",
   "Besucher": "Visitor",
@@ -62,5 +62,11 @@
   "Prototype": "Prototype for the GP Tangible Uchronia",
   "ReasoningText": "This Angular application was developed to give museum visitors the opportunity to explore alternative worlds and stories about Olpe. The different thematic worlds shown in the application can be edited on the corresponding staff website. The application offers functions such as displaying different thematic worlds and generating new alternative scenarios and stories using AI.",
   "Show": "Show",
-  "Hide": "Hide"
+  "Hide": "Hide",
+  "Fluss": "River",
+  "Wasser": "Water",
+  "Kirche": "Church",
+  "Parkplatz": "Parking Lot",
+  "Haus": "House",
+  "Häuser": "Houses"
 }
