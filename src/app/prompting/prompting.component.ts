@@ -125,7 +125,7 @@ export class PromptingComponent implements  OnInit, AfterViewInit {
     this.generatePermitted = !this.isCanvasEmpty() && !this.isInputEmpty();
   }
 
-  /*****Convert Image/Canvas to ByteArray*****/
+  /*****Convert Image/Canvas*****/
   getCanvasAsDataURL(): string {
     if (!this.canvasRef) return String();
 
@@ -343,18 +343,20 @@ export class PromptingComponent implements  OnInit, AfterViewInit {
     this.enableDrawing();
     this.updateGeneratePermitted();
     this.reload = !this.reload;
-    this.selectedModel = 0;
+    //this.selectedModel = 0;
     this.lineWidth = 10;
   }
 
   filterPrompts(event: AutoCompleteCompleteEvent){
-    let filtered = []
+    this.filteredPrompts = this.predefinedPrompts
+      .filter(prompt => prompt.toLowerCase().includes(event.query.toLowerCase()));
+    /*let filtered = []
     for (let i = 0; i < (this.predefinedPrompts as any[]).length; i++) {
       let prompt = (this.predefinedPrompts as any[])[i]
       if (this.predefinedPrompts.filter(prompt => prompt.toLowerCase().includes(event.query.toLowerCase()))) {
         filtered.push(prompt)
       }
     }
-    this.filteredPrompts = filtered
+    this.filteredPrompts = filtered*/
   }
 }
