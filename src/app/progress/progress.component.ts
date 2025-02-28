@@ -11,7 +11,7 @@ export class ProgressComponent implements OnChanges {
 
   interval: any;
   progressValue: number = 0;
-  duration: number = 0;
+  duration: number = 1000;
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['progress'] && this.progress) {
@@ -40,6 +40,8 @@ export class ProgressComponent implements OnChanges {
   }
 
   increaseProgress(): void {
+    console.log(this.duration)
+    console.log(this.progressValue)
     this.interval = setInterval(() => {
       const increment = Math.floor(Math.random() * 10) + 4; // Zufällige Schritte von 1-5%
       this.progressValue = Math.min(this.progressValue + increment, 99);
