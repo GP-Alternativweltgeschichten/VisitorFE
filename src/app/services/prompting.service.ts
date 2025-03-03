@@ -36,7 +36,7 @@ export class PromptingService {
       model: model,
       guidance_scale: guidanceScale
     };
-    console.log('Prompt sent:', text, model);
+    //console.log('Prompt sent:', text, model, guidanceScale);
     return this.comService.post<String>('/prompting/inpainting', requestBody, null as unknown as HttpHeaders, 'blob');
   }
 

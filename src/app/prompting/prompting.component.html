@@ -121,6 +121,15 @@
         </div>
       </div>
     }
+    <div class="randomness-slider">
+      <label class="slider-label">{{ 'Texttreue' | translate }}</label>
+      <p-slider
+        [min]="7"
+        [max]="25"
+        [(ngModel)]="guidanceScale"
+        [step]="1">
+      </p-slider>
+    </div>
   </div>
 </div>
 

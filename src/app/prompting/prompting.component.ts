@@ -151,12 +151,6 @@ export class PromptingComponent implements  OnInit, AfterViewInit {
     const maxWidth = img.clientWidth;
     const maxHeight = img.clientHeight;
 
-    const widthRatio = maxWidth / img.naturalWidth;
-    const heightRatio = maxHeight / img.naturalHeight;
-    const scaleFactor = Math.min(widthRatio, heightRatio);
-    const targetWidth = Math.round(img.naturalWidth * scaleFactor);
-    const targetHeight = Math.round(img.naturalHeight * scaleFactor);
-
     const canvas = document.createElement('canvas');
     canvas.width = maxWidth;
     canvas.height = maxHeight;

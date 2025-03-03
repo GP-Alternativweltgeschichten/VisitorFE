@@ -124,6 +124,30 @@
   vertical-align: middle;
 }
 
+.randomness-slider {
+  margin-top: 45px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.slider-label {
+  font-weight: bold;
+  font-size: 0.95em;
+  margin-bottom: 2px;
+  align-self: center; /* Centers the label */
+  text-align: center;
+}
+
+.randomness-slider p-slider {
+  width: 100%;
+  max-width: 200px;
+}
+
+
+
 
 /* General styles for icon buttons */
 .icon-button {
