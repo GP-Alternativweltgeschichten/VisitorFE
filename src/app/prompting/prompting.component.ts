@@ -20,6 +20,7 @@ export class PromptingComponent implements  OnInit, AfterViewInit {
     { label: 'Dall-E', value: 1 }
   ];
   showModelSelector: boolean | undefined
+  guidanceScale: number = 7;
 
   ctx: CanvasRenderingContext2D | null = null;
   selectedTool: 'draw' | 'closed' | 'eraser' = 'draw';
@@ -87,7 +88,7 @@ export class PromptingComponent implements  OnInit, AfterViewInit {
         const image = this.getImageAsDataURL(img);
         const canvasURL = this.getCanvasAsDataURL()
 
-        this.promptingService.sendTextAndImageAndMaskAndModel(this.userPrompt, image, canvasURL, this.selectedModel).subscribe((response: any) => {
+        this.promptingService.sendInpaintInformation(this.userPrompt, image, canvasURL, this.selectedModel, this.guidanceScale).subscribe((response: any) => {
           const blob = new Blob([response], {type: 'image/png'});
           this.shownMap = URL.createObjectURL(blob);
           this.resetCanvas();
