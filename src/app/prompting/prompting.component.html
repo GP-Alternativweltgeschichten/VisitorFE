@@ -20,7 +20,7 @@
       pButton
       class="button-columns-button-icon"
       icon="pi pi-qrcode"
-      style="font-size: 0.65em; margin-right: 5px"
+      style="font-size: 0.65em; margin-right: 35px"
       (click)="panel.toggle($event)"
     ></button>
     <p-overlayPanel #panel>
@@ -124,8 +124,8 @@
     <div class="randomness-slider">
       <label class="slider-label">{{ 'Texttreue' | translate }}</label>
       <p-slider
-        [min]="7"
-        [max]="25"
+        [min]="1"
+        [max]="50"
         [(ngModel)]="guidanceScale"
         [step]="1">
       </p-slider>

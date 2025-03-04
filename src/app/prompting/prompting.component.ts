@@ -20,7 +20,7 @@ export class PromptingComponent implements  OnInit, AfterViewInit {
     { label: 'Dall-E', value: 1 }
   ];
   showModelSelector: boolean | undefined
-  guidanceScale: number = 7;
+  guidanceScale: number = 7.5;
 
   ctx: CanvasRenderingContext2D | null = null;
   selectedTool: 'draw' | 'closed' | 'eraser' = 'draw';

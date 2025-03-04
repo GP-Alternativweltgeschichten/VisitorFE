@@ -59,15 +59,22 @@
   padding: 0 20px;
 }
 .qr-code {
-  display: flex;
+  /*display: flex;*/
   justify-content: left;
+  align-items: start;
 }
 
 .right-controls {
-  display: flex;
+  /*display: flex;*/
   flex-direction: column;
-  align-items: flex-end;
+  align-items: end;
+  justify-content: right;
   margin-right: 10px
+}
+
+.middle-controls {
+  align-items: center;
+  justify-content: center;
 }
 
 .language-switcher {
@@ -125,7 +132,7 @@
 }
 
 .randomness-slider {
-  margin-top: 45px;
+  margin-top: 35px;
   width: 100%;
   display: flex;
   flex-direction: column;
