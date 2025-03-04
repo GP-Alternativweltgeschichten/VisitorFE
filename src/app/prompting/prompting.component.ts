@@ -340,6 +340,7 @@ export class PromptingComponent implements  OnInit, AfterViewInit {
     this.reload = !this.reload;
     //this.selectedModel = 0;
     this.lineWidth = 10;
+    this.guidanceScale = 7.5;
   }
 
   filterPrompts(event: AutoCompleteCompleteEvent){
