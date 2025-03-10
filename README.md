@@ -4,9 +4,9 @@
 Diese Angular-Anwendung wurde entwickelt, um den Museumsbesuchern die Möglichkeit zu geben, alternative Welten und Geschichten rund um Olpe zu erkunden. Die verschiedenen thematischen Welten, die in der Anwendung gezeigt werden, können auf der entsprechenden Mitarbeiter-Webseite bearbeitet werden. Die Anwendung bietet Funktionen wie das Anzeigen von verschiedenen thematischen Welten und das Generieren neuer alternativer Weltgeschichten mithilfe von KI.
 
 ## 📖 Inhalt
-- [Installation](#installation)
-- [Anwendung ausführen](#anwendung-ausfüehren)
-- [Projektstruktur](#projektstruktur)
+- [Installation](#%EF%B8%8F-installation)
+- [Anwendung ausführen](#-anwendung-ausführen)
+- [Projektstruktur](#-projektstruktur)
 
 ## ⚙️ Installation
 1. Stellen Sie sicher, dass Node.js installiert ist
