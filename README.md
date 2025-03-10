@@ -7,8 +7,8 @@ Diese Angular-Anwendung wurde entwickelt, um den Museumsbesuchern auf interaktiv
 - [Installation](#%EF%B8%8F-installation)
 - [Anwendung ausführen](#-anwendung-ausführen)
 - [Projektstruktur](#-projektstruktur)
-- [Aufbau](#%EF%B8%8F-aufbau)
-- [Features](#-features)
+- [Aufbau](#-aufbau)
+- [Feature-Übersicht](#-feature-übersicht)
 - [Entwicklungsprozess](#%EF%B8%8F-entwicklungsprozess)
 - [Zukünftige Erweiterungen](#-zukünftige-erweiterungen)
 
@@ -57,11 +57,14 @@ package.json            # Listet die Abhängigkeiten und Skripte, die im Projekt
 README.md               # Dokumentation und Hinweise für das Projekt.
 ```
 
-## Aufbau
-- **Startseite**: Einstiegsseite der Anwendung mit provisorischem Olpe-Logo, Beschreibungstext zur Einführung, AI-Modell Auswahlanzeige und Weiterleitungs-Button.
-- **Hauptseite**: ...
+## 🧩 Aufbau
+![grafik](https://github.com/user-attachments/assets/4ac0f828-0ad7-4656-ba09-34ba48250495)
 
-## 📋 Features
+**Startseite**: Die Startseite dient als Einführung und Einstiegsseite für die Besucher. Sie zeigt ein provisorisches Logo der Stadt Olpe, einen kurzen Erklärungstext, der die Anwendung und ihre Möglichkeiten beschreibt, sowie einen Radiobutton, mit dem die Auswahl des AI-Modells (Dall-E oder eigene KI) aktiviert oder deaktiviert werden kann. Ein Button leitet die Besucher anschließend zur eigentlichen Hauptseite weiter, wo die Interaktion mit der Karte beginnt. Die Startseite fungiert als Einstiegspunkt und bereitet die Besucher auf die Anwendung vor. Zusätzlich ermöglicht sie, vorab Einstellungen zur AI-Nutzung festzulegen.  
+
+**Hauptseite**: Die Hauptseite ist die zentrale Interaktionsseite, auf der die Besucher mit einer interaktiven Karte von Olpe arbeiten können. Hier können sie Bereiche einzeichnen, Szenarien beschreiben, KI-Modelle auswählen, Texttreue einstellen und somit neue alternative Szenarien generieren. Außerdem bietet die Seite eine Auswahl von Themenwelten aus der Datenbank, die angesehen und bearbeitet werden können. Diese Seite bietet in kompakter und übersichtlicher Form alle notwendigen Werkzeuge zur kreativen Erstellung von Alternativwelten. Sie ist auf eine intuitive, einfache Bedienung und hohe Zugänglichkeit durch spielerische Interaktion ausgelegt.
+
+## 📋 Feature-Übersicht
 
 | **Feature**        | **Beschreibung** |
 |--------------------|------------------|
