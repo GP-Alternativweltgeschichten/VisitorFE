@@ -7,8 +7,8 @@ Diese Angular-Anwendung wurde entwickelt, um den Museumsbesuchern auf interaktiv
 - [Installation](#%EF%B8%8F-installation)
 - [Anwendung ausführen](#-anwendung-ausführen)
 - [Projektstruktur](#-projektstruktur)
-- Aufbau
-- Features
+- [Aufbau](#%EF%B8%8F-aufbau)
+- [Features](#-features)
 - [Entwicklungsprozess](#%EF%B8%8F-entwicklungsprozess)
 - [Zukünftige Erweiterungen](#-zukünftige-erweiterungen)
 
@@ -58,11 +58,27 @@ README.md               # Dokumentation und Hinweise für das Projekt.
 ```
 
 ## Aufbau
+- **Startseite**: Einstiegsseite der Anwendung mit provisorischem Olpe-Logo, Beschreibungstext zur Einführung, AI-Modell Auswahlanzeige und Weiterleitungs-Button.
+- **Hauptseite**: ...
 
-## Features
+## 📋 Features
+
+| **Feature**        | **Beschreibung** |
+|--------------------|------------------|
+| **AI-Modell Auswahlanzeige (Startseite)**  | Radiobutton zur Aktivierung/Deaktivierung der AI-Modellauswahl für Besucher. Ermöglicht das Ein- oder Ausblenden der Modell-Auswahl zur Regulierung der OpenAI-Nutzung. |
+| **Kartenanzeige**                          | Dynamisch skalierte Karte der Stadt Olpe, die als Basis für die Bildgenerierung dient. |
+| **Zeichenfunktion (Draw-Feature)**         | Canvas mit gleichen Maßen der Karte, auf dem Besucher zeichnen können. Auswahl zwischen Freihandmalen, geschlossenen Formen (automatische Füllung sich schließender Formen) und Radieren. Ermöglicht das Anpassen der Strichstärke beim Zeichnen.                                                     Ermöglicht das Zurücksetzen aller bisherigen Zeichnungen auf dem Canvas. Das Zeichnen basiert auf Mouse Events (mousedown, mousemove). |
+| **AI-Modell Auswahl**                      | Auswahl zwischen eigener AI (Standard) und Dall-E von OpenAI. Das gewählte Modell wird als Integer im Backend gespeichert. Kann auch durch das Mitarbeiter-Frontend geändert werden. |
+| **QR-Code Anzeige**                        | Button, um einen QR-Code einzublenden (Overlay). Temporäres Feature für eine Umfrage zur Evaluation des Prototyps. |
+| **Szenario-Eingabe (Textfeld)**            | Besucher können eigene Begriffe oder Sätze als Prompt eingeben. Zusätzlich gibt es eine Auto-Complete Drop-Down Liste mit Vorschlägen, die sich während des Tippens filtern (z.B. 'Fluss', 'Kirche'). |
+| **Bild-Generierung**                       | Ein Klick auf den "Generieren" Button (oder Enter im Textfeld) startet die Generierung. Es werden der eingegebene Text, die Zeichnung und die ausgewählte Karte (als Base64-PNG), das ausgewählte AI-Modell und Texttreuegrad an das Backend gesendet.                                                Nach der Verarbeitung wird das generierte Bild als neue Karte gesetzt. Die Generierung wird nur erlaubt, wenn sowohl Text als auch eine Zeichnung vorhanden sind. |
+| **Ladebalken (bei Generierung)**           | Während der Generierung wird die Oberfläche gesperrt und ein Ladebalken angezeigt, bis das Bild generiert wurde. Dieser zählt in zufälligen Schritten hoch. Die Dauer variiert je nach AI-Modell. |
+| **Reset-Button**                           | Setzt beinahe alle getätigten Änderungen und Einstellungen zurück: Zeichnungen des Canvas, Texteingabe, Zeichenmodus, Strichstärke, Texttreue und ausgewählte Karte. Das ausgewählte AI-Modell bleibt bestehen. |
+| **Texttreue-Einstellung**                  | Schieberegler zur Anpassung, wie nah die AI dem eingegebenen Text folgen soll (beeinflusst auch die Integration des generierten Bereichs in die Karte). |
+| **Anzeige der Themenwelten**               | Darstellung aller gespeicherten Themenwelten aus der Datenbank. Besucher können diese auswählen, ansehen und mithilfe der Zeichenfunktion editieren und zur Generierung nutzen. Karten, die als nicht editierbar markiert sind, lassen keine                                                          Zeichnungen oder Generierungen zu (Zeichenfunktionen und Generieren-Button sind deaktiviert). |  
 
 ## 🛠️ Entwicklungsprozess
-### 📋 Ablauf:
+### 📝 Ablauf:
 1. **Konzeption**: Konzeption des Aufbaus der Benutzeroberfläche und Definition benötigter Features und Schnittstellen.
 2. **Aufbau der Grundstruktur**: Implementierung grundlegender Funktionen (Anzeige der Karte, Texteingabe, Anzeige der Themenwelten) als Angular-Komponenten.
 3. **Integration der Datenbank**: Anbindung der Datenbank über die Backend-Application zur Verwaltung der Themenwelten.
@@ -74,7 +90,8 @@ README.md               # Dokumentation und Hinweise für das Projekt.
 - **Zeichen-/Mal-Feature**: Das flüssige Malen und das reibungslose Schließen von gezeichneten Bereichen innerhalb der Zeichenfunktion erwiesen sich als zeitaufwändig.
 - **Anbindung der Themenwelten**: Die Anbindung des Backends zur Anzeige der Themenwelten erforderte Anpassungen in der Datenstruktur, um alle Entitäten korrekt zu erzeugen und anzuzeigen.
 - **Anbindung der KI-Bildgenerierung**: Bei der Anbindung der KI zur Bildgenerierung gab es Probleme mit der Bildgröße und der doppelten Versendung des Prompts, die die Antwortzeit verzögerte.
-Insgesamt dauerten einige Features oder Anbindungen länger als andere, konnten aber schließlich gelöst werden.
+
+  Insgesamt dauerten einige Features oder Anbindungen länger als andere, konnten aber schließlich gelöst werden.
 
 ### ❌ Verworfene Features: 
 - **Bildvorschau der Themenwelten**: Eine Bildvorschau für jede Themenwelt wurde gestrichen, da die Karte in der Topolgie-Ansicht einen größeren Mehrwert bietet als in der reduzierten Card-Ansicht.
