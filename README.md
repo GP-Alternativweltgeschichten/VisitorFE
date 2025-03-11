@@ -1,6 +1,6 @@
-# Angular Application
+# Besucher-Frontend
 
-## 📌 Projektbeschreibung
+## 📌 Beschreibung
 Diese Angular-Anwendung wurde entwickelt, um den Museumsbesuchern auf interaktive Weise alternative Welten und Geschichten rund um Olpe erlebbar zu machen. Besucher können mittels Maus und Tastatur eigene Ideen eingeben und mithilfe einer KI Bilder zu individuellen Alternativweltgeschichten generieren. Die verschiedenen thematischen Welten, die in der Anwendung gezeigt werden, können auf der entsprechenden Mitarbeiter-Webseite bearbeitet werden. Die Anwendung bietet Funktionen wie das Anzeigen von verschiedenen thematischen Welten und die Eingabe von Text und Zeichnungen zur Generierung neuer Alternativweltgeschichten mithilfe der angebundenen KI.
 
 ## 📖 Inhalt
