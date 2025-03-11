@@ -105,7 +105,8 @@ README.md               # Dokumentation und Hinweise für das Projekt.
 - **Sprachauswahl**: Eine spätere Version der Anwendung könnte eine Sprachwahl zwischen Deutsch und Englisch bieten.
 - **Texttreue-Einstellung begrenzen**: Die Einstellung der Texttreue könnte bspw. auf drei geeignete, vorgegebene Stufen (z.B. niedrig, mittel, hoch) begrenzt werden.
 - **Bildstil wählbar**: Es könnte ermöglicht werden, den Stil der generierten Bilder auszuwählen, z.B. altertümlich oder neumodisch.
-- **Generierte Bilder speichern**: Die erzeugten Bilder könnten in der Datenbank gespeichert oder auf Anfrage an externe Geräte übertragen werden.
+- **Generierte Bilder speichern**: Die erzeugten Bilder könnten zwischengespeichert und auf Anfrage an externe Geräte der Besucher übertragen werden.
+- **Vorher-Nachher-Vergleich**: Das generierte Bild könnte als Overlay über der ursprünglichen Karte angezeigt werden, wobei ein Slider den direkten Vergleich zwischen Ausgangskarte und generiertem Bild ermöglicht.
 
 ---
 
