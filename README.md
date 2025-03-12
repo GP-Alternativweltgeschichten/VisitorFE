@@ -102,11 +102,11 @@ README.md               # Dokumentation und Hinweise für das Projekt.
 - **Sprachauswahl**: Eine vollständige Sprachauswahl wurde vorerst nicht umgesetzt, da die derzeitigen Benutzer ausschließlich Deutsch sprechen.
 
 ## 📈 Zukünftige Erweiterungen
-- **Sprachauswahl**: Eine spätere Version der Anwendung könnte eine Sprachwahl zwischen Deutsch und Englisch bieten.
-- **Texttreue-Einstellung begrenzen**: Die Einstellung der Texttreue könnte bspw. auf drei geeignete, vorgegebene Stufen (z.B. niedrig, mittel, hoch) begrenzt werden.
-- **Bildstil wählbar**: Es könnte ermöglicht werden, den Stil der generierten Bilder auszuwählen, z.B. altertümlich oder neumodisch.
-- **Generierte Bilder speichern**: Die erzeugten Bilder könnten zwischengespeichert und auf Anfrage an externe Geräte der Besucher übertragen werden.
-- **Vorher-Nachher-Vergleich**: Das generierte Bild könnte als Overlay über der ursprünglichen Karte angezeigt werden, wobei ein Slider den direkten Vergleich zwischen Ausgangskarte und generiertem Bild ermöglicht.
+- **Mehrsprachigkeit und Sprachauswahl**: Einführung einer Sprachauswahl, die es den Besuchern ermöglicht, zwischen Deutsch und Englisch (bzw. weiteren Sprachen) direkt in der Anwendung zu wechseln.
+- **Begrenzte Texttreue-Einstellungen**: Anpassung der Texttreue-Auswahl auf vordefinierte, verständliche Stufen (z.B. niedrig, mittel, hoch), um die Interaktion zu vereinfachen und die Auswahl für Benutzer nachvollziehbarer zu machen.
+- **Wählbare Stile für KI-generierte Bilder**: Möglichkeit, aus verschiedenen Bildstilen für die KI-generierten Bilder auszuwählen (z.B. historisch, modern, futuristisch).
+- **Speicherung und Export generierter Bilder**: Funktion, die es Besuchern ermöglicht, die von der KI erzeugten Bilder temporär zu speichern und bei Bedarf auf eigene Geräte (z.B. via QR-Code) zu übertragen.
+- **Vorher-Nachher-Vergleich von Karten**: Implementierung eines interaktiven Overlays mit Slider, um die Originalkarte und das KI-generierte Bild direkt miteinander vergleichen zu können.
 
 ---
 
