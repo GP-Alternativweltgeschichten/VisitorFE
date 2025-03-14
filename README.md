@@ -14,20 +14,20 @@ Diese Angular-Anwendung wurde speziell für das Stadtmuseum Olpe entwickelt, um 
 - [Zukünftige Erweiterungen](#-zukünftige-erweiterungen)
 
 ## ⚙️ Installation
-1. Stellen Sie sicher, dass Node.js installiert ist.
+1. Stellen Sie sicher, dass Node.js installiert ist. 
    Besuchen Sie Node.js Download-Seite und laden Sie die aktuelle LTS-Version herunter.
-2. Repository klonen
+2. Repository klonen. 
    Klonen Sie das Repository in Ihr Projektverzeichnis:
    ```sh
    git clone https://github.com/GP-Alternativweltgeschichten/VisitorFE.git
    cd VisitorFE
    ```
-3. Abhängigkeiten installieren
+3. Abhängigkeiten installieren. 
    Stellen Sie sicher, dass alle erforderlichen Pakete installiert werden:
    ```sh
    npm install
    ```
-4. Angular CLI installieren
+4. Angular CLI installieren. 
    Vergewissern Sie sich, dass Angular CLI auf Ihrem System installiert ist:
    ```sh
    npm install -g @angular/cli
