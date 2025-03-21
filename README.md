@@ -5,6 +5,7 @@ Diese Angular-Anwendung wurde speziell für das Stadtmuseum Olpe entwickelt, um 
 Über eine Auswahl an thematischen Welten – z.B. alternative Stadtpläne oder visionäre Zukunftsszenarien – können die Besucher verschiedene Ausgangssituationen erkunden und aktiv weiterentwickeln. Die zugrunde liegenden Szenarien und alten Karten werden durch das Mitarbeiter-Frontend gepflegt und aktualisiert, sodass die Inhalte jederzeit angepasst werden können. Die Anwendung verfolgt damit das Ziel, Alternativweltgeschichten von Olpe partizipativ und kreativ erlebbar zu machen.
 
 ## 📖 Inhalt
+- [Verwendete Technologien](#%EF%B8%8F-verwendete-technologien)
 - [Installation](#%EF%B8%8F-installation)
 - [Anwendung ausführen](#-anwendung-ausführen)
 - [Projektstruktur](#-projektstruktur)
@@ -12,6 +13,16 @@ Diese Angular-Anwendung wurde speziell für das Stadtmuseum Olpe entwickelt, um 
 - [Feature-Übersicht](#-feature-übersicht)
 - [Entwicklungsprozess](#%EF%B8%8F-entwicklungsprozess)
 - [Zukünftige Erweiterungen](#-zukünftige-erweiterungen)
+
+## 🖥️ Verwendete Technologien
+In diesem Projekt werden folgende Technologien und Frameworks genutzt:
+- **Angular** (Version 18) – Frontend-Framework 
+- **PrimeNG** (Version 17) – UI-Komponentenbibliothek 
+- **PrimeFlex** – CSS-Utility-Framework
+- **TypeScript** – (Haupt)-Programmiersprache
+- **Ngx-Translate** – Unterstützung für Mehrsprachigkeit
+- **RxJS** – Reaktive Programmierung für asynchrone Datenströme
+- **Zone.js** – Performance-Optimierung für Change Detection in Angular
 
 ## ⚙️ Installation
 1. Stellen Sie sicher, dass Node.js installiert ist. 
