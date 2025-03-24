@@ -19,10 +19,8 @@ In diesem Projekt werden folgende Technologien und Frameworks genutzt:
 - **Angular** (Version 18) – Frontend-Framework 
 - **PrimeNG** (Version 17) – UI-Komponentenbibliothek 
 - **PrimeFlex** – CSS-Utility-Framework
+- **PrimeIcons** – Icon-Bibliothek
 - **TypeScript** – (Haupt)-Programmiersprache
-- **Ngx-Translate** – Unterstützung für Mehrsprachigkeit
-- **RxJS** – Reaktive Programmierung für asynchrone Datenströme
-- **Zone.js** – Performance-Optimierung für Change Detection in Angular
 
 ## ⚙️ Installation
 1. Stellen Sie sicher, dass Node.js installiert ist. 
