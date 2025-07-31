@@ -34,6 +34,7 @@ import {OverlayPanelModule} from "primeng/overlaypanel";
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {InputSwitchModule} from "primeng/inputswitch";
+import { AiChatComponent } from './ai-chat/ai-chat.component';
 
 // Factory function for ngx-translate
 export function HttpLoaderFactory(http: HttpClient) {
@@ -50,7 +51,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     ErrorComponent,
     ThematicWorldsComponent,
-    ProgressComponent
+    ProgressComponent,
+    AiChatComponent
   ],
     imports: [
         BrowserModule,

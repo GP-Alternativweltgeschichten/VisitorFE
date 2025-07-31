@@ -32,3 +32,27 @@
   font-size: 0.8em;
   vertical-align: middle;
 }
+
+.chat-model-selector{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 20px;
+  align-items: flex-start;
+}
+.chat-model-label {
+  font-weight: bold;
+  font-size: 0.95em;
+  margin-bottom: 2px;
+  align-self: start; /* Centers the label */
+  text-align: start;
+}
+.chat-options {
+  display: flex;
+  align-items: center; /* Align radio buttons and labels */
+  gap: 6px; /* Space between button and label */
+}
+.chat-option-label {
+  font-size: 0.8em;
+  vertical-align: middle;
+}

@@ -17,6 +17,19 @@
     </div>
   </div>
 
+  <div class="chat-model-selector">
+    <label class="chat-model-label">{{ 'Chat option' | translate }}</label>
+    <div class="chat-options" *ngFor="let option of inputModelOptions">
+      <p-radioButton
+        [name]="'startupInputModel'"
+        [value]="option.value"
+        [(ngModel)]="startupInputModel"
+        (onClick)="toggleInputModel($event)"
+      ></p-radioButton>
+      <label class="chat-option-label">{{ option.value }}</label>
+    </div>
+  </div>
+
   <div class="prototype-nav-button">
     <p-button
       class="prototype-button"

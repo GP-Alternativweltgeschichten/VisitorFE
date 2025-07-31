@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import {PromptingComponent} from './prompting/prompting.component';
 import {ErrorComponent} from './error/error.component';
 import {HomeComponent} from './home/home.component';
+import {AiChatComponent} from './ai-chat/ai-chat.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'prompting', component: PromptingComponent},
+  {path: 'ai-chat', component: AiChatComponent},
   {path: 'error', component: ErrorComponent},
   {path: '**', redirectTo: '/error'}
 ];
