@@ -1,0 +1,316 @@
+/* Main container */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0px;
+  box-sizing: border-box;
+}
+
+/* Map container */
+.map-container {
+  width: 96vw;
+  aspect-ratio: 1/1;
+  display: flex;
+  overflow: hidden; /* Prevents image from spilling out */
+  position: relative;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px
+}
+
+.map-image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+/* Canvas overlay */
+.drawing-canvas {
+  position: absolute;
+  opacity: 0.6;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto; /* Enable interaction */
+  cursor: url('/assets/icons/edit_pencil_red.png') 6 58, pointer;
+}
+
+/* Controls container */
+.draw-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.draw-controls input[type="range"] {
+  width: 150px;
+  cursor: pointer;
+}
+
+.bottom-controls {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+.qr-code {
+  /*display: flex;*/
+  justify-content: left;
+  align-items: start;
+}
+.image{
+  justify-content: center;
+  width: 4em;
+  border-radius: 5px;
+  padding: 3px;
+
+  border: solid 1px #ccc;
+}
+.right-controls {
+  /*display: flex;*/
+  flex-direction: column;
+  align-items: end;
+  justify-content: right;
+  margin-right: 10px
+}
+
+.middle-controls {
+  align-items: center;
+  justify-content: center;
+}
+
+.language-switcher {
+  display: flex; /* Aligns the buttons in a row */
+  gap: 10px;
+  justify-content: right;
+}
+
+.language-switcher button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  border-radius: 4px; /* Slightly rounded edges */
+  transition: box-shadow 0.2s, transform 0.1s;
+}
+
+.language-switcher button img {
+  display: block;
+  border-radius: 4px; /* Ensures the image follows the button's border-radius */
+}
+
+/* Hover effect */
+.language-switcher button:hover {
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.ai-model-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  /*margin-top: 20px;*/
+  align-items: flex-start; /* Align to left */
+}
+
+.ai-model-label {
+  font-weight: bold;
+  font-size: 0.95em;
+  margin-bottom: 2px;
+  align-self: center; /* Centers the label */
+  text-align: center;
+}
+
+.ai-options {
+  display: flex;
+  align-items: center; /* Align radio buttons and labels */
+  gap: 6px; /* Space between button and label */
+}
+
+.ai-option-label {
+  font-size: 0.8em;
+  vertical-align: middle;
+}
+
+.randomness-slider {
+  margin-top: 35px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.slider-label {
+  font-weight: bold;
+  font-size: 0.95em;
+  margin-bottom: 2px;
+  align-self: center; /* Centers the label */
+  text-align: center;
+}
+
+.randomness-slider p-slider {
+  width: 100%;
+  max-width: 200px;
+}
+
+
+
+
+/* General styles for icon buttons */
+.icon-button {
+  padding: 10px;
+  font-size: 1.2rem; /* Adjust icon size */
+  background-color: #ccc; /* Default gray tone */
+  color: black;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-button:hover {
+  background-color: #bbb;
+}
+
+.icon-button.selected {
+  background-color: #666;
+  color: white;
+  border: 1px solid #666;
+}
+
+.icon-button i {
+  pointer-events: none; /* Prevent interference from icon clicks */
+}
+
+/* Input container */
+.input-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Helper text */
+.helper-text {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* Input field and button wrapper */
+.input-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 800px;
+  align-items: center;
+}
+
+.chat-head-container {
+  display: flex;
+  width: 180%;
+  justify-content: space-between;
+  max-width: 2000px;
+  padding:  0 0 15px 0;
+  align-items: center;
+}
+.chat-head-button {
+  gap: 3px;
+  display: flex;
+}
+
+.chat-display {
+  width: 180%;
+  max-width: 10000px;
+  height: 700px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding:  20px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+
+.chat-input {
+  display: flex;
+  justify-content: space-between;
+  width: 180%;
+  max-width: 2000px;
+  padding: 5px 10px 5px 20px;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 60px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+
+.autoComplete {
+  width: 100%;
+}
+
+.scenario-input {
+  flex: 1;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px; /* Rounded corners for left side */
+  outline: none;
+}
+
+.scenario-input::placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+.info-Button {
+  padding: 10px;
+  font-size: 1.2rem; /* Adjust icon size */
+  background-color: white; /* Default gray tone */
+  color: green;
+  border: 1px solid #ccc;
+  border-radius: 5px; /* Rounded corners for right side */
+  cursor: pointer;
+}
+
+.help-Button {
+  padding: 10px;
+  font-size: 1.2rem; /* Adjust icon size */
+  background-color: white; /* Default gray tone */
+  color: red;
+  border: 1px solid #ccc;
+  border-radius: 5px; /* Rounded corners for right side */
+  cursor: pointer;
+}
+
+/* Generate button */
+.generate-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  margin-left: 5px;
+  /*border-left: none; /* No border between input and button */
+  border-radius: 5px 5px 5px 5px; /* Rounded corners for right side */
+  cursor: pointer;
+}
+
+.generate-button:hover {
+  background-color: #0056b3;
+}
+
+.generate-button:disabled {
+  background-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
+}

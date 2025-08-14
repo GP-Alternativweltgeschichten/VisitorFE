@@ -35,6 +35,7 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {InputSwitchModule} from "primeng/inputswitch";
 import { AiChatComponent } from './ai-chat/ai-chat.component';
+import {NgOptimizedImage} from "@angular/common";
 
 // Factory function for ngx-translate
 export function HttpLoaderFactory(http: HttpClient) {
@@ -84,7 +85,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         OverlayPanelModule,
         AutoCompleteModule,
         RadioButtonModule,
-        InputSwitchModule
+        InputSwitchModule,
+        NgOptimizedImage
     ],
   providers: [],
   bootstrap: [AppComponent]

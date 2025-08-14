@@ -1,1 +1,205 @@
-<p>ai-chat works!</p>
+<div class="container">
+  <!-- Map image container -->
+  <div class="map-container" #container>
+    <img alt="Karte von Olpe" [src]="shownMap" #img class="map-image"/>
+    <canvas #canvas class="drawing-canvas"></canvas>
+  </div>
+  <div>
+    <app-progress
+      [progress]="progress"
+      [model]="selectedModel"
+    ></app-progress>
+  </div>
+</div>
+
+
+<div class="bottom-controls">
+  <!-- Drawing controls -->
+  <div class="middle-controls">
+
+    <div *ngIf="!generateEnabled" class="draw-controls">
+      <div class="qr-code">
+        <button
+          type="button"
+          pButton
+          class="button-columns-button-icon"
+          icon="pi pi-qrcode"
+          (click)="panel.toggle($event)"
+        ></button>
+        <p-overlayPanel #panel>
+          <img src="assets/img/qr-code.png" alt="Map" style="max-width: 250px; max-height: 250px">
+        </p-overlayPanel>
+      </div>
+      <input
+        id="lineWidthRange"
+        type="range"
+        min="5"
+        max="30"
+        [value]="lineWidth"
+        (input)="changeLineWidth($event)"
+      />
+
+      <button (click)="enableDrawing()" class="icon-button"
+              [ngClass]="{ selected: selectedTool === 'draw' }">
+        <i class="fas fa-pencil-alt"></i>
+      </button>
+      <button (click)="enableClosedShape()" class="icon-button"
+              [ngClass]="{ selected: selectedTool === 'closed' }">
+        <i class="fas fa-draw-polygon"></i>
+      </button>
+      <button (click)="enableEraser()" class="icon-button"
+              [ngClass]="{ selected: selectedTool === 'eraser' }">
+        <i class="fas fa-eraser"></i>
+      </button>
+      <button (click)="resetCanvas()" class="icon-button">
+        <i class="fas fa-trash-alt"></i>
+      </button>
+    </div>
+
+    <div class="container" style="margin-top: 20px">
+      <!-- Input field with helper text and button -->
+      <div class="input-container">
+        <div class="helper-text">{{ 'Olpi_Chat' | translate }}</div>
+
+        <div class="chat-head-container">
+          <img
+            class="image"
+            src="assets/icons/Olpi_Icon.png"
+            alt="Olpi Icon"
+            />
+
+          <div class="chat-head-button">
+          <button
+            type="button"
+            pButton
+            class="info-Button"
+            label="{{ 'Info' | translate }}"
+            [raised]="true"
+            icon="pi pi-info-circle"
+            (click)="panel.toggle($event)"
+          ></button>
+          <p-overlayPanel #panel>
+            <img src="assets/img/qr-code.png" alt="Map" style="max-width: 250px; max-height: 250px">
+          </p-overlayPanel>
+
+          <button
+            type="button"
+            pButton
+            class="help-Button"
+            label="{{ 'Help' | translate }}"
+            [raised]="true"
+            icon="pi pi-question-circle"
+            (click)="panel.toggle($event)"
+          ></button>
+          <p-overlayPanel #panel>
+            <img src="assets/img/qr-code.png" alt="Map" style="max-width: 250px; max-height: 250px">
+          </p-overlayPanel>
+            </div>
+        </div>
+
+        <div class="chat-display">
+        <p> Hallo</p>
+        </div>
+
+        <div class="chat-input">
+          <div class="autoComplete">
+            <p-autoComplete
+              #scenarioInput
+              [(ngModel)]="inputText"
+              placeholder="{{ 'WhatIf' | translate }}"
+              [dropdown]="true"
+              [showClear]="true"
+              [suggestions]="filteredPrompts"
+              [readonly]="progress"
+              (completeMethod)="filterPrompts($event); onInputChange(scenarioInput.value)"
+              (onKeyUp)="handleKeyDown($event, scenarioInput)"
+              (onSelect)="onInputChange(scenarioInput.value)"
+            /> <!--updatePrompt(scenarioInput)-->
+          </div>
+
+          <button
+            type="button"
+            pButton
+            label="{{ 'Send' | translate }}"
+            class="button-columns-button"
+            (click)="panel.toggle($event)"></button>
+        </div>
+
+
+<!--
+        <div class="input-wrapper">
+          <div class="autoComplete">
+            <p-autoComplete
+              #scenarioInput
+              [(ngModel)]="inputText"
+              placeholder="{{ 'WhatIf' | translate }}"
+              [dropdown]="true"
+              [showClear]="true"
+              [suggestions]="filteredPrompts"
+              [readonly]="progress"
+              (completeMethod)="filterPrompts($event); onInputChange(scenarioInput.value)"
+              (onKeyUp)="handleKeyDown($event, scenarioInput)"
+              (onSelect)="onInputChange(scenarioInput.value)"
+            />
+          </div>
+
+          <button
+            class="generate-button"
+            [disabled]="generateEnabled || !generatePermitted"
+            (click)="updatePrompt(scenarioInput)"
+          >
+            {{ 'Generate' | translate }}
+          </button>
+
+          <div class="flex justify-content-end flex-wrap" style="padding: 5px; margin-right: 20px">
+            <p-button
+              label="Reset"
+              severity="danger"
+              (click)="resetPrompt(scenarioInput)"
+            ></p-button>
+          </div>
+        </div>
+-->
+      </div>
+
+    </div>
+  </div>
+  <!-- AI model and randomness controls
+
+  <div class="right-controls">
+    @if (showModelSelector) {
+      <div class="ai-model-selector">
+        <label class="ai-model-label">{{ 'AI Model' | translate }}</label>
+        <div class="ai-options" *ngFor="let option of modelOptions">
+          <p-radioButton
+            [name]="'aiModel'"
+            [value]="option.value"
+            [(ngModel)]="selectedModel"
+            (onClick)="setAIModel($event)"
+          ></p-radioButton>
+          <label class="ai-option-label">{{ option.label }}</label>
+        </div>
+      </div>
+    }
+    <div class="randomness-slider">
+      <label class="slider-label">{{ 'Texttreue' | translate }}</label>
+      <p-slider
+        [min]="1"
+        [max]="50"
+        [(ngModel)]="guidanceScale"
+        [step]="1">
+      </p-slider>
+    </div>
+  </div>
+
+</div>
+
+
+<div style="margin-top: 20px">
+  <app-thematic-worlds
+    [reload]="reload"
+    (mapToShow)="showMap($event)"
+    (isMapEditable)="setGeneratedMapEditable($event)"
+  ></app-thematic-worlds>
+    -->
+</div>
