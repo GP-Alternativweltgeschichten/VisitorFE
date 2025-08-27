@@ -55,20 +55,21 @@
         <i class="fas fa-trash-alt"></i>
       </button>
     </div>
+  </div>
 
-    <div class="container" style="margin-top: 20px">
-      <!-- Input field with helper text and button -->
-      <div class="input-container">
-        <div class="helper-text">{{ 'Olpi_Chat' | translate }}</div>
+  <div class="container" style="margin-top: 20px; width:800px ">
+    <!-- Input field with helper text and button -->
 
-        <div class="chat-head-container">
-          <img
-            class="image"
-            src="assets/icons/Olpi_Icon.png"
-            alt="Olpi Icon"
-            />
+      <div class="helper-text">{{ 'Olpi_Chat' | translate }}</div>
 
-          <div class="chat-head-button">
+      <div class="chat-head-container">
+        <img
+          class="image"
+          src="assets/icons/Olpi_Icon.png"
+          alt="Olpi Icon"
+        />
+
+        <div class="chat-head-button">
           <button
             type="button"
             pButton
@@ -94,75 +95,105 @@
           <p-overlayPanel #panel>
             <img src="assets/img/qr-code.png" alt="Map" style="max-width: 250px; max-height: 250px">
           </p-overlayPanel>
-            </div>
         </div>
 
-        <div class="chat-display">
-        <p> Hallo</p>
-        </div>
-
-        <div class="chat-input">
-          <div class="autoComplete">
-            <p-autoComplete
-              #scenarioInput
-              [(ngModel)]="inputText"
-              placeholder="{{ 'WhatIf' | translate }}"
-              [dropdown]="true"
-              [showClear]="true"
-              [suggestions]="filteredPrompts"
-              [readonly]="progress"
-              (completeMethod)="filterPrompts($event); onInputChange(scenarioInput.value)"
-              (onKeyUp)="handleKeyDown($event, scenarioInput)"
-              (onSelect)="onInputChange(scenarioInput.value)"
-            /> <!--updatePrompt(scenarioInput)-->
-          </div>
-
-          <button
-            type="button"
-            pButton
-            label="{{ 'Send' | translate }}"
-            class="button-columns-button"
-            (click)="panel.toggle($event)"></button>
-        </div>
-
-
-<!--
-        <div class="input-wrapper">
-          <div class="autoComplete">
-            <p-autoComplete
-              #scenarioInput
-              [(ngModel)]="inputText"
-              placeholder="{{ 'WhatIf' | translate }}"
-              [dropdown]="true"
-              [showClear]="true"
-              [suggestions]="filteredPrompts"
-              [readonly]="progress"
-              (completeMethod)="filterPrompts($event); onInputChange(scenarioInput.value)"
-              (onKeyUp)="handleKeyDown($event, scenarioInput)"
-              (onSelect)="onInputChange(scenarioInput.value)"
-            />
-          </div>
-
-          <button
-            class="generate-button"
-            [disabled]="generateEnabled || !generatePermitted"
-            (click)="updatePrompt(scenarioInput)"
-          >
-            {{ 'Generate' | translate }}
-          </button>
-
-          <div class="flex justify-content-end flex-wrap" style="padding: 5px; margin-right: 20px">
-            <p-button
-              label="Reset"
-              severity="danger"
-              (click)="resetPrompt(scenarioInput)"
-            ></p-button>
-          </div>
-        </div>
--->
       </div>
 
-    </div>
+    <p-scrollPanel styleClass="chat-box" [style]="{'width': '100%', 'height': '700px'}">
+
+      <ng-container *ngFor="let msg of chatMessageList">
+        <div class="message-row" [ngClass]="msg.type.toLowerCase()">
+          <!-- User -->
+          <p-card *ngIf="msg.type === 'User'" styleClass="chat-card user">
+            <p>{{ msg.content }}</p>
+            <small>{{ msg.timestamp | date:'shortTime' }}</small>
+          </p-card>
+
+          <!-- Bot -->
+          <p-card *ngIf="msg.type === 'ChatBot'" styleClass="chat-card chatBot">
+            <p>{{ msg.content }}</p>
+            <small>{{ msg.timestamp | date:'shortTime' }}</small>
+          </p-card>
+
+          <!-- System -->
+          <p-card *ngIf="msg.type === 'Prompt'" styleClass="chat-card prompt">
+            <p><b><em>{{msg.content }}</em></b>
+              <button
+                type="button"
+                pButton
+                class="send-Button"
+                icon="pi pi-play"
+                (click)="updatePrompt(msg.content)"
+                pTooltip="{{ 'UseAIPrompt' | translate }}"
+                tooltipPosition="top"></button>
+            </p>
+
+
+
+            <p>
+              <small>{{ msg.timestamp | date:'shortTime' }}</small>
+              </p>
+          </p-card>
+        </div>
+      </ng-container>
+
+    </p-scrollPanel>
+
+      <div class="chat-input">
+
+        <!-- <div class="chat-input"> -->
+        <textarea rows="1"
+                  pInputTextarea
+                  [autoResize]="true"
+
+                  [(ngModel)]="inputText"
+                  placeholder="{{ 'Olpi_Chat_TextBox_Placeholder' | translate }}">
+    </textarea>
+
+        <button
+          type="button"
+          pButton
+          label="{{ 'Send' | translate }}"
+          class="button-columns-button"
+          (click)="sendChatMessage()"></button>
+      </div>
+
+      <!--
+              <div class="input-wrapper">
+                <div class="autoComplete">
+                  <p-autoComplete
+                    #scenarioInput
+                    [(ngModel)]="inputText"
+                    placeholder="{{ 'WhatIf' | translate }}"
+                    [dropdown]="true"
+                    [showClear]="true"
+                    [suggestions]="filteredPrompts"
+                    [readonly]="progress"
+                    (completeMethod)="filterPrompts($event); onInputChange(scenarioInput.value)"
+                    (onKeyUp)="handleKeyDown($event, scenarioInput)"
+                    (onSelect)="onInputChange(scenarioInput.value)"
+                  />
+                </div>
+
+                <button
+                  class="generate-button"
+                  [disabled]="generateEnabled || !generatePermitted"
+                  (click)="updatePrompt(scenarioInput)"
+                >
+                  {{ 'Generate' | translate }}
+                </button>
+
+                <div class="flex justify-content-end flex-wrap" style="padding: 5px; margin-right: 20px">
+                  <p-button
+                    label="Reset"
+                    severity="danger"
+                    (click)="resetPrompt(scenarioInput)"
+                  ></p-button>
+                </div>
+              </div>
+      -->
+
+
   </div>
   <!-- AI model and randomness controls
 

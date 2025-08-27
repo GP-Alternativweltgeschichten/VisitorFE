@@ -20,6 +20,114 @@
   margin-bottom: 10px
 }
 
+
+:host ::ng-deep .chat-box {
+    width: 100%;
+    height: 700px;
+    padding: 5px 10px 5px 20px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    margin-bottom: 60px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: block;
+}
+
+:host ::ng-deep .chat-box .p-scrollpanel-content {
+  display: block;
+  width: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* Jede Zeile ist ein Flex-Container */
+.message-row {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 70%);
+  gap: 8px;
+  align-items: start;
+  width: 100%;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+/* User → rechts */
+.message-row.user {
+  grid-template-columns: minmax(30%, 100%) 1fr;
+  justify-items: end;
+}
+
+/* Bot → links */
+.message-row.chatbot {
+  grid-template-columns: minmax(0, 70%) 1fr;
+}
+
+/* Prompt (zentriert) */
+.message-row.prompt {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+:host ::ng-deep .chat-card.user,
+:host ::ng-deep .chat-card.chatBot {
+  max-width: 70%;
+  min-width: 10%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 16px;
+  margin: 0;
+  padding: 10px 12px;
+  display: block;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  hyphens: auto;
+}
+
+:host ::ng-deep .chat-card.user {
+  border-bottom-right-radius: 0;
+  float:right;
+}
+
+:host ::ng-deep .chat-card.chatBot {
+  border-top-left-radius: 0;
+}
+
+
+:host ::ng-deep .chat-card.prompt {
+  width: 100%;
+  box-sizing: border-box;
+  border: 3px solid #9a9a9a;
+  background-color: #cce0ff;
+  border-radius: 10px;
+  padding: 10px 12px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  hyphens: auto;
+}
+
+:host ::ng-deep .chat-card .p-card-content {
+padding:0 0 0 0;
+}
+:host ::ng-deep .chat-card .p-card-body {
+  padding:10px 12px 10px 12px;
+}
+
+:host ::ng-deep .chat-card p{
+  word-break: break-word;
+  white-space: pre-wrap
+}
+
+:host ::ng-deep .chat-card.prompt p {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+}
+
 .map-image {
   width: 100%;
   height: 100%;
@@ -42,6 +150,7 @@
 .draw-controls {
   display: flex;
   justify-content: center;
+
   gap: 10px;
 }
 
@@ -52,8 +161,9 @@
 
 .bottom-controls {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: start;
+  align-items: center;
   width: 100%;
   margin-top: 20px;
   padding: 0 20px;
@@ -217,7 +327,7 @@
 
 .chat-head-container {
   display: flex;
-  width: 180%;
+  width: 100%;
   justify-content: space-between;
   max-width: 2000px;
   padding:  0 0 15px 0;
@@ -229,7 +339,7 @@
 }
 
 .chat-display {
-  width: 180%;
+  width: 100%;
   max-width: 10000px;
   height: 700px;
   overflow-y: auto;
@@ -241,18 +351,26 @@
 }
 
 .chat-input {
+  background-color: #ffffff;
   display: flex;
   justify-content: space-between;
-  width: 180%;
-  max-width: 2000px;
+  width: 100%;
   padding: 5px 10px 5px 20px;
-  align-items: center;
   margin-top: 10px;
   margin-bottom: 60px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
-  background-color: #ffffff;
+}
+
+.chat-input textarea {
+  flex: 0.8;          /* Textarea flexibel */
+  min-width: 0;     /* verhindert, dass Box größer wird */
+  resize: none
+}
+
+.chat-input .button-columns-button {   /* Textarea flexibel */
+  height: 100%    /* verhindert, dass Box größer wird */
 }
 
 .autoComplete {

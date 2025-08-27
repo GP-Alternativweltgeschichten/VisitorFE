@@ -30,12 +30,15 @@ import {InputTextModule} from "primeng/inputtext";
 import { ThematicWorldsComponent } from './thematic-worlds/thematic-worlds.component';
 import { ProgressComponent } from './progress/progress.component';
 import {SliderModule} from 'primeng/slider';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import {OverlayPanelModule} from "primeng/overlaypanel";
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {InputSwitchModule} from "primeng/inputswitch";
 import { AiChatComponent } from './ai-chat/ai-chat.component';
 import {NgOptimizedImage} from "@angular/common";
+import {ToolbarModule} from 'primeng/toolbar';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 // Factory function for ngx-translate
 export function HttpLoaderFactory(http: HttpClient) {
@@ -55,39 +58,42 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProgressComponent,
     AiChatComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        MenubarModule,
-        Button,
-        CardModule,
-        ImageModule,
-        HttpClientModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient]
-            }
-        }),
-        ToggleButtonModule,
-        FormsModule,
-        SelectButtonModule,
-        DialogModule,
-        FileUploadModule,
-        TableModule,
-        ProgressSpinnerModule,
-        CalendarModule,
-        CheckboxModule,
-        InputTextModule,
-        SliderModule,
-        OverlayPanelModule,
-        AutoCompleteModule,
-        RadioButtonModule,
-        InputSwitchModule,
-        NgOptimizedImage
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    MenubarModule,
+    Button,
+    CardModule,
+    ImageModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    ToggleButtonModule,
+    FormsModule,
+    SelectButtonModule,
+    DialogModule,
+    FileUploadModule,
+    TableModule,
+    ProgressSpinnerModule,
+    CalendarModule,
+    CheckboxModule,
+    InputTextModule,
+    SliderModule,
+    InputTextareaModule,
+    OverlayPanelModule,
+    ScrollPanelModule,
+    AutoCompleteModule,
+    RadioButtonModule,
+    InputSwitchModule,
+    NgOptimizedImage,
+    ToolbarModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
