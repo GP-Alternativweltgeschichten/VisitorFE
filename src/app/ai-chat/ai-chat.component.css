@@ -43,7 +43,7 @@
 /* Jede Zeile ist ein Flex-Container */
 .message-row {
   display: grid;
-  grid-template-columns: 1fr minmax(0, 70%);
+  grid-template-columns: minmax(100%, 100%);
   gap: 8px;
   align-items: start;
   width: 100%;
@@ -53,13 +53,14 @@
 
 /* User → rechts */
 .message-row.user {
-  grid-template-columns: minmax(30%, 100%) 1fr;
-  justify-items: end;
+  grid-template-columns: minmax(100%, 100%);
+  float: right;
 }
 
 /* Bot → links */
 .message-row.chatbot {
-  grid-template-columns: minmax(0, 70%) 1fr;
+  grid-template-columns: minmax(100%, 100%);
+  float: left;
 }
 
 /* Prompt (zentriert) */
@@ -72,7 +73,7 @@
 
 :host ::ng-deep .chat-card.user,
 :host ::ng-deep .chat-card.chatBot {
-  max-width: 70%;
+  max-width: 100%;
   min-width: 10%;
   box-sizing: border-box;
   border: 2px solid #ccc;
@@ -89,10 +90,14 @@
 :host ::ng-deep .chat-card.user {
   border-bottom-right-radius: 0;
   float:right;
+  max-width: 70%;
+  display: inline-block;
 }
 
 :host ::ng-deep .chat-card.chatBot {
   border-top-left-radius: 0;
+  float: left;
+  max-width: 70%;
 }
 
 
