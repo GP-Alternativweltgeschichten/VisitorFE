@@ -1,4 +1,15 @@
 # Besucher-Frontend
+# AI CHAT- Feature Dokumentation
+
+##  Beschreibung
+
+## Projekt Vorgehen
+
+
+
+
+
+#Vorgänger Frontend Dokumentation
 
 ## 📌 Beschreibung
 Diese Angular-Anwendung wurde speziell für das Stadtmuseum Olpe entwickelt, um Besuchern eine interaktive Auseinandersetzung mit der Geschichte und möglichen Zukunfts- oder Alternativszenarien der Stadt zu ermöglichen. Mithilfe von Maus und Tastatur können Besucher eigene Ideen in Form von Text und Zeichnungen einbringen und mithilfe künstlicher Intelligenz visuelle Darstellungen ihrer Vorstellungen erzeugen. So entstehen individuelle "Alternativweltgeschichten", die neue Perspektiven auf die Stadt eröffnen.
