@@ -1,6 +1,32 @@
 # Besucher-Frontend
 # AI CHAT- Feature Dokumentation
 
+1) Ausgangssituation
+   - Trennung in die Teilteams (POC KI-Kontext & Unity (Link zu Unity-Doku))
+   - Frontend des Vorgänderprojekts (Verlinkung)
+   - Recherche wie gehts weiter (Miro-Link)
+
+  2) Ziel des Semesterprojektes 2025
+     Siehe Frame
+     - Wo wollen wir hin?
+     - Was brauchen wir dafür?
+
+  3) Chatbot
+     - LLM Integration
+     - Chatbotfeatures (Core-Features/ Nice-to-have)
+     - Vorstellung Olpi inkl. Wireframes (Figma)
+     - 6 Schritte und To-Dos
+     - Logik
+     - Entwicklung
+    
+  4) Regelwerk
+     - Analyse der Prompts 
+     - Ergebnisse der Prompts (Kategorie und Heatmap)
+     - Mindmap (Screenshot)
+     - Regelwerk Aufbau und Logik
+     - Einbettung des Regelwerks in den Chatbot
+     - Einbettung des Regelwerks in Unity (Perspektivisch) --> Sowas wie Grid-System und einzelne Objekte die benannt sind auf die Zugreifen über Unity
+     - 
 ##  Beschreibung
 
 ## Projekt Vorgehen
