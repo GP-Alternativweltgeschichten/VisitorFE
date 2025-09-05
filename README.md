@@ -49,7 +49,7 @@ Ziel des Regelwerks ist es, dass der Chatbot:
 
 Die Regeln können dabei fest oder als vorschlagsorientiert implementiert sein, um Flexibilität zu ermöglichen.
 
-### 2. Analyse der Prompts 📊
+### 1. Analyse der Prompts 📊
 
 Für die Analyse standen **302 Eingaben** von Schüler:innen zur Verfügung – ein:e Schüler:in konnte dabei mehrere Ideen einbringen. Jede Eingabe war mit **Markierungen auf der Stadtkarte von Olpe** versehen, die angaben, wo die Idee umgesetzt werden sollte.
 
@@ -68,7 +68,7 @@ Für die Analyse standen **302 Eingaben** von Schüler:innen zur Verfügung – 
 
 > Diese Analyse bildete die Grundlage dafür, die Kategorien im Regelwerk zu strukturieren und die **häufigsten Begriffe** gezielt zu berücksichtigen.
 
-### 3. Ergebnisse der Prompts (Kategorie und Heatmap) 🌡️
+### 2. Ergebnisse der Prompts (Kategorie und Heatmap) 🌡️
 
 Zur Visualisierung der Verteilung der markierten Bereiche wurde ein Python-Skript genutzt, um eine **Heatmap** zu generieren.  
 
@@ -79,6 +79,20 @@ Zur Visualisierung der Verteilung der markierten Bereiche wurde ein Python-Skrip
 - **Heatmap.png** – Zeigt die relative Häufigkeit der markierten Pixel; kein Hintergrund, nur Farben (dunkelrot → weiß); enthält Legende.  
 - **Overlay.png** – Halbtransparente Heatmap über erstes Bild der Sammlung; zeigt Hotspots im Bildkontext.  
 - **OverlayOnCity.png** – Halbtransparente Heatmap über Stadtbild Olpe; zeigt räumliche Verteilung direkt auf der Karte.
+
+## Regelwerk – Aufbau und Logik
+Das Regelwerk ist hierarchisch und modular aufgebaut und beeinhaltet:
+
+
+## Einbettung des Regelwerks in den Chatbot
+Unser Regelwerk und der Chatbot sollen zukünftig mit der verbesserten und animierten Unity verknüpft werden.  
+Durch **Distrikte** und genauere Markierungen – die unter anderem auch die **Anzahl von Elementen** (z. B. Häuser) ausgeben – kann eine **bessere kontextbasierte Generierung** erfolgen.  
+
+Der Chatbot kann über Scripts auf diese Objekte zugreifen, Vorschläge platzieren oder Feedback direkt visualisieren.
+
+
+
+## Einbettung des Regelwerks in Unity (perspektivisch)
 
      - Mindmap (Screenshot)
      - Regelwerk Aufbau und Logik
