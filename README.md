@@ -104,7 +104,6 @@ Der Chatbot folgt einem **geführten Prompting**, das in mehreren Phasen abläuf
 4. **Vorschlagsphase**
    - 3–5 kontextgerechte Vorschläge aus dem Regelwerk.
    - Darstellung als Klickoptionen.
-   - Optional: Stilpräferenzen (modern, traditionell, naturbelassen).
 
 5. **Prompt-Konstruktion**
    - Kombination von Basisidee + gewählten Vorschlägen zu optimiertem Prompt.
