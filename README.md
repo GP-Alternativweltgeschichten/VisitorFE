@@ -110,8 +110,26 @@ Für die Analyse standen **302 Eingaben** von Schüler:innen zur Verfügung – 
 
 > Diese Analyse bildete die Grundlage dafür, die Kategorien im Regelwerk zu strukturieren und die **häufigsten Begriffe** gezielt zu berücksichtigen.
 
-### 2. Ergebnisse der Prompts (Kategorie und Heatmap) 🌡️
+### 2. Ergebnisse der Prompts (Kategorie und Heatmap) 
 
+#### Kategorien der Prompt-Analyse
+
+Für die Auswertung der Prompts wurden zwei Tabellen erstellt:
+
+1. **Oberkategorien-Tabelle**  
+   - Enthält alle Oberkategorien, **absteigend nach Anzahl der zugeordneten Prompts** sortiert.  
+   - Ziel: Übersicht, welche Kategorien am häufigsten vorkommen und somit den größten Fokus für das Regelwerk erhalten sollten.
+
+2. **Top-10-Begriffe-Tabelle**  
+   - Listet die **10 am häufigsten genannten Begriffe** innerhalb der Kategorien auf.  
+   - Jede Zeile zeigt den Begriff und die zugehörige Kategorie.  
+   - Ziel: Aufzeigen, welche spezifischen Begriffe besonders relevant sind und bei der Regelwerks-Generierung priorisiert werden.
+
+| Oberkategorie | Top 10 Begriffe |
+|---------------|----------------|
+| <img src="https://github.com/user-attachments/assets/433009e1-a7f5-4051-a17d-36dc1cd1ee72" width="350"/> | <img src="https://github.com/user-attachments/assets/278bf66e-d0b6-4230-8b0d-c632ffc12214" width="350"/> |
+
+### Heatmap
 Zur Visualisierung der Verteilung der markierten Bereiche wurde ein Python-Skript genutzt, um eine **Heatmap** zu generieren.  
 
 > **Hypothese:** Die Markierungen auf der Heatmap-Karte befinden sich überwiegend in der **Innenstadt**. Dies könnte entweder eine **bewusste Entscheidung** gewesen sein oder aus **Bequemlichkeit**, wobei die Mitte der Stadt als Referenzpunkt genutzt wurde.
@@ -125,10 +143,6 @@ Zur Visualisierung der Verteilung der markierten Bereiche wurde ein Python-Skrip
 | <img width="350" height="350" alt="OverlayOnCity" src="https://github.com/user-attachments/assets/bafe0023-483d-44b7-af9d-e1dddba2fc3f" /> | **OverlayOnCity.png** : Halbtransparente Heatmap über Stadtbild Olpe; zeigt räumliche Verteilung direkt auf der Karte. |
 
 ### 3. Regelwerk – Aufbau und Logik
-Das Regelwerk ist hierarchisch und modular aufgebaut und beeinhaltet:
-
-
-### 4. Einbettung des Regelwerks in den Chatbot
 Der Chatbot folgt einem **geführten Prompting**, das in mehreren Phasen abläuft:
 
 1. **Eingabephase**
@@ -157,6 +171,10 @@ Der Chatbot folgt einem **geführten Prompting**, das in mehreren Phasen abläuf
    - Optional: Erklärung der Regeln zur besseren Nachvollziehbarkeit.
 
 > **Hinweis:** Das Regelwerk wird dabei in **JSON-Format** umgewandelt, sodass der Chatbot strukturiert auf die Regeln zugreifen kann.
+
+
+### 4. Einbettung des Regelwerks in den Chatbot
+??????
 
 
 ### 5. Einbettung des Regelwerks in Unity (perspektivisch)
