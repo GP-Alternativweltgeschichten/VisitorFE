@@ -113,14 +113,11 @@ Zur Visualisierung der Verteilung der markierten Bereiche wurde ein Python-Skrip
 
 #### Heatmap-Typen
 
-  <img width="1382" height="1208" alt="Heatmap" src="https://github.com/user-attachments/assets/217c3d53-7c21-4426-b56f-26f8bf4f6fe1" />
-- **Heatmap.png** – Zeigt die relative Häufigkeit der markierten Pixel; kein Hintergrund, nur Farben (dunkelrot → weiß); enthält Legende.
-
-  <img width="1258" height="1299" alt="Overlay" src="https://github.com/user-attachments/assets/bda04d94-6bef-4d63-9130-6dfe6c87be4a" />
-- **Overlay.png** – Halbtransparente Heatmap über erstes Bild der Sammlung; zeigt Hotspots im Bildkontext.
-  
-  <img width="1258" height="1299" alt="OverlayOnCity" src="https://github.com/user-attachments/assets/bafe0023-483d-44b7-af9d-e1dddba2fc3f" />
-- **OverlayOnCity.png** – Halbtransparente Heatmap über Stadtbild Olpe; zeigt räumliche Verteilung direkt auf der Karte.
+| Bild | Beschreibung |
+|------|--------------|
+| <img width="350" height="350" alt="Heatmap" src="https://github.com/user-attachments/assets/217c3d53-7c21-4426-b56f-26f8bf4f6fe1" /> | **Heatmap.png** : Zeigt die relative Häufigkeit der markierten Pixel; kein Hintergrund, nur Farben (dunkelrot → weiß); enthält Legende. |
+| <img width="350" height="350" alt="Overlay" src="https://github.com/user-attachments/assets/bda04d94-6bef-4d63-9130-6dfe6c87be4a" /> | **Overlay.png** : Halbtransparente Heatmap über erstes Bild der Sammlung; zeigt Hotspots im Bildkontext. |
+| <img width="350" height="350" alt="OverlayOnCity" src="https://github.com/user-attachments/assets/bafe0023-483d-44b7-af9d-e1dddba2fc3f" /> | **OverlayOnCity.png** : Halbtransparente Heatmap über Stadtbild Olpe; zeigt räumliche Verteilung direkt auf der Karte. |
 
 ### 3. Regelwerk – Aufbau und Logik
 Das Regelwerk ist hierarchisch und modular aufgebaut und beeinhaltet:
