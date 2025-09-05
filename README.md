@@ -53,7 +53,7 @@ Die Regeln können dabei fest oder als vorschlagsorientiert implementiert sein, 
 
 Für die Analyse standen **302 Eingaben** von Schüler:innen zur Verfügung – ein:e Schüler:in konnte dabei mehrere Ideen einbringen. Jede Eingabe war mit **Markierungen auf der Stadtkarte von Olpe** versehen, die angaben, wo die Idee umgesetzt werden sollte.
 
-### Zentrale Schritte der Analyse
+#### Zentrale Schritte der Analyse
 
 - **Selbstkategorien der Projektgruppe 🧩**
   - Vor der Auswertung der Schüler-Prompts definierte wir als Gruppe eigene Kategorien, die potentiell für das Regelwerk geeignet erschienen (siehe Miro Board).
@@ -68,7 +68,18 @@ Für die Analyse standen **302 Eingaben** von Schüler:innen zur Verfügung – 
 
 > Diese Analyse bildete die Grundlage dafür, die Kategorien im Regelwerk zu strukturieren und die **häufigsten Begriffe** gezielt zu berücksichtigen.
 
-     - Ergebnisse der Prompts (Kategorie und Heatmap)
+### 3. Ergebnisse der Prompts (Kategorie und Heatmap) 🌡️
+
+Zur Visualisierung der Verteilung der markierten Bereiche wurde ein Python-Skript genutzt, um eine **Heatmap** zu generieren.  
+
+> **Hypothese:** Die Markierungen auf der Heatmap-Karte befinden sich überwiegend in der **Innenstadt**. Dies könnte entweder eine **bewusste Entscheidung** gewesen sein oder aus **Bequemlichkeit**, wobei die Mitte der Stadt als Referenzpunkt genutzt wurde.
+
+#### Heatmap-Typen
+
+- **Heatmap.png** – Zeigt die relative Häufigkeit der markierten Pixel; kein Hintergrund, nur Farben (dunkelrot → weiß); enthält Legende.  
+- **Overlay.png** – Halbtransparente Heatmap über erstes Bild der Sammlung; zeigt Hotspots im Bildkontext.  
+- **OverlayOnCity.png** – Halbtransparente Heatmap über Stadtbild Olpe; zeigt räumliche Verteilung direkt auf der Karte.
+
      - Mindmap (Screenshot)
      - Regelwerk Aufbau und Logik
      - Einbettung des Regelwerks in den Chatbot
