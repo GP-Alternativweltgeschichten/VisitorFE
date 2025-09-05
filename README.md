@@ -80,11 +80,11 @@ Zur Visualisierung der Verteilung der markierten Bereiche wurde ein Python-Skrip
 - **Overlay.png** – Halbtransparente Heatmap über erstes Bild der Sammlung; zeigt Hotspots im Bildkontext.  
 - **OverlayOnCity.png** – Halbtransparente Heatmap über Stadtbild Olpe; zeigt räumliche Verteilung direkt auf der Karte.
 
-## Regelwerk – Aufbau und Logik
+### 3. Regelwerk – Aufbau und Logik
 Das Regelwerk ist hierarchisch und modular aufgebaut und beeinhaltet:
 
 
-## Einbettung des Regelwerks in den Chatbot
+### 4. Einbettung des Regelwerks in den Chatbot
 Unser Regelwerk und der Chatbot sollen zukünftig mit der verbesserten und animierten Unity verknüpft werden.  
 Durch **Distrikte** und genauere Markierungen – die unter anderem auch die **Anzahl von Elementen** (z. B. Häuser) ausgeben – kann eine **bessere kontextbasierte Generierung** erfolgen.  
 
@@ -92,7 +92,7 @@ Der Chatbot kann über Scripts auf diese Objekte zugreifen, Vorschläge platzier
 
 
 
-## Einbettung des Regelwerks in Unity (perspektivisch)
+### 5. Einbettung des Regelwerks in Unity (perspektivisch)
 
      - Mindmap (Screenshot)
      - Regelwerk Aufbau und Logik
