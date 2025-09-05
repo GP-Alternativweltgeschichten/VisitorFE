@@ -85,20 +85,45 @@ Das Regelwerk ist hierarchisch und modular aufgebaut und beeinhaltet:
 
 
 ### 4. Einbettung des Regelwerks in den Chatbot
+Der Chatbot folgt einem **geführten Prompting**, das in mehreren Phasen abläuft:
+
+1. **Eingabephase**
+   - Nutzer wählt Ort auf der Karte → System erhält Koordinaten + Metadaten.
+   - Nutzer gibt Idee ein (z. B. „Ich möchte hier ein Hochhaus“).
+
+2. **Kontextanalyse**
+   - Topologie-Abgleich (Hügel, Fluss, Altstadt, freie Natur).
+   - Objekterkennung über Keywords/Regex/GPT-NLU.
+   - Kategorie-Mapping auf Regelwerk.
+
+3. **Regelabgleich**
+   - Prüfung, welche Regeln zutreffen.
+   - Feedback bei Regelverletzungen.
+   - Vorschläge bei erfüllten Regeln.
+
+4. **Vorschlagsphase**
+   - 3–5 kontextgerechte Vorschläge aus dem Regelwerk.
+   - Darstellung als Klickoptionen.
+   - Optional: Stilpräferenzen (modern, traditionell, naturbelassen).
+
+5. **Prompt-Konstruktion**
+   - Kombination von Basisidee + gewählten Vorschlägen zu optimiertem Prompt.
+
+6. **Feedback- und Lernphase**
+   - Anpassung der Vorschläge bei wiederholten Nutzereingaben.
+   - Optional: Erklärung der Regeln zur besseren Nachvollziehbarkeit.
+
+> **Hinweis:** Das Regelwerk wird dabei in **JSON-Format** umgewandelt, sodass der Chatbot strukturiert auf die Regeln zugreifen kann.
+
+
+### 5. Einbettung des Regelwerks in Unity (perspektivisch)
 Unser Regelwerk und der Chatbot sollen zukünftig mit der verbesserten und animierten Unity verknüpft werden.  
 Durch **Distrikte** und genauere Markierungen – die unter anderem auch die **Anzahl von Elementen** (z. B. Häuser) ausgeben – kann eine **bessere kontextbasierte Generierung** erfolgen.  
 
 Der Chatbot kann über Scripts auf diese Objekte zugreifen, Vorschläge platzieren oder Feedback direkt visualisieren.
 
 
-
-### 5. Einbettung des Regelwerks in Unity (perspektivisch)
-
-     - Mindmap (Screenshot)
-     - Regelwerk Aufbau und Logik
-     - Einbettung des Regelwerks in den Chatbot
-     - Einbettung des Regelwerks in Unity (Perspektivisch) --> Sowas wie Grid-System und einzelne Objekte die benannt sind auf die Zugreifen über Unity
-     - 
+ 
 ##  Beschreibung
 
 ## Projekt Vorgehen
