@@ -38,8 +38,36 @@ Dazu wurden zunächst die wesentlichen Kernfunktionen (Core Features) definiert,
 
 Für die Umsetzung wurde eine sechsstufige Vorgehensweise mit klaren To-Dos entwickelt, die von der Konzeption über die Implementierung bis hin zur Testung reicht. Zentrale Bestandteile dieser Arbeit waren die Definition der Logik, welche die Funktionsweise des Chatbots steuert, sowie die anschließende technische Entwicklung, die auf eine nahtlose Einbindung in das bestehende Frontend abzielt.
     
-  4) Regelwerk
-     - Analyse der Prompts 
+## 📚 Regelwerk
+Das Regelwerk dient als Wissensbasis für den Chatbot, um kontextabhängige und topologisch sinnvolle Vorschläge sowie Feedback zu generieren. Es kombiniert einen Baukasten-Ansatz mit logischen Wenn-Dann-Regeln, die auf die Stadt-Topologie von Olpe angewendet werden können. Die Betrachtung erfolgt primär auf der Makroebene, um städtische Strukturen und Zonen sinnvoll zu berücksichtigen.
+
+Ziel des Regelwerks ist es, dass der Chatbot:
+  - den Kontext (Ort, Topologie, Zonen) erkennt,
+  - die passende Kategorie auswählt (basierend auf dem Regelwerk),
+  - Vorschläge generiert (entweder aus einer Tabelle oder LLM-unterstützt),
+  - Feedback gibt, wenn eine Nutzeridee unpassend ist.
+
+Die Regeln können dabei fest oder als vorschlagsorientiert implementiert sein, um Flexibilität zu ermöglichen.
+
+### 2. Analyse der Prompts 📊
+
+Für die Analyse standen **302 Eingaben** von Schüler:innen zur Verfügung – ein:e Schüler:in konnte dabei mehrere Ideen einbringen. Jede Eingabe war mit **Markierungen auf der Stadtkarte von Olpe** versehen, die angaben, wo die Idee umgesetzt werden sollte.
+
+### Zentrale Schritte der Analyse
+
+- **Selbstkategorien der Projektgruppe 🧩**
+  - Vor der Auswertung der Schüler-Prompts definierte wir als Gruppe eigene Kategorien, die potentiell für das Regelwerk geeignet erschienen (siehe Miro Board).
+
+- **Kategorisierung der Schüler-Prompts 🗂️**
+  - Die 302 Eingaben wurden anschließend in Oberkategorien eingeordnet.  
+  - **Ergebnis:** Die selbst definierten Kategorien der Projektgruppe und die aus den Schüler-Prompts generierten Kategorien **ähnelten sich stark**, was die Relevanz der gewählten Kategorien bestätigte.
+
+- **Ranking innerhalb der Kategorien 📈**
+  - Innerhalb jeder Oberkategorie wurde ermittelt, welche Begriffe am häufigsten vorkommen.  
+  - **Beispiel:** In der Kategorie „Natur & Landschaft“ war *Wald/Forest/Jungle* der am häufigsten genannte Begriff.
+
+> Diese Analyse bildete die Grundlage dafür, die Kategorien im Regelwerk zu strukturieren und die **häufigsten Begriffe** gezielt zu berücksichtigen.
+
      - Ergebnisse der Prompts (Kategorie und Heatmap)
      - Mindmap (Screenshot)
      - Regelwerk Aufbau und Logik
