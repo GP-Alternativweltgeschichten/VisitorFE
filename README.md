@@ -37,7 +37,44 @@ Im Rahmen der Erweiterung des IST-Status wurde ein Chatbot-Konzept entwickelt, d
 Dazu wurden zunächst die wesentlichen Kernfunktionen (Core Features) definiert, die eine direkte Verbesserung der Nutzererfahrung gewährleisten. Ergänzend wurden optionale Erweiterungen (Nice-to-have Features) identifiziert, die in zukünftigen Entwicklungsphasen das Funktionsspektrum erweitern können. Unter dem Projektnamen „Olpi“ wurde das Chatbot-Konzept in Form von Wireframes (Figma) visualisiert, um die geplante Nutzerführung und Interaktionslogik frühzeitig zu evaluieren.
 
 Für die Umsetzung wurde eine sechsstufige Vorgehensweise mit klaren To-Dos entwickelt, die von der Konzeption über die Implementierung bis hin zur Testung reicht. Zentrale Bestandteile dieser Arbeit waren die Definition der Logik, welche die Funktionsweise des Chatbots steuert, sowie die anschließende technische Entwicklung, die auf eine nahtlose Einbindung in das bestehende Frontend abzielt.
-    
+
+### 1. Vorgehensweise in 6 Schritten
+
+Die Entwicklung des Chatbots erfolgte entlang eines klar definierten sechsstufigen Vorgehensmodells:
+1. Funktionsdefinition: Zunächst wurde festgelegt, welche Aufgaben der Chatbot übernehmen soll. Im Vordergrund stand die Unterstützung der Nutzer*innen beim Prompting, etwa durch gezielte Rückfragen („Wie möchtest du das Gebäude gestalten?“), regelbasierte Vorschläge („Möchtest du moderne oder traditionelle Architektur?“) sowie kontextbezogenes Feedback („In diesem Bereich wäre ein Hochhaus ungewöhnlich, da…“).
+   
+2.Auswahl des Language Models: Anschließend wurde ein geeignetes LLM identifiziert, das sich über eine API einbinden lässt. Die Wahl fiel auf OpenAI GPT-4, da dieses Modell eine hohe Leistungsfähigkeit und starke Kontextverarbeitung bietet. Alternative Modelle wie Mistral oder Gemini wurden geprüft, jedoch verworfen.
+
+3. Entwicklung der Prompting-Logik: In einem nächsten Schritt wurde die Interaktionslogik definiert. Der Chatbot agiert als „Stadtplanungs-Assistent“, der auf markierte Bereiche im Stadtplan reagiert, Regelwerke berücksichtigt und durch Rückfragen eine nutzerorientierte Planung ermöglicht.
+4. API-Anbindung: Darauf aufbauend wurde die technische Schnittstelle implementiert, um die Kommunikation zwischen Frontend und LLM zu gewährleisten.
+   
+5.  Integration ins System: Der Chatbot wurde in die bestehende Anwendung eingebettet, sodass er nahtlos mit den vorhandenen Funktionen genutzt werden kann.
+  
+7. Testing & Prompt-Optimierung: Als letzter Schritt ist die systematische Evaluation und
+Optimierung des Chatbot-Promptings vorgesehen. Dieser Teil konnte bislang noch nicht umgesetzt werden und stellt eine zentrale Aufgabe für die kommenden Projektphasen dar.
+
+### 2. Chatbot-Features
+
+Zur Ergänzung dieser Schritte wurde eine Mindmap erstellt, in der sämtliche identifizierten Funktionen in Core Features (unmittelbar notwendige Funktionen) und Nice-to-have Features (optionale Erweiterungen) gegliedert wurden ([siehe Abbildung]). Diese Einteilung erleichtert die Priorisierung der weiteren Entwicklungsarbeit.
+
+<img width="768" height="517" alt="Bildschirmfoto 2025-09-05 um 15 34 56" src="https://github.com/user-attachments/assets/4e1c7a50-0b83-4232-8cb7-6344b912fc62" />
+
+Im Anschluss an die konzeptionellen Überlegungen wurden die geplanten Funktionen in Wireframes (Figma) visualisiert, um die spätere Nutzerführung frühzeitig zu evaluieren. Dabei standen sowohl grundlegende Funktionen als auch erweiterte Interaktionsmöglichkeiten im Fokus.
+
+Zu den dargestellten Features zählen:
+1. Text-Eingabe für direkte Nutzeranfragen (Core)
+2. Chat-Interface zur fortlaufenden Interaktion (Core)
+3. Export- und Teilen-Funktion, um Ergebnisse extern verfügbar zu machen (Nice-to-have)
+4. Markierten Bereich senden, um Kontextinformationen präzise an das Modell zu übermitteln
+5. Progress Bar zur Visualisierung des Bearbeitungsstatus
+6. Option für Freifeld-Text, um zusätzliche Eingaben flexibel zu ermöglichen
+7. Vorschlagsliste mit Drag-and-Drop, zur interaktiven Auswahl und Anpassung von KI-Vorschlägen
+8. Hilfs- und Info-Bereich für Unterstützung und Systemerklärung
+9. Verlauf & Navigation zur Rückverfolgung von Arbeitsschritten (vgl. Figma-Prototyp)
+10. Chatbot-Avatar, der als visuelle Repräsentation der Interaktion dient
+11. Die Wireframes dienten somit nicht nur der Visualisierung einzelner Funktionen, sondern auch der Erprobung der Interaktionslogik und der Priorisierung nach Core-Features und Nice-to-have Features für die weitere Entwicklung.
+
+
 ## 📚 Regelwerk
 Das Regelwerk dient als Wissensbasis für den Chatbot, um kontextabhängige und topologisch sinnvolle Vorschläge sowie Feedback zu generieren. Es kombiniert einen Baukasten-Ansatz mit logischen Wenn-Dann-Regeln, die auf die Stadt-Topologie von Olpe angewendet werden können. Die Betrachtung erfolgt primär auf der Makroebene, um städtische Strukturen und Zonen sinnvoll zu berücksichtigen.
 
