@@ -77,7 +77,7 @@
             label="{{ 'Info' | translate }}"
             [raised]="true"
             icon="pi pi-info-circle"
-            (click)="panel.toggle($event)"
+            (click)="showSuccess()"
           ></button>
           <p-overlayPanel #panel>
             <img src="assets/img/qr-code.png" alt="Map" style="max-width: 250px; max-height: 250px">
@@ -104,26 +104,26 @@
       <ng-container *ngFor="let msg of chatMessageList">
         <div class="message-row" [ngClass]="msg.type.toLowerCase()">
           <!-- User -->
-          <p-card *ngIf="msg.type === 'User'" styleClass="chat-card user">
+          <p-card *ngIf="msg.type === 'User'" styleClass="chat-card user" @fadeInUp>
             <p>{{ msg.content }}</p>
             <small>{{ msg.timestamp | date:'shortTime' }}</small>
           </p-card>
 
           <!-- Bot -->
-          <p-card *ngIf="msg.type === 'ChatBot'" styleClass="chat-card chatBot">
+          <p-card *ngIf="msg.type === 'ChatBot'" styleClass="chat-card chatBot" @fadeInUp>
             <p>{{ msg.content }}</p>
             <small>{{ msg.timestamp | date:'shortTime' }}</small>
           </p-card>
 
           <!-- System -->
-          <p-card *ngIf="msg.type === 'Prompt'" styleClass="chat-card prompt">
+          <p-card *ngIf="msg.type === 'Prompt'" styleClass="chat-card prompt" @fadeInUp>
             <p><b><em>{{msg.content }}</em></b>
               <button
                 type="button"
                 pButton
                 class="send-Button"
                 icon="pi pi-play"
-                (click)="updatePrompt(msg.content)"
+                (click)="selectUserPrompt(msg)"
                 pTooltip="{{ 'UseAIPrompt' | translate }}"
                 tooltipPosition="top"></button>
             </p>
@@ -136,7 +136,7 @@
           </p-card>
         </div>
       </ng-container>
-
+      <p-toast> </p-toast>
     </p-scrollPanel>
 
       <div class="chat-input">

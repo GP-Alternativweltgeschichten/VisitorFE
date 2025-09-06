@@ -10,12 +10,13 @@ import { ResetComponent } from './reset/reset.component';
 import {Button} from 'primeng/button';
 import {CardModule} from 'primeng/card';
 import {ImageModule} from 'primeng/image';
-
+import { MessageService } from 'primeng/api';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {ToggleButtonModule} from "primeng/togglebutton";
 import {FormsModule} from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
 import { HomeComponent } from './home/home.component';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {DialogModule} from 'primeng/dialog';
@@ -65,6 +66,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MenubarModule,
     Button,
     CardModule,
+    ToastModule,
     ImageModule,
     HttpClientModule,
     TranslateModule.forRoot({
@@ -94,7 +96,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgOptimizedImage,
     ToolbarModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
