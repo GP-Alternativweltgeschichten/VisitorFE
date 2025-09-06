@@ -1,4 +1,199 @@
-# Besucher-Frontend
+##   Besucher-Frontend: AI CHAT- Feature Dokumentation
+
+## 📌 Beschreibung der Ausgangssituation
+   - Trennung in die Teilteams (POC KI-Kontext & Unity (Link zu Unity-Doku))
+   - Frontend des Vorgänderprojekts (Verlinkung)
+   - Recherche wie gehts weiter (Miro-Link)
+  
+Die Analyse des Vorgängerprojekts aus dem Wintersemester 2024/2025 (Hier Link) verdeutlichte, dass das eingesetzte KI-Modell in seiner derzeitigen Form noch nicht über die notwendige Reife verfügt, um durchgehend überzeugende Ergebnisse zu liefern. Insbesondere die Qualität und Präzision der generierten Inhalte erwiesen sich als unzureichend, was die Notwendigkeit einer gezielten Weiterentwicklung deutlich machte.
+Darauf aufbauend wurde im Guided Project des Sommersemester 2025 zunächst der IST-Status eingehend analysiert und durch eine tiefergehende Recherchephase ergänzt. Ziel war es zu prüfen, welche Ansätze und Ideen aus dem Vorgängerprojekt weiterverfolgt werden können und welche hingegen verworfen werden sollten.
+
+Im Anschluss daran erfolgte die Aufteilung in zwei Teilgruppen:
+
+- Teilgruppe POC KI-Kontext: Diese Gruppe widmete sich der Erweiterung des bestehenden IST-Status. Im Vordergrund stand die Konzeption und Evaluation eines Chatbot-Interfaces, das Nutzer*innen beim Prompting unterstützt. Durch eine bessere Strukturierung und Aufbereitung der Eingaben sollte die Qualität der KI-Generierungen gesteigert und die Interaktion insgesamt verbessert werden. Die Entscheidung, den Schwerpunkt auf diesen Aspekt zu legen, resultierte aus der Erkenntnis, dass die Effektivität des Gesamtsystems maßgeblich von der Qualität der Nutzereingaben und der darauf basierenden Modellantworten abhängt. Damit konnte ein unmittelbarer Beitrag zur Nutzbarkeit und Akzeptanz des Projekts geleistet werden, während die Optimierung des KI-Modells selbst als langfristige Entwicklungsaufgabe bestehen bleibt.
+  
+- Teilgruppe Unity: Parallel dazu wurde die Stadtkarte von Olpe in Unity nachgebaut, um perspektivisch neue visuelle und interaktive Möglichkeiten zu eröffnen und das Projekt langfristig um immersive Darstellungsformen zu ergänzen.
+
+## 🚀 Ziel des Semesterprojektes 2025
+
+Aufbauend auf den Ergebnissen der Analyse und Recherche verfolgte das Guided Project im Sommersemester 2025 das Ziel, die bisherigen Strukturen gezielt weiterzuentwickeln und in eine nächste Entwicklungsstufe zu überführen.
+Zentrale Leitfragen waren dabei:
+Wo wollen wir hin?
+→ Hin zu einem System, das Nutzer*innen stärker unterstützt, indem es durch ein Chatbot-Interface die Qualität der Interaktion mit dem KI-Modell unmittelbar verbessert und perspektivisch durch immersive Visualisierungen erweitert wird.
+Was brauchen wir dafür?
+→ Ein verbessertes Prompting durch ein nutzerorientiertes Interface, die sukzessive Erweiterung und Präzisierung des Trainingsdatensatzes sowie die Entwicklung zusätzlicher visueller Darstellungsformen (Unity), die alternative Stadtgeschichten anschaulich und interaktiv erlebbar machen.
+Das Semesterprojekt legte damit den Grundstein für eine zweigleisige Weiterentwicklung: kurzfristig die Optimierung der Nutzerinteraktion durch verbesserte Eingaben und unmittelbare Systemunterstützung, langfristig die Stärkung der Modellqualität und visuellen Dimension des Projekts.
+
+## 🤖 Integration eines KI-Chatbot in das User Interface
+
+     - LLM Integration
+     - Chatbotfeatures (Core-Features/ Nice-to-have)
+     - Vorstellung Olpi inkl. Wireframes (Figma)
+     - 6 Schritte und To-Dos
+     - Logik
+     - Entwicklung
+    
+Im Rahmen der Erweiterung des IST-Status wurde ein Chatbot-Konzept entwickelt, das als zentrales Interface zwischen Nutzerin und KI-Modell fungiert. Grundlage hierfür ist die Integration eines Large Language Models (LLM), das die Eingaben der Nutzerinnen verarbeitet und strukturiert. Ziel war es, die Interaktion mit dem KI-System intuitiver und effizienter zu gestalten, indem der Chatbot als „Vermittler“ beim Prompting agiert.
+Dazu wurden zunächst die wesentlichen Kernfunktionen (Core Features) definiert, die eine direkte Verbesserung der Nutzererfahrung gewährleisten. Ergänzend wurden optionale Erweiterungen (Nice-to-have Features) identifiziert, die in zukünftigen Entwicklungsphasen das Funktionsspektrum erweitern können. Unter dem Projektnamen „Olpi“ wurde das Chatbot-Konzept in Form von Wireframes (Figma) visualisiert, um die geplante Nutzerführung und Interaktionslogik frühzeitig zu evaluieren.
+
+Für die Umsetzung wurde eine sechsstufige Vorgehensweise mit klaren To-Dos entwickelt, die von der Konzeption über die Implementierung bis hin zur Testung reicht. Zentrale Bestandteile dieser Arbeit waren die Definition der Logik, welche die Funktionsweise des Chatbots steuert, sowie die anschließende technische Entwicklung, die auf eine nahtlose Einbindung in das bestehende Frontend abzielt.
+
+### 1. Vorgehensweise in 6 Schritten
+
+Die Entwicklung des Chatbots erfolgte entlang eines klar definierten sechsstufigen Vorgehensmodells:
+1. Funktionsdefinition: Zunächst wurde festgelegt, welche Aufgaben der Chatbot übernehmen soll. Im Vordergrund stand die Unterstützung der Nutzer*innen beim Prompting, etwa durch gezielte Rückfragen („Wie möchtest du das Gebäude gestalten?“), regelbasierte Vorschläge („Möchtest du moderne oder traditionelle Architektur?“) sowie kontextbezogenes Feedback („In diesem Bereich wäre ein Hochhaus ungewöhnlich, da…“).
+   
+2.Auswahl des Language Models: Anschließend wurde ein geeignetes LLM identifiziert, das sich über eine API einbinden lässt. Die Wahl fiel auf OpenAI GPT-4, da dieses Modell eine hohe Leistungsfähigkeit und starke Kontextverarbeitung bietet. Alternative Modelle wie Mistral oder Gemini wurden geprüft, jedoch verworfen.
+
+3. Entwicklung der Prompting-Logik: In einem nächsten Schritt wurde die Interaktionslogik definiert. Der Chatbot agiert als „Stadtplanungs-Assistent“, der auf markierte Bereiche im Stadtplan reagiert, Regelwerke berücksichtigt und durch Rückfragen eine nutzerorientierte Planung ermöglicht.
+4. API-Anbindung: Darauf aufbauend wurde die technische Schnittstelle implementiert, um die Kommunikation zwischen Frontend und LLM zu gewährleisten.
+   
+5.  Integration ins System: Der Chatbot wurde in die bestehende Anwendung eingebettet, sodass er nahtlos mit den vorhandenen Funktionen genutzt werden kann.
+  
+7. Testing & Prompt-Optimierung: Als letzter Schritt ist die systematische Evaluation und
+Optimierung des Chatbot-Promptings vorgesehen. Dieser Teil konnte bislang noch nicht umgesetzt werden und stellt eine zentrale Aufgabe für die kommenden Projektphasen dar.
+
+### 2. Chatbot-Features
+
+Zur Ergänzung dieser Schritte wurde eine Mindmap erstellt, in der sämtliche identifizierten Funktionen in Core Features (unmittelbar notwendige Funktionen) und Nice-to-have Features (optionale Erweiterungen) gegliedert wurden ([siehe Abbildung]). Diese Einteilung erleichtert die Priorisierung der weiteren Entwicklungsarbeit.
+
+<img width="768" height="517" alt="Bildschirmfoto 2025-09-05 um 15 34 56" src="https://github.com/user-attachments/assets/4e1c7a50-0b83-4232-8cb7-6344b912fc62" />
+
+Im Anschluss an die konzeptionellen Überlegungen wurden die geplanten Funktionen in Wireframes (Figma) visualisiert, um die spätere Nutzerführung frühzeitig zu evaluieren. Dabei standen sowohl grundlegende Funktionen als auch erweiterte Interaktionsmöglichkeiten im Fokus.
+
+Zu den dargestellten Features zählen:
+1. Text-Eingabe für direkte Nutzeranfragen (Core)
+2. Chat-Interface zur fortlaufenden Interaktion (Core)
+3. Export- und Teilen-Funktion, um Ergebnisse extern verfügbar zu machen (Nice-to-have)
+4. Markierten Bereich senden, um Kontextinformationen präzise an das Modell zu übermitteln
+5. Progress Bar zur Visualisierung des Bearbeitungsstatus
+6. Option für Freifeld-Text, um zusätzliche Eingaben flexibel zu ermöglichen
+7. Vorschlagsliste mit Drag-and-Drop, zur interaktiven Auswahl und Anpassung von KI-Vorschlägen
+8. Hilfs- und Info-Bereich für Unterstützung und Systemerklärung
+9. Verlauf & Navigation zur Rückverfolgung von Arbeitsschritten (vgl. Figma-Prototyp)
+10. Chatbot-Avatar, der als visuelle Repräsentation der Interaktion dient
+11. Die Wireframes dienten somit nicht nur der Visualisierung einzelner Funktionen, sondern auch der Erprobung der Interaktionslogik und der Priorisierung nach Core-Features und Nice-to-have Features für die weitere Entwicklung.
+
+### 3. Chatbot-Logik
+Die entwickelte Chatbot-Logik verfolgt das Ziel, Nutzerinnen beim strukturierten Prompting zu unterstützen, indem sie Kontextinformationen einbezieht, passende Kategorien aus dem Regelwerk zuordnet und nutzbare Vorschläge generiert. Ausgangspunkt ist stets die Eingabephase, in der Nutzerinnen einen Ort auf der Karte markieren und eine freie Idee eintragen (z. B. „Ich hätte gern hier ein Hochhaus“). Anschließend erfolgt eine Kontextanalyse, bei der Geodaten und vordefinierte Kartenlayer genutzt werden, um topologische Bedingungen (z. B. Hügel, Flussnähe, historische Altstadt) zu prüfen und das Objekt über Keyword-Erkennung einer passenden Oberkategorie (z. B. Architektur, Infrastruktur, Grünflächen) zuzuordnen. Darauf aufbauend findet ein Regelabgleich statt: Stimmen Idee und Kontext überein, schlägt der Chatbot weiterführende Optionen vor; wird eine Regel verletzt, liefert er alternatives Feedback, das die Nutzeridee anpasst, ohne den Gestaltungsprozess zu unterbrechen. In der Vorschlagsphase werden daraufhin mehrere kontextgerechte Handlungsoptionen (z. B. Serpentinenstraße, Tunnel, Aussichtspunkt) präsentiert, die Nutzerinnen auswählen oder kombinieren können. Diese Eingaben werden schließlich in einen optimierten Prompt überführt, der sowohl die ursprüngliche Idee als auch die kontextsensitiven Ergänzungen berücksichtigt. Eine Feedback- und Lernphase rundet die Logik ab, indem wiederholt gewählte Optionen erkannt und zukünftige Vorschläge angepasst werden. Optional kann der Chatbot seine Entscheidungen begründen, um den Regelkontext transparent zu machen und das Verständnis der Nutzerinnen zu fördern.
+
+[Uploading chatbot_logik_horizontal.pdf…]()
+
+
+## 📚 Regelwerk
+Das Regelwerk dient als Wissensbasis für den Chatbot, um kontextabhängige und topologisch sinnvolle Vorschläge sowie Feedback zu generieren. Es kombiniert einen Baukasten-Ansatz mit logischen Wenn-Dann-Regeln, die auf die Stadt-Topologie von Olpe angewendet werden können. Die Betrachtung erfolgt primär auf der Makroebene, um städtische Strukturen und Zonen sinnvoll zu berücksichtigen.
+
+Ziel des Regelwerks ist es, dass der Chatbot:
+  - den Kontext (Ort, Topologie, Zonen) erkennt,
+  - die passende Kategorie auswählt (basierend auf dem Regelwerk),
+  - Vorschläge generiert (entweder aus einer Tabelle oder LLM-unterstützt),
+  - Feedback gibt, wenn eine Nutzeridee unpassend ist.
+
+Die Regeln können dabei fest oder als vorschlagsorientiert implementiert sein, um Flexibilität zu ermöglichen.
+
+### 1. Analyse der Prompts 📊
+
+Für die Analyse standen **302 Eingaben** von Schüler:innen zur Verfügung – ein:e Schüler:in konnte dabei mehrere Ideen einbringen. Jede Eingabe war mit **Markierungen auf der Stadtkarte von Olpe** versehen, die angaben, wo die Idee umgesetzt werden sollte.
+
+#### Zentrale Schritte der Analyse
+
+- **Selbstkategorien der Projektgruppe 🧩**
+  - Vor der Auswertung der Schüler-Prompts definierte wir als Gruppe eigene Kategorien, die potentiell für das Regelwerk geeignet erschienen (siehe Miro Board).
+
+- **Kategorisierung der Schüler-Prompts 🗂️**
+  - Die 302 Eingaben wurden anschließend in Oberkategorien eingeordnet.  
+  - **Ergebnis:** Die selbst definierten Kategorien der Projektgruppe und die aus den Schüler-Prompts generierten Kategorien **ähnelten sich stark**, was die Relevanz der gewählten Kategorien bestätigte.
+
+- **Ranking innerhalb der Kategorien 📈**
+  - Innerhalb jeder Oberkategorie wurde ermittelt, welche Begriffe am häufigsten vorkommen.  
+  - **Beispiel:** In der Kategorie „Natur & Landschaft“ war *Wald/Forest/Jungle* der am häufigsten genannte Begriff.
+
+> Diese Analyse bildete die Grundlage dafür, die Kategorien im Regelwerk zu strukturieren und die **häufigsten Begriffe** gezielt zu berücksichtigen.
+
+### 2. Ergebnisse der Prompts (Kategorie und Heatmap) 
+
+#### Kategorien der Prompt-Analyse
+
+Für die Auswertung der Prompts wurden zwei Tabellen erstellt:
+
+1. **Oberkategorien-Tabelle**  
+   - Enthält alle Oberkategorien, **absteigend nach Anzahl der zugeordneten Prompts** sortiert.  
+   - Ziel: Übersicht, welche Kategorien am häufigsten vorkommen und somit den größten Fokus für das Regelwerk erhalten sollten.
+
+2. **Top-10-Begriffe-Tabelle**  
+   - Listet die **10 am häufigsten genannten Begriffe** innerhalb der Kategorien auf.  
+   - Jede Zeile zeigt den Begriff und die zugehörige Kategorie.  
+   - Ziel: Aufzeigen, welche spezifischen Begriffe besonders relevant sind und bei der Regelwerks-Generierung priorisiert werden.
+
+| Oberkategorie | Top 10 Begriffe |
+|---------------|----------------|
+| <img src="https://github.com/user-attachments/assets/433009e1-a7f5-4051-a17d-36dc1cd1ee72" width="350"/> | <img src="https://github.com/user-attachments/assets/278bf66e-d0b6-4230-8b0d-c632ffc12214" width="350"/> |
+
+### Heatmap
+Zur Visualisierung der Verteilung der markierten Bereiche wurde ein Python-Skript genutzt, um eine **Heatmap** zu generieren.  
+
+> **Hypothese:** Die Markierungen auf der Heatmap-Karte befinden sich überwiegend in der **Innenstadt**. Dies könnte entweder eine **bewusste Entscheidung** gewesen sein oder aus **Bequemlichkeit**, wobei die Mitte der Stadt als Referenzpunkt genutzt wurde.
+
+#### Heatmap-Typen
+
+| Bild | Beschreibung |
+|------|--------------|
+| <img width="350" height="350" alt="Heatmap" src="https://github.com/user-attachments/assets/217c3d53-7c21-4426-b56f-26f8bf4f6fe1" /> | **Heatmap.png** : Zeigt die relative Häufigkeit der markierten Pixel; kein Hintergrund, nur Farben (dunkelrot → weiß); enthält Legende. |
+| <img width="350" height="350" alt="Overlay" src="https://github.com/user-attachments/assets/bda04d94-6bef-4d63-9130-6dfe6c87be4a" /> | **Overlay.png** : Halbtransparente Heatmap über erstes Bild der Sammlung; zeigt Hotspots im Bildkontext. |
+| <img width="350" height="350" alt="OverlayOnCity" src="https://github.com/user-attachments/assets/bafe0023-483d-44b7-af9d-e1dddba2fc3f" /> | **OverlayOnCity.png** : Halbtransparente Heatmap über Stadtbild Olpe; zeigt räumliche Verteilung direkt auf der Karte. |
+
+### 3. Regelwerk – Aufbau und Logik
+Der Chatbot folgt einem **geführten Prompting**, das in mehreren Phasen abläuft:
+
+1. **Eingabephase**
+   - Nutzer wählt Ort auf der Karte → System erhält Koordinaten + Metadaten.
+   - Nutzer gibt Idee ein (z. B. „Ich möchte hier ein Hochhaus“).
+
+2. **Kontextanalyse**
+   - Topologie-Abgleich (Hügel, Fluss, Altstadt, freie Natur).
+   - Objekterkennung über Keywords/Regex/GPT-NLU.
+   - Kategorie-Mapping auf Regelwerk.
+
+3. **Regelabgleich**
+   - Prüfung, welche Regeln zutreffen.
+   - Feedback bei Regelverletzungen.
+   - Vorschläge bei erfüllten Regeln.
+
+4. **Vorschlagsphase**
+   - 3–5 kontextgerechte Vorschläge aus dem Regelwerk.
+   - Darstellung als Klickoptionen.
+
+5. **Prompt-Konstruktion**
+   - Kombination von Basisidee + gewählten Vorschlägen zu optimiertem Prompt.
+
+6. **Feedback- und Lernphase**
+   - Anpassung der Vorschläge bei wiederholten Nutzereingaben.
+   - Optional: Erklärung der Regeln zur besseren Nachvollziehbarkeit.
+
+> **Hinweis:** Das Regelwerk wird dabei in **JSON-Format** umgewandelt, sodass der Chatbot strukturiert auf die Regeln zugreifen kann.
+
+
+### 4. Einbettung des Regelwerks in den Chatbot
+??????
+
+
+### 5. Einbettung des Regelwerks in Unity (perspektivisch)
+Unser Regelwerk und der Chatbot sollen zukünftig mit der verbesserten und animierten Unity verknüpft werden.  
+Durch **Distrikte** und genauere Markierungen – die unter anderem auch die **Anzahl von Elementen** (z. B. Häuser) ausgeben – kann eine **bessere kontextbasierte Generierung** erfolgen.  
+
+Der Chatbot kann über Scripts auf diese Objekte zugreifen, Vorschläge platzieren oder Feedback direkt visualisieren.
+
+
+ 
+##  Beschreibung
+
+## Projekt Vorgehen
+
+
+
+
+
+#Vorgänger Frontend Dokumentation
 
 ## 📌 Beschreibung
 Diese Angular-Anwendung wurde speziell für das Stadtmuseum Olpe entwickelt, um Besuchern eine interaktive Auseinandersetzung mit der Geschichte und möglichen Zukunfts- oder Alternativszenarien der Stadt zu ermöglichen. Mithilfe von Maus und Tastatur können Besucher eigene Ideen in Form von Text und Zeichnungen einbringen und mithilfe künstlicher Intelligenz visuelle Darstellungen ihrer Vorstellungen erzeugen. So entstehen individuelle "Alternativweltgeschichten", die neue Perspektiven auf die Stadt eröffnen.
