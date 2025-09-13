@@ -7,6 +7,7 @@ import { MessageService } from 'primeng/api';
 import {AutoComplete, AutoCompleteCompleteEvent} from 'primeng/autocomplete';
 import {ChatMessage} from './ai-Chat-interfaces';
 import {animate, style, transition, trigger} from '@angular/animations';
+import {AiChatService} from '../services/ai-chat.service';
 
 @Component({
   selector: 'app-ai-chat',
@@ -25,9 +26,9 @@ export class AiChatComponent implements  OnInit, AfterViewInit{
   chatMessageList: ChatMessage[] = [];
   openingMessage: string = "Hallo! Ich bin Olpi, dein KI-gestützter Assistent. Markiere etwas auf der Karte und gib mir einen Hinweis, was du ändern möchtest. Ich werde mein Bestes tun, dir zu helfen!";
   promptList: ChatMessage[]=[];
-
   userPrompt: string = '';
   inputText: string = '';
+  conversationID: number = 0;
   selectedUserPrompt: string = '';
   shownMap: string = "assets/img/olpe_140x140.png"
   selectedModel: number = 0; // Default for Olpe-AI
@@ -72,6 +73,7 @@ export class AiChatComponent implements  OnInit, AfterViewInit{
   constructor(
     public promptingService: PromptingService,
     private messageService: MessageService,
+    private aiChatService: AiChatService,
     private translate: TranslateService) {
     // Default language
     this.translate.setDefaultLang('de');
@@ -119,7 +121,23 @@ export class AiChatComponent implements  OnInit, AfterViewInit{
     if(this.inputText.trim()) {
       this.chatMessageList.push({type: 'User', content: this.inputText.trim(),  timestamp: new Date().toISOString()});
       this.inputText = '';
+      this.aiChatService.sendMessage(this.inputText.trim()).subscribe({
+        next: (response) => {
+          if (response && response.type == "textmessage") {
+            this.chatMessageList.push({type: 'ChatBot', content: response.content,  timestamp: new Date().toISOString()});
+          }
+          else {
+            this.generatePrompt({type: 'Prompt', promptText:response.promptText, activated:true, content: response.content,  timestamp: new Date().toISOString()});
+          }
+        }
+      }
+      );
     }
+  }
+
+
+  newChat(){
+      this.conversationID ++;
   }
 
 
