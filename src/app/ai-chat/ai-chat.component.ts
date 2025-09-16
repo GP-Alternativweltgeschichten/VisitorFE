@@ -120,15 +120,15 @@ export class AiChatComponent implements  OnInit, AfterViewInit{
   sendChatMessage() {
     if(this.inputText.trim()) {
       this.chatMessageList.push({type: 'User', content: this.inputText.trim(),  timestamp: new Date().toISOString()});
+      //TODO remove
+      this.chatMessageList.push({type: 'Prompt', content: "Erstelle einen Fluss, der die beiden häuserblocks trennt.",  timestamp: new Date().toISOString()});
+
       this.inputText = '';
-      this.aiChatService.sendMessage(this.inputText.trim()).subscribe({
+      this.aiChatService.sendMessage(this.inputText.trim(),this.conversationID).subscribe({
         next: (response) => {
-          if (response && response.type == "textmessage") {
-            this.chatMessageList.push({type: 'ChatBot', content: response.content,  timestamp: new Date().toISOString()});
-          }
-          else {
-            this.generatePrompt({type: 'Prompt', promptText:response.promptText, activated:true, content: response.content,  timestamp: new Date().toISOString()});
-          }
+          //TODO add different types of responses
+            this.chatMessageList.push({type: 'ChatBot', content: response,  timestamp: new Date().toISOString()});
+console.log(response)
         }
       }
       );
