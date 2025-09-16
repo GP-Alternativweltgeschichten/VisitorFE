@@ -135,6 +135,16 @@ export class AiChatComponent implements  OnInit, AfterViewInit{
     }
   }
 
+  updatedMarkedArea(){
+    if (this.imgElement && this.imgElement.nativeElement) {
+      const img = this.imgElement.nativeElement;
+      const image = this.getImageAsDataURL(img);
+      const canvasURL = this.getCanvasAsDataURL()
+
+
+    }
+  }
+
 
   newChat(){
       this.conversationID ++;
