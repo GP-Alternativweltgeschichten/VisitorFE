@@ -116,20 +116,18 @@
           </p-card>
 
           <!-- System -->
-          <p-card *ngIf="msg.type === 'Prompt'" styleClass="chat-card prompt" @fadeInUp>
+          <p-card *ngIf="msg.type === 'Prompt'" styleClass="chat-card prompt" [ngClass]="{ 'disabled': msg.activated === false }" @fadeInUp>
             <p><b><em>{{msg.content }}</em></b>
               <button
                 type="button"
                 pButton
                 class="send-Button"
                 icon="pi pi-play"
+                [disabled]="msg.activated===false"
                 (click)="selectUserPrompt(msg)"
                 pTooltip="{{ 'UseAIPrompt' | translate }}"
                 tooltipPosition="top"></button>
             </p>
-
-
-
             <p>
               <small>{{ msg.timestamp | date:'shortTime' }}</small>
               </p>

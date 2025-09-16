@@ -25,7 +25,7 @@ import {AiChatService} from '../services/ai-chat.service';
 export class AiChatComponent implements  OnInit, AfterViewInit{
   chatMessageList: ChatMessage[] = [];
   openingMessage: string = "Hallo! Ich bin Olpi, dein KI-gestützter Assistent. Markiere etwas auf der Karte und gib mir einen Hinweis, was du ändern möchtest. Ich werde mein Bestes tun, dir zu helfen!";
-  promptList: ChatMessage[]=[];
+  promptList: { summary: string; prompt: string }[]=[];
   userPrompt: string = '';
   inputText: string = '';
   conversationID: number = 0;
@@ -118,20 +118,39 @@ export class AiChatComponent implements  OnInit, AfterViewInit{
   /**********New Features**********/
 
   sendChatMessage() {
+    this.disablePrompts()
     if(this.inputText.trim()) {
       this.chatMessageList.push({type: 'User', content: this.inputText.trim(),  timestamp: new Date().toISOString()});
       //TODO remove
-      this.chatMessageList.push({type: 'Prompt', content: "Erstelle einen Fluss, der die beiden häuserblocks trennt.",  timestamp: new Date().toISOString()});
+      let startWord = "Zusammenfassung=";
+      let endWord = ", Prompt=";
 
-      this.inputText = '';
+// Index des Start- und Endworts finden
+
+
       this.aiChatService.sendMessage(this.inputText.trim(),this.conversationID).subscribe({
         next: (response) => {
           //TODO add different types of responses
-            this.chatMessageList.push({type: 'ChatBot', content: response,  timestamp: new Date().toISOString()});
+          if(response.includes(startWord, ) && response.includes(endWord)){
+            let startIndex = response.indexOf(startWord);
+            let endIndex = response.indexOf(endWord);
+            startIndex += startWord.length
+            let zusammenfassung = response.substring(startIndex, endIndex).trim();
+            let prompt= response.substring(endIndex + endWord.length).trim();
+
+            console.log(zusammenfassung)
+            console.log(prompt)
+            this.promptList.push(zusammenfassung, prompt)
+            this.chatMessageList.push({type: 'Prompt', content: zusammenfassung, promptText:prompt, activated:true, timestamp: new Date().toISOString()});
+          }else {
+            this.chatMessageList.push({type: 'ChatBot', content: response, timestamp: new Date().toISOString()});
+          }
+
 console.log(response)
         }
       }
       );
+      this.inputText = '';
     }
   }
 
@@ -140,7 +159,7 @@ console.log(response)
       const img = this.imgElement.nativeElement;
       const image = this.getImageAsDataURL(img);
       const canvasURL = this.getCanvasAsDataURL()
-
+      this.disablePrompts()
 
     }
   }
@@ -148,13 +167,6 @@ console.log(response)
 
   newChat(){
       this.conversationID ++;
-  }
-
-
-
-  generatePrompt(prompt:ChatMessage){
-    this.chatMessageList.push({type: 'Prompt',promptText:prompt.promptText, activated:prompt.activated,content: prompt.content,  timestamp: new Date().toISOString()});
-    this.promptList.push({type: 'Prompt', promptText:prompt.promptText, content: prompt.content,  timestamp: new Date().toISOString()});
   }
 
 
@@ -171,7 +183,7 @@ console.log(response)
 
   selectUserPrompt(msg:ChatMessage){
     if(msg.promptText && msg.activated===true) {
-      this.selectedUserPrompt = msg.promptText
+      this.selectedUserPrompt = this.promptList.find(prompt=> prompt.summary === msg.promptText)?.prompt ?? this.selectedUserPrompt;
       this.updatePrompt()
     }
     else{}
@@ -198,6 +210,14 @@ console.log(response)
         });
       }
     }
+  }
+
+  disablePrompts(){
+    this.chatMessageList.forEach(msg=>{
+      if(msg.type==='Prompt'){
+        msg.activated=false
+      }
+    })
   }
 
   onInputChange(value: string): void {

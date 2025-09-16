@@ -11,9 +11,13 @@ export class AiChatService {
   constructor(private comService: CommunicationService) {}
 
   sendMessage(text: string, conversationId: number): Observable<any> {
-    const payload: any = {text: text, conversationId: conversationId};
-
-    return this.comService.post<String>('/aiChat/text', payload, null as unknown as HttpHeaders);
+    console.log(' Sending message: ', text, ' to conversation ID: ', conversationId);
+    const payload: any = {
+      text: text,
+      conversationId: conversationId
+    }
+    console.log(' payload message: ', payload);
+    return this.comService.post('/aiChat/text', payload, null as unknown as HttpHeaders, "text");
   }
 
 
