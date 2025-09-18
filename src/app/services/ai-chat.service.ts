@@ -27,7 +27,7 @@ export class AiChatService {
       mask:mask,
       conversationId: conversationId
     }
-    return this.comService.post<String>('/aiChat/text', payload, null as unknown as HttpHeaders);
+    return this.comService.post('/aiChat/image', payload, null as unknown as HttpHeaders,"text");
   }
 
 

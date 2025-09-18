@@ -54,6 +54,14 @@
       <button (click)="resetCanvas()" class="icon-button">
         <i class="fas fa-trash-alt"></i>
       </button>
+      <button (click)="updatedMarkedArea()"
+              [disabled]="!areaChanged"
+              type="button"
+              pButton
+              class="selectArea-Button"
+              icon="pi pi-play-circle"
+              label="Markierung Wählen">
+      </button>
     </div>
   </div>
 
@@ -77,10 +85,10 @@
             label="{{ 'Info' | translate }}"
             [raised]="true"
             icon="pi pi-info-circle"
-            (click)="showSuccess()"
+            (click)="panel1.toggle($event)"
           ></button>
-          <p-overlayPanel #panel>
-            <img src="assets/img/qr-code.png" alt="Map" style="max-width: 250px; max-height: 250px">
+          <p-overlayPanel #panel1 [style]="{ 'margin-top': '10px',}" >
+            <img src="assets/img/info.svg" alt="info-Button" >
           </p-overlayPanel>
 
           <button
@@ -90,18 +98,18 @@
             label="{{ 'Help' | translate }}"
             [raised]="true"
             icon="pi pi-question-circle"
-            (click)="panel.toggle($event)"
+            (click)="panel2.toggle($event)"
           ></button>
-          <p-overlayPanel #panel>
-            <img src="assets/img/qr-code.png" alt="Map" style="max-width: 250px; max-height: 250px">
+          <p-overlayPanel #panel2  [style]="{ 'margin-top': '10px', }" >
+            <img src="assets/img/help.svg" alt="help-Button">
           </p-overlayPanel>
         </div>
 
       </div>
 
-    <p-scrollPanel styleClass="chat-box" [style]="{'width': '100%', 'height': '700px'}">
+    <p-scrollPanel #sp styleClass="chat-box" [style]="{'width': '100%', 'height': '500px'}" ngx-auto-scroll>
 
-      <ng-container *ngFor="let msg of chatMessageList">
+      <ng-container *ngFor="let msg of chatMessageList" >
         <div class="message-row" [ngClass]="msg.type.toLowerCase()">
           <!-- User -->
           <p-card *ngIf="msg.type === 'User'" styleClass="chat-card user" @fadeInUp>

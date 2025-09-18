@@ -23,11 +23,11 @@
 
 :host ::ng-deep .chat-box {
     width: 100%;
-    height: 700px;
+    height: 500px;
     padding: 5px 10px 5px 20px;
     box-sizing: border-box;
     margin-top: 10px;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     display: block;
@@ -403,6 +403,15 @@ padding:0 0 0 0;
   font-size: 1.2rem; /* Adjust icon size */
   background-color: white; /* Default gray tone */
   color: green;
+  border: 1px solid #ccc;
+  border-radius: 5px; /* Rounded corners for right side */
+  cursor: pointer;
+}
+.selectArea-Button {
+  background-color: #ffffff;
+  color: green;
+  padding: 10px;
+  font-size: 1.2rem; /* Adjust icon size */
   border: 1px solid #ccc;
   border-radius: 5px; /* Rounded corners for right side */
   cursor: pointer;

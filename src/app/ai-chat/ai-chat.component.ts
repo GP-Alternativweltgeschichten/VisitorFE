@@ -8,6 +8,7 @@ import {AutoComplete, AutoCompleteCompleteEvent} from 'primeng/autocomplete';
 import {ChatMessage} from './ai-Chat-interfaces';
 import {animate, style, transition, trigger} from '@angular/animations';
 import {AiChatService} from '../services/ai-chat.service';
+import {ScrollPanel} from 'primeng/scrollpanel';
 
 @Component({
   selector: 'app-ai-chat',
@@ -20,25 +21,24 @@ import {AiChatService} from '../services/ai-chat.service';
         animate('250ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
       ])
     ])
-  ]
+  ],
 })
 export class AiChatComponent implements  OnInit, AfterViewInit{
   chatMessageList: ChatMessage[] = [];
   openingMessage: string = "Hallo! Ich bin Olpi, dein KI-gestützter Assistent. Markiere etwas auf der Karte und gib mir einen Hinweis, was du ändern möchtest. Ich werde mein Bestes tun, dir zu helfen!";
   promptList: { summary: string; prompt: string }[]=[];
-  userPrompt: string = '';
   inputText: string = '';
   conversationID: number = 0;
   selectedUserPrompt: string = '';
   shownMap: string = "assets/img/olpe_140x140.png"
-  selectedModel: number = 0; // Default for Olpe-AI
+  selectedModel: number = 1; // Default for Olpe-AI
   modelOptions = [
     { label: 'Olpe AI', value: 0 },
     { label: 'Dall-E', value: 1 }
   ];
   showModelSelector: boolean | undefined
   guidanceScale: number = 7.5;
-
+  areaChanged: boolean = false;
   ctx: CanvasRenderingContext2D | null = null;
   selectedTool: 'draw' | 'closed' | 'eraser' = 'draw';
   drawing = false;
@@ -47,7 +47,6 @@ export class AiChatComponent implements  OnInit, AfterViewInit{
   lastX: number | null = null;
   lastY: number | null = null;
   closedPoints: { x: number, y: number }[] = [];
-
   reload: boolean = false;
   progress: boolean = false;
   generateEnabled: boolean = false;
@@ -68,8 +67,6 @@ export class AiChatComponent implements  OnInit, AfterViewInit{
   @ViewChild('container', {static: false}) containerRef!: ElementRef<HTMLDivElement>;
   @ViewChild('img', { static: false }) imgElement: ElementRef<HTMLImageElement> | undefined;
 
-
-
   constructor(
     public promptingService: PromptingService,
     private messageService: MessageService,
@@ -86,11 +83,12 @@ export class AiChatComponent implements  OnInit, AfterViewInit{
         }
       }
     )
-    this.chatMessageList.push({type: 'ChatBot', content: this.openingMessage,  timestamp: new Date().toISOString()});
-    //TODO "this.generatePrompt();"
 
+    this.chatMessageList.push({type: 'ChatBot', content: this.openingMessage,  timestamp: new Date().toISOString()});
     this.showModelSelector = this.promptingService.getShowModels()
   }
+
+
 
   showSuccess() {
     this.messageService.add({
@@ -118,34 +116,11 @@ export class AiChatComponent implements  OnInit, AfterViewInit{
   /**********New Features**********/
 
   sendChatMessage() {
-    this.disablePrompts()
     if(this.inputText.trim()) {
       this.chatMessageList.push({type: 'User', content: this.inputText.trim(),  timestamp: new Date().toISOString()});
-      //TODO remove
-      let startWord = "Zusammenfassung=";
-      let endWord = ", Prompt=";
-
-// Index des Start- und Endworts finden
-
-
       this.aiChatService.sendMessage(this.inputText.trim(),this.conversationID).subscribe({
         next: (response) => {
-          //TODO add different types of responses
-          if(response.includes(startWord, ) && response.includes(endWord)){
-            let startIndex = response.indexOf(startWord);
-            let endIndex = response.indexOf(endWord);
-            startIndex += startWord.length
-            let zusammenfassung = response.substring(startIndex, endIndex).trim();
-            let prompt= response.substring(endIndex + endWord.length).trim();
-
-            console.log(zusammenfassung)
-            console.log(prompt)
-            this.promptList.push(zusammenfassung, prompt)
-            this.chatMessageList.push({type: 'Prompt', content: zusammenfassung, promptText:prompt, activated:true, timestamp: new Date().toISOString()});
-          }else {
-            this.chatMessageList.push({type: 'ChatBot', content: response, timestamp: new Date().toISOString()});
-          }
-
+          this.showChatResponse(response)
 console.log(response)
         }
       }
@@ -154,12 +129,39 @@ console.log(response)
     }
   }
 
+  showChatResponse(response: string){
+    let startWord = "Zusammenfassung=";
+    let endWord = "Prompt=";
+    if(response.includes(startWord, ) && response.includes(endWord)){
+      let startIndex = response.indexOf(startWord);
+      let endIndex = response.indexOf(endWord);
+      startIndex += startWord.length
+      let zusammenfassung = response.substring(startIndex, endIndex).trim();
+      let prompt = response.substring(endIndex + endWord.length).trim();
+
+      console.log(zusammenfassung)
+      console.log(prompt)
+      this.promptList.push({summary: zusammenfassung, prompt: prompt })
+      this.chatMessageList.push({type: 'Prompt', content: zusammenfassung, promptText:prompt, activated:true, timestamp: new Date().toISOString()});
+    }else {
+      this.chatMessageList.push({type: 'ChatBot', content: response, timestamp: new Date().toISOString()});
+    }
+
+  }
+
   updatedMarkedArea(){
+
     if (this.imgElement && this.imgElement.nativeElement) {
       const img = this.imgElement.nativeElement;
       const image = this.getImageAsDataURL(img);
       const canvasURL = this.getCanvasAsDataURL()
       this.disablePrompts()
+      this.areaChanged=false
+      this.aiChatService.sendImage(image, canvasURL,this.conversationID).subscribe({
+        next: (response) => {
+          this.showChatResponse(response)
+        }
+      });
 
     }
   }
@@ -182,26 +184,24 @@ console.log(response)
 
 
   selectUserPrompt(msg:ChatMessage){
+    this.areaChanged = false;
     if(msg.promptText && msg.activated===true) {
-      this.selectedUserPrompt = this.promptList.find(prompt=> prompt.summary === msg.promptText)?.prompt ?? this.selectedUserPrompt;
+      this.selectedUserPrompt = msg.promptText
       this.updatePrompt()
     }
-    else{}
+    else{this.showError()}
   }
 
 
   async updatePrompt(): Promise<void> {
     this.progress = true;
-    /**
-    if (//by Button selected Prompt
-    ) */{
-
       if (this.imgElement && this.imgElement.nativeElement) {
         const img = this.imgElement.nativeElement;
         const image = this.getImageAsDataURL(img);
         const canvasURL = this.getCanvasAsDataURL()
 
-        this.promptingService.sendInpaintInformation(this.userPrompt, image, canvasURL, this.selectedModel, this.guidanceScale).subscribe((response: any) => {
+        this.promptingService.sendInpaintInformation(this.selectedUserPrompt, image, canvasURL, this.selectedModel, this.guidanceScale).subscribe((response: any) => {
+          this.disablePrompts()
           const blob = new Blob([response], {type: 'image/png'});
           this.shownMap = URL.createObjectURL(blob);
           this.resetCanvas();
@@ -209,7 +209,7 @@ console.log(response)
           this.inputText = '';
         });
       }
-    }
+
   }
 
   disablePrompts(){
@@ -245,6 +245,7 @@ console.log(response)
   updateGeneratePermitted(): void {
     this.generatePermitted = !this.isCanvasEmpty() && !this.isInputEmpty();
   }
+
 
   /*****Convert Image/Canvas*****/
   getCanvasAsDataURL(): string {
@@ -314,6 +315,9 @@ console.log(response)
     this.lastX = event.offsetX;
     this.lastY = event.offsetY;
     this.updateGeneratePermitted();
+    this.areaChanged = true;
+    this.disablePrompts()
+
   }
 
   draw(event: MouseEvent): void {
@@ -450,7 +454,7 @@ console.log(response)
   }
 **/
   resetPrompt(inputField: AutoComplete): void {
-    this.userPrompt = '';
+    this.selectedUserPrompt = '';
     this.inputText = '';
     inputField.value = '';
     //this.shownMap = "assets/img/olpe_140x140.png";
