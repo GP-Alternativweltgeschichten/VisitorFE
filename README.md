@@ -74,6 +74,15 @@ Zu den dargestellten Features zählen:
 10. Chatbot-Avatar, der als visuelle Repräsentation der Interaktion dient
 11. Die Wireframes dienten somit nicht nur der Visualisierung einzelner Funktionen, sondern auch der Erprobung der Interaktionslogik und der Priorisierung nach Core-Features und Nice-to-have Features für die weitere Entwicklung.
 
+#### Warum ein Avatar?
+Um Geschichte lebendig, nahbar und interaktiv zu vermitteln, haben wir uns bewusst für die Entwicklung eines Avatars entschieden. Statt rein textbasierter Informationen ermöglicht ein Avatar eine emotionale Bindung: Er begleitet die Nutzer*innen, vermittelt Inhalte spielerisch und macht komplexe Zusammenhänge leichter zugänglich. So entsteht ein persönlicher Zugang, der über klassische Infoboxen hinausgeht.
+
+#### Warum eine Eule?
+Die Wahl fiel auf eine Eule, da sie seit jeher für Weisheit, Wissen und einen wachen Blick steht. Als fliegendes Tier kann sie Olpe aus der Vogelperspektive überblicken und bietet so einen umfassenden Einblick in Stadt und Geschehen. Gleichzeitig fügt sie sich harmonisch in die Natur- und Kulturwelt des Sauerlands ein. Mit ihrer neugierigen und sympathischen Art macht die Eule „Olpi“ Geschichte spielerisch erfahrbar und unterscheidet sich deutlich von nüchternen Informationsformaten.
+
+<img width="907" height="252" alt="Olpis" src="https://github.com/user-attachments/assets/510de0e9-c18f-47b4-9e06-bb5d4191d6cb" />
+
+
 ### 3. Chatbot-Logik
 Die entwickelte Chatbot-Logik verfolgt das Ziel, Nutzerinnen beim strukturierten Prompting zu unterstützen, indem sie Kontextinformationen einbezieht, passende Kategorien aus dem Regelwerk zuordnet und nutzbare Vorschläge generiert. Ausgangspunkt ist stets die Eingabephase, in der Nutzerinnen einen Ort auf der Karte markieren und eine freie Idee eintragen (z. B. „Ich hätte gern hier ein Hochhaus“). Anschließend erfolgt eine Kontextanalyse, bei der Geodaten und vordefinierte Kartenlayer genutzt werden, um topologische Bedingungen (z. B. Hügel, Flussnähe, historische Altstadt) zu prüfen und das Objekt über Keyword-Erkennung einer passenden Oberkategorie (z. B. Architektur, Infrastruktur, Grünflächen) zuzuordnen. Darauf aufbauend findet ein Regelabgleich statt: Stimmen Idee und Kontext überein, schlägt der Chatbot weiterführende Optionen vor; wird eine Regel verletzt, liefert er alternatives Feedback, das die Nutzeridee anpasst, ohne den Gestaltungsprozess zu unterbrechen. In der Vorschlagsphase werden daraufhin mehrere kontextgerechte Handlungsoptionen (z. B. Serpentinenstraße, Tunnel, Aussichtspunkt) präsentiert, die Nutzerinnen auswählen oder kombinieren können. Diese Eingaben werden schließlich in einen optimierten Prompt überführt, der sowohl die ursprüngliche Idee als auch die kontextsensitiven Ergänzungen berücksichtigt. Eine Feedback- und Lernphase rundet die Logik ab, indem wiederholt gewählte Optionen erkannt und zukünftige Vorschläge angepasst werden. Optional kann der Chatbot seine Entscheidungen begründen, um den Regelkontext transparent zu machen und das Verständnis der Nutzerinnen zu fördern.
 
