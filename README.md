@@ -194,15 +194,10 @@ Der Chatbot kann über Scripts auf diese Objekte zugreifen, Vorschläge platzier
 
 
  
-##  Beschreibung
 
-## Projekt Vorgehen
+# Vorgängerprojekt
 
-
-
-
-
-#Vorgänger Frontend Dokumentation
+Ab hier beginnt die Dokumentation des Vorgängerprojekts. Sie enthält frühere Konzepte, Inhalte und Strukturen, die als Grundlage für die Weiterentwicklung unseres aktuellen Projekts dienten.
 
 ## 📌 Beschreibung
 Diese Angular-Anwendung wurde speziell für das Stadtmuseum Olpe entwickelt, um Besuchern eine interaktive Auseinandersetzung mit der Geschichte und möglichen Zukunfts- oder Alternativszenarien der Stadt zu ermöglichen. Mithilfe von Maus und Tastatur können Besucher eigene Ideen in Form von Text und Zeichnungen einbringen und mithilfe künstlicher Intelligenz visuelle Darstellungen ihrer Vorstellungen erzeugen. So entstehen individuelle "Alternativweltgeschichten", die neue Perspektiven auf die Stadt eröffnen.
