@@ -80,7 +80,7 @@ Um Geschichte lebendig, nahbar und interaktiv zu vermitteln, haben wir uns bewus
 #### Warum eine Eule?
 Die Wahl fiel auf eine Eule, da sie seit jeher für Weisheit, Wissen und einen wachen Blick steht. Als fliegendes Tier kann sie Olpe aus der Vogelperspektive überblicken und bietet so einen umfassenden Einblick in Stadt und Geschehen. Gleichzeitig fügt sie sich harmonisch in die Natur- und Kulturwelt des Sauerlands ein. Mit ihrer neugierigen und sympathischen Art macht die Eule „Olpi“ Geschichte spielerisch erfahrbar und unterscheidet sich deutlich von nüchternen Informationsformaten.
 
-<img width="907" height="252" alt="Olpis" src="https://github.com/user-attachments/assets/510de0e9-c18f-47b4-9e06-bb5d4191d6cb" />
+<img width="907" height="253" alt="Olpis" src="https://github.com/user-attachments/assets/0e80632f-f62a-4235-b7f8-422b8a39958a" />
 
 
 ### 3. Chatbot-Logik
