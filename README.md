@@ -250,7 +250,7 @@ Zur Visualisierung der Verteilung der markierten Bereiche wurde ein Python-Skrip
     "promptTemplate": "Ersetze den Bereich **{AreaID}** durch ein feuchtes Sumpfgebiet mit Schilfzonen und Moorgewässern. Integriere Holzstege, die über stilles Wasser führen, und vereinzelte Seerosen-Inselchen."
   }
 ]
-
+```
 ### Abgeleitete Design-Prinzipien fürs Regelwerk auf Basis der Heatmaps
 
 Die generierten Heatmaps liefern nicht nur eine räumliche Übersicht über die Prompts, sondern dienen auch als **Gestaltungs-Trigger** für ein darauf aufbauendes Regelwerk. Daraus lassen sich drei zentrale Design-Prinzipien ableiten:
@@ -318,7 +318,26 @@ Zu den dargestellten Features zählen:
 > Die Wireframes dienten somit nicht nur der **Visualisierung einzelner Funktionen**, sondern auch der **Erprobung der Interaktionslogik** und der **Priorisierung nach Core-Features und Nice-to-have Features** für die weitere Entwicklung.
 
 #### Warum ein Avatar?
-Um Geschichte lebendig, nahbar und interaktiv zu vermitteln, haben wir uns bewusst für die Entwicklung eines Avatars entschieden. Statt rein textbasierter Informationen ermöglicht ein Avatar eine emotionale Bindung: Er begleitet die Nutzer*innen, vermittelt Inhalte spielerisch und macht komplexe Zusammenhänge leichter zugänglich. So entsteht ein persönlicher Zugang, der über klassische Infoboxen hinausgeht.
+
+Um die Geschichte lebendig, nahbar und interaktiv zu vermitteln, haben wir uns bewusst für die Entwicklung eines Avatars entschieden. Statt rein textbasierter Informationen ermöglicht ein Avatar eine emotionale Bindung: Er begleitet die Nutzer*innen, vermittelt Inhalte spielerisch und macht komplexe Zusammenhänge leichter zugänglich. So entsteht ein persönlicher Zugang, der über klassische Infoboxen hinausgeht.
+
+**Beispiel: Olpi als Avatar im Demonstrator** 
+
+Olpi unterstützt die Nutzer*innen in zwei zentralen Situationen durch die Buttons **"Info"** und **"Hilfe"**:
+
+1. **Einführung und Kontext**  
+   - Steht beim Start des Demonstrators bereit und „erklärt“ den Sinn und Zweck der Anwendung.  
+   - Vermittelt die Grundidee, z. B. warum kontextbasiertes Prompting sinnvoll ist.  
+
+   ![Info_PopUp2](https://github.com/user-attachments/assets/ff6e4d34-c1e3-4872-8e9c-a9f4d7e38b0d)
+
+2. **Funktionale Unterstützung**  
+   - Gibt Schritt-für-Schritt Hilfestellung bei der Nutzung des Chatbot-Interfaces.  
+   - Zeigt einzelne Features und deren Bedeutung auf (z. B. Auswahl von Vorschlägen, Markieren von Bereichen, Feedback-Optionen).  
+   - Unterstützt visuell und textlich, damit die Nutzer*innen die Funktionen direkt nachvollziehen können.  
+
+   ![Info_PopUp](https://github.com/user-attachments/assets/165adccd-7770-4e39-9987-21e7cf0dc400)
+
 
 #### Warum eine Eule?
 Die Wahl fiel auf eine Eule, da sie seit jeher für Weisheit, Wissen und einen wachen Blick steht. Als fliegendes Tier kann sie Olpe aus der Vogelperspektive überblicken und bietet so einen umfassenden Einblick in Stadt und Geschehen. Gleichzeitig fügt sie sich harmonisch in die Natur- und Kulturwelt des Sauerlands ein. Mit ihrer neugierigen und sympathischen Art macht die Eule „Olpi“ Geschichte spielerisch erfahrbar und unterscheidet sich deutlich von nüchternen Informationsformaten.
@@ -326,37 +345,44 @@ Die Wahl fiel auf eine Eule, da sie seit jeher für Weisheit, Wissen und einen w
 <img width="907" height="253" alt="Olpis" src="https://github.com/user-attachments/assets/0e80632f-f62a-4235-b7f8-422b8a39958a" />
 
 
-### Chatbot-Logik
-Die entwickelte Chatbot-Logik verfolgt das Ziel, Nutzerinnen beim strukturierten Prompting zu unterstützen, indem sie Kontextinformationen einbezieht, passende Kategorien aus dem Regelwerk zuordnet und nutzbare Vorschläge generiert. Ausgangspunkt ist stets die Eingabephase, in der Nutzerinnen einen Ort auf der Karte markieren und eine freie Idee eintragen (z. B. „Ich hätte gern hier ein Hochhaus“). Anschließend erfolgt eine Kontextanalyse, bei der Geodaten und vordefinierte Kartenlayer genutzt werden, um topologische Bedingungen (z. B. Hügel, Flussnähe, historische Altstadt) zu prüfen und das Objekt über Keyword-Erkennung einer passenden Oberkategorie (z. B. Architektur, Infrastruktur, Grünflächen) zuzuordnen. Darauf aufbauend findet ein Regelabgleich statt: Stimmen Idee und Kontext überein, schlägt der Chatbot weiterführende Optionen vor; wird eine Regel verletzt, liefert er alternatives Feedback, das die Nutzeridee anpasst, ohne den Gestaltungsprozess zu unterbrechen. In der Vorschlagsphase werden daraufhin mehrere kontextgerechte Handlungsoptionen (z. B. Serpentinenstraße, Tunnel, Aussichtspunkt) präsentiert, die Nutzerinnen auswählen oder kombinieren können. Diese Eingaben werden schließlich in einen optimierten Prompt überführt, der sowohl die ursprüngliche Idee als auch die kontextsensitiven Ergänzungen berücksichtigt. Eine Feedback- und Lernphase rundet die Logik ab, indem wiederholt gewählte Optionen erkannt und zukünftige Vorschläge angepasst werden. Optional kann der Chatbot seine Entscheidungen begründen, um den Regelkontext transparent zu machen und das Verständnis der Nutzerinnen zu fördern.
+## Chatbot-Logik
+
+Die entwickelte Chatbot-Logik hat das Ziel, Nutzer*innen beim strukturierten Prompting zu unterstützen, indem sie Kontextinformationen einbezieht, passende Kategorien aus dem Regelwerk zuordnet und nutzbare Vorschläge generiert. 
+
+Ausgangspunkt ist die **Eingabephase**, in der Nutzer*innen einen Ort auf der Karte markieren und eine Idee eintragen (z. B. „Ich hätte gern hier ein Hochhaus“). Anschließend erfolgt eine **Kontextanalyse**: Geodaten und vordefinierte Kartenlayer werden genutzt, um topologische Bedingungen (z. B. Hügel, Flussnähe, historische Altstadt) zu prüfen, und das Objekt wird über Keyword-Erkennung einer passenden Oberkategorie (z. B. Architektur, Infrastruktur, Grünflächen) zugeordnet.  
+
+Darauf aufbauend erfolgt der **Regelabgleich**: Stimmen Idee und Kontext überein, schlägt der Chatbot weiterführende Optionen vor; wird eine Regel verletzt, liefert er alternatives Feedback, das die Nutzeridee anpasst, ohne den Gestaltungsprozess zu unterbrechen. In der **Vorschlagsphase** werden mehrere kontextgerechte Handlungsoptionen (z. B. Serpentinenstraße, Tunnel, Aussichtspunkt) präsentiert, die Nutzer*innen auswählen oder kombinieren können.  
+
+Diese Eingaben werden schließlich in einen **optimierten Prompt** überführt, der sowohl die ursprüngliche Idee als auch die kontextsensitiven Ergänzungen berücksichtigt. Eine **Feedback- und Lernphase** rundet die Logik ab, indem wiederholt gewählte Optionen erkannt und zukünftige Vorschläge angepasst werden. Optional kann der Chatbot seine Entscheidungen begründen, um den Regelkontext transparent zu machen und das Verständnis der Nutzer*innen zu fördern.
+
+### Phasen des geführten Promptings
 
 Der Chatbot folgt einem **geführten Prompting**, das in mehreren Phasen abläuft:
 
 1. **Eingabephase**
-   - Nutzer wählt Ort auf der Karte → System erhält Koordinaten + Metadaten.
-   - Nutzer gibt Idee ein (z. B. „Ich möchte hier ein Hochhaus“).
+   - Nutzer*in wählt einen Ort auf der Karte → System erhält Koordinaten + Metadaten.
+   - Nutzer*in gibt eine Idee ein (z. B. „Ich möchte hier ein Hochhaus“).
 
 2. **Kontextanalyse**
-   - Topologie-Abgleich (Hügel, Fluss, Altstadt, freie Natur).
-   - Objekterkennung über Keywords/Regex/GPT-NLU.
-   - Kategorie-Mapping auf Regelwerk.
+   - Topologie-Abgleich (Hügel, Fluss, Altstadt, freie Natur)
+   - Objekterkennung über Keywords, Regex oder GPT-NLU
+   - Kategorie-Mapping auf das Regelwerk
 
 3. **Regelabgleich**
-   - Prüfung, welche Regeln zutreffen.
-   - Feedback bei Regelverletzungen.
-   - Vorschläge bei erfüllten Regeln.
+   - Prüfung, welche Regeln zutreffen
+   - Feedback bei Regelverletzungen
+   - Vorschläge bei erfüllten Regeln
 
 4. **Vorschlagsphase**
-   - 3–5 kontextgerechte Vorschläge aus dem Regelwerk.
-   - Darstellung als Klickoptionen.
+   - Präsentation von 3–5 kontextgerechten Vorschlägen aus dem Regelwerk
+   - Darstellung als Klickoptionen
 
 5. **Prompt-Konstruktion**
-   - Kombination von Basisidee + gewählten Vorschlägen zu optimiertem Prompt.
+   - Kombination von Basisidee + gewählten Vorschlägen zu einem optimierten Prompt
 
 6. **Feedback- und Lernphase**
-   - Anpassung der Vorschläge bei wiederholten Nutzereingaben.
-   - Optional: Erklärung der Regeln zur besseren Nachvollziehbarkeit.
-
-
+   - Anpassung der Vorschläge bei wiederholten Nutzereingaben
+   - Optional: Erklärung der Regeln zur besseren Nachvollziehbarkeit
 
 
 ## ⚙️ KI-Chatbot Umsetzung und LLM-Anbindung
