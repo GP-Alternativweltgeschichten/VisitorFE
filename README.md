@@ -8,7 +8,7 @@
 5. [⚙️ Regelwerk](#%EF%B8%8F-regelwerk)  
 6. [🤖 KI-Chatbot Integration](#-ki-chatbot-integration)  
 7. [⚙️ KI-Chatbot Umsetzung und LLM-Anbindung](#%EF%B8%8F-ki-chatbot-umsetzung-und-llm-anbindung)  
-8. [(Zusatz) Einbettung des Regelwerks in Unity](#-zusatz-einbettung-des-regelwerks-in-unity-perspektivisch) 
+8. [(Zusatz) Einbettung des Regelwerks in Unity](#zusatz-einbettung-des-regelwerks-in-unity) 
 
 ## 📌 Beschreibung der Ausgangssituation
    - Trennung in die Teilteams (POC KI-Kontext & Unity)
