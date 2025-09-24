@@ -389,6 +389,115 @@ Der Chatbot folgt einem **geführten Prompting**, das in mehreren Phasen abläuf
 
 ## ⚙️ KI-Chatbot Umsetzung und LLM-Anbindung
 
+
+
+### Beschreibung
+
+Die AI-Chat Funktion des Systems erweitert das vorhandene System um einen Chatbot-Helfer für die Generierung eines Kontext bezogenen und detailierten Prompts: sowohl für die Vorhandene Bildgeneration aus dem Vorgänger Projekt, als auch für die potenzielle erweiterung durch die Unity Game Engine. 
+Das Projekt baut im Fundament und der Architektur auf dem Vorgänger Projekt auf und wird auch wie im Kapitel "Voraussetzungen & Setup" im Repository  ["AI_Code"](https://github.com/GP-Alternativweltgeschichten/AI_Code/tree/AiChat?tab=readme-ov-file#-voraussetzungen--setup) beschrieben aufgesetzt. 
+
+Für die Umsetzung des KI Chatbots wurde die gpt-4.1-mini Api von OpenAI verwendet, da ein API KEY Vorhanden war, das Model Bilder als eingaben ermöglicht und es kostengünstig verwendet werden kann. 
+
+
+WICHTIG: 
+Es ist Notwendig vor der Verwendung die ENV des Servers mit einem OPENAI_API_KEY zu versehen, da sonst sowohl die GPT- als auch die DALL-E- API nicht funktionieren. 
+Dafür kann man in der Umgebung diesen code ausführen:
+ ```
+conda env config vars set OPENAI_API_KEY="api_key"
+```
+
+
+## Python Server für die KI Chatbot Interaktion
+Die für den Chatbot verwendeten Funktionen finden sich unter:
+
+```
+...\AI_Code\server\chatBot_interaction_interface.py
+```
+
+Für die Kommunikation mit den Restlichen Komponenten über die REST Schnittstelle wird die Bisherige datei erweitert:
+```
+...\AI_Code\server\inpaint_REST.py
+```
+
+In der request_types datei werden die Typen der Chatbot schnittstelle in "ChatMessageRequest" Definiert:
+```
+...\AI_Code\server\request_types.py
+```
+
+#### Komponenten und Funktionen der Chatbot Interaktion
+
+##### chatBot_interaction_interface.py
+Definiert für den Chatbot Server relevante Funktionen:
+
+###### get_initial_prompting_text()
+Liefert die bei einem Neuen Chatbot notwendigen Initalen Prompts, die:
+  - Den Kontext für den Chatbot liefern,
+  - Die Regeln für den Chatbot festlegen,
+  - Das Format der Ausgabe festlegen.
+
+  Dabei wird in System und Developer Prompts unterschieden. Developer-Prompts liefern Zusammengefasst den Kontext für die KI, Während System-Prompts Klare Regeln für die KI festlegen.
+  Bei jeder neuer Instance des Chatbot werden beide dieser Initalen Prompts an die KI übergeben. 
+
+###### add_mask_outline_to_image(image, mask)
+Erhält das GPS Bild und den für den Prompt markierten Bereich und fügt den Umriss des Markierten Bereiches in das Bild ein. 
+Dieses neue Bild wird beim Bestätigen eines neuen Markierten Bereiches an die KI API gesendet. 
+
+###### get_image_as_base64(image)
+Nimmt ein Bild der karte als PNG an und Formatierte es in das BASE64 Format.
+Dies ist notwendig um das Bild an die KI API zu senden.
+
+##### request_types.py 
+Definiert die Typen der REST Schnittstelle für die Chatbot Interaktion
+
+###### class ChatMessageRequest
+die Typen der Schnittstelle sind wie folgt definiert:
+
+    text: Optional[str] = None --> Chatnachricht des Nutzers
+    image: Optional[str] = None --> Bild, indem der markierte Bereich geändert werden soll. Als Base64 Konvertiert
+    mask: Optional[str] = None --> Markierter Bereich in der Karte. Als Base64 Konvertiert
+    conversationId: Optional[int]= None --> Id der jetzigen Chat Session als Nummer
+
+Je nachdem was gesendet wird wird entweder:
+`Text + ConversationId` (Wenn der Nutzer eine Nachricht an den Chatbot sendet)
+oder 
+`image + mask +  ConversationId` (Wenn der Nutzer einen neuen Bereich auf der Karte für den Prompt gewählt hat)
+erwartet.
+
+*get_image_as_rgb* und *get_mask_as_rgb* liefern das aus dem Base64 decodierte Bild. 
+
+
+
+#### Ablauf der Chatbot Interaktion:
+Im Folgenden wird der Funktionale Ablauf der Chatbot Interaktion Beschrieben.
+
+Die Kommunikation erfolgt über die *"/text"* URL
+
+Dort gesendete POST anfragen werden werden durch die in ["request_types.py"](#request_typespy) Definierten typen differenziert. 
+
+Insgesamt umfasst der Chatbot 2 Haupt interaktionen: 
+1. : Das senden einer Nachricht an den Chatbot durch eine Texteingabe
+2. : Das senden eines Bilden mit dem Markierten Bereich. 
+Die Unterscheidung beider Interaktionen hängt von den jeweiligen gesendeten daten ab. 
+
+Wenn eine neue Instance des Chatbots erstellt wird, wird auch eine Neue ConversationID Vergeben, die die jeweiligen Conversationen speichert. Bei einer neuen Conversation werden die System und Developer Prompts als Initale Promts an die API übergeben.
+Wurde eine Vorhandene Conversation erkannt, wird diese fortgeführt. 
+
+
+***Bild wird gesendet***
+
+Wenn erkannt wurde, dass ein Bild mit einem Markierten Bereich über die REST schnittstelle gesendet wurde, werden diese mittels der jeweiligen *get_image_as_rgb* und *get_mask_as_rgb* funktion aus dem BASE64 Format dekodiert und anschließend durch die ["add_mask_outline_to_image"](#add_mask_outline_to_imageimage-mask) Funktion zu einem Bild kombiniert.
+Dieses Kombinierte bild wird dann durch die ["get_image_as_base64"](#get_image_as_base64image) Funktion in das BASE64 Format zurück konvertiert. 
+Diese Konvertierte Bild wird dann an die GPT API Gesendet, die dieses Bild als zukünftige referenz für Chat Interaktionen mit dem Nutzer verwedet. 
+Die Antwort der API wird als Antwort wieder an das Frontend gesendet, wo es als Chatbot Nachricht angezeigt wird.
+
+
+***Nutzer Nachricht wird gesendet***
+
+Wenn erkannt wurde das ein Text gesendet wurde, wird der Text direkt an die GPT API gesendet. Die Antwort der KI Bezieht sich dann auf dem zu letzt gesendeten Bild als Kontext. 
+Die Antwort der API wird als Antwort wieder an das Frontend gesendet, wo es als Chatbot Nachricht angezeigt wird.
+Wenn die GPT AI erkennen kann, was der Nutzer im Markierten Bereich haben möchte, Generiert die KI einen Prompt in einem Festgelegten Format. Dieser Prompt besteht aus einer Zusammenfassung, die der Nutzer im Frontend angezeigt bekommt, und einem auf englisch  detailiertem Prompt Text. Dieser Prompttext wird beim Generieren eines Neuen Bild Ausschnittes verwendet.
+
+
 Inspo:
  
 A) Auswahl des Language Models: Anschließend wurde ein geeignetes LLM identifiziert, das sich über eine API einbinden lässt. Die Wahl fiel auf OpenAI GPT-4, da dieses Modell eine hohe Leistungsfähigkeit und starke Kontextverarbeitung bietet. Alternative Modelle wie Mistral oder Gemini wurden geprüft, jedoch verworfen.
