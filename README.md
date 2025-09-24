@@ -3,7 +3,7 @@ Agenda:
 1. [📌 Beschreibung der Ausgangssituation](#-beschreibung-der-ausgangssituation)  
 2. [🚀 Ziel des Semesterprojektes 2025](#-ziel-des-semesterprojektes-2025)  
 3. [🛠 Vorgehensweise](#-vorgehensweise)  
-4. [📚 Kontextanalyse und Regelwerk](#-kontextanalyse-und-regelwerk)  
+4. [📚 Kontextanalyse
 5. [🤖 KI-Chatbot Integration](#-ki-chatbot-integration)  
 6. [⚙️ KI-Chatbot Umsetzung und LLM-Anbindung](#-ki-chatbot-umsetzung-und-llm-anbindung)  
 7. [(Zusatz) Einbettung des Regelwerks in Unity](#-zusatz-einbettung-des-regelwerks-in-unity-perspektivisch)  
@@ -83,19 +83,8 @@ Diese Gruppe widmete sich der Erweiterung des bestehenden **IST-Status**. Im Vor
 Parallel dazu wurde die Stadtkarte von Olpe in Unity nachgebaut, um perspektivisch neue visuelle und interaktive Möglichkeiten zu eröffnen und das Projekt langfristig um immersive Darstellungsformen zu ergänzen.
 
 
-## 📚 Kontextanalyse und Regelwerk
+## 📚 Kontextanalyse
 
-Das Regelwerk dient als Wissensbasis für den Chatbot, um kontextabhängige und topologisch sinnvolle Vorschläge sowie Feedback zu generieren. Es kombiniert einen Baukasten-Ansatz mit logischen Wenn-Dann-Regeln, die auf die Stadt-Topologie von Olpe angewendet werden können. Die Betrachtung erfolgt primär auf der Makroebene, um städtische Strukturen und Zonen sinnvoll zu berücksichtigen.
-
-Ziel des Regelwerks ist es, dass der Chatbot:
-  - den Kontext (Ort, Topologie, Zonen) erkennt,
-  - die passende Kategorie auswählt (basierend auf dem Regelwerk),
-  - Vorschläge generiert (entweder aus einer Tabelle oder LLM-unterstützt),
-  - Feedback gibt, wenn eine Nutzeridee unpassend ist.
-
-Die Regeln können dabei fest oder als vorschlagsorientiert implementiert sein, um Flexibilität zu ermöglichen.
-
-### Kontextanalyse 🔎   
 Für die Analyse standen **302 Eingaben** von Schüler:innen zur Verfügung – ein:e Schüler:in konnte dabei mehrere Ideen einbringen. Jede Eingabe war mit **Markierungen auf der Stadtkarte von Olpe** versehen, die angaben, wo die Idee umgesetzt werden sollte, sowie einem individuellen Prompt, welcher durchschnittlich aus 1-3 Wörtern bestand.
 
 Die Kontextanalyse bestand aus der **Sammlung, Analyse und Visualisierung** der gesammelten Prompts sowie der Auswahlbereiche der Nutzer*innen auf der Satellitenkarte. Sie gliederte sich in zwei Schritte:  
@@ -123,7 +112,8 @@ Im ersten Schritt wurden die **Markierungen auf der Stadtkarte** untersucht.
 - **Ergebnisse (Visualisierung):**  
   - Heatmap: Relative Häufigkeit der markierten Pixel (rot).  
   - Overlay: Halbtransparente Heatmap über Bildkontext.  
-  - Overlay + City: Darstellung der Hotspots direkt auf der Stadtkarte (räumliche Verteilung).  
+  - Overlay + City: Darstellung der Hotspots direkt auf der Stadtkarte (räumliche Verteilung).
+ 
 
 ### 2. Analyse der Prompts  
 
@@ -183,6 +173,7 @@ Zur Visualisierung der Verteilung der markierten Bereiche wurde ein Python-Skrip
 - Prompts wurden qualitativ bewertet (gute/schlechte Bildgenerierungen).  
 - Einordnung in **Oberkategorien** und Identifikation zentraler Begriffe.  
 
+
 **Kernziel:**  
 - Ein Verständnis dafür entwickeln, **wie Schüler*innen prompten**, um ein **Regelwerk für den Chatbot** abzuleiten.  
 
@@ -201,7 +192,66 @@ Zur Visualisierung der Verteilung der markierten Bereiche wurde ein Python-Skrip
 |---------------|----------------|
 | <img src="https://github.com/user-attachments/assets/433009e1-a7f5-4051-a17d-36dc1cd1ee72" width="350"/> | <img src="https://github.com/user-attachments/assets/278bf66e-d0b6-4230-8b0d-c632ffc12214" width="350"/> |
 
-#### Abgeleitete Design-Prinzipien fürs Regelwerk auf Basis der generierten Heatmap
+## ⚙️ Regelwerk
+
+### Abgeleitete Design-Prinzipien fürs Regelwerk auf Basis der Prompts und Kategorien
+
+#### Aufbau & Ziel
+- **50 Regeln** erstellt → decken zentrale Kategorien ab (z. B. Natur, Stadt, Infrastruktur …)  
+- **Ziel:** Einheitliche, kontextreiche Prompts für bessere Bildgenerierung
+
+#### Funktionsweise
+- Regeln dienen als Basis für das LLM → automatische Anreicherung von Eingaben  
+- **Beispiel:** Eingabe `Wald` → Regel ergänzt zu `Üppige Urwaldlichtung mit Palmen, Lianen & Wasserfall`
+
+#### Beispiele
+**Natur & Landschaft**  
+- `Wald` → „Üppige Urwaldlichtung mit Palmen, Lianen & Wasserfall“  
+- `Wiese` → „Bunte Blumenwiese mit Margeriten & Bienenhotels“  
+
+**Städte & Infrastruktur**  
+- `Innenstadt` → „Fußgängerzone mit Straßencafés & Natursteinpflaster“  
+- `Einkaufszentrum` → „Modernes Shopping-Center mit Glasfassade & Innenhof“  
+
+> <img width="1380" height="269" alt="Bildschirmfoto 2025-09-24 um 22 36 48" src="https://github.com/user-attachments/assets/5c384e66-62a1-47fc-8e75-8818eb2395b0" />
+
+- Jede Regel enthält: `ID`, `Priorität`, `Kategorie`, `markierte & Umfeldobjekte`, `Eingabe` und `Prompt-Vorlage`  
+- Für unzulässige oder zu fiktive Anfragen gibt es einen **Default-Prompt**  
+- Das Regelwerk ist als **JSON-Skript** strukturiert und Grundlage für kontextbasierte Änderungen in Unity  
+
+#### Auszug aus dem Regelwerk (JSON)
+```json
+[
+  {
+    "id": "R1",
+    "priority": 1,
+    "category": "Natur & Landschaft",
+    "markedObjects": ["Wald"],
+    "environmentObjects": ["See"],
+    "userInput": "Dschungel",
+    "promptTemplate": "Ersetze den Bereich **{AreaID}** durch eine üppige Urwaldlichtung mit Palmen, Lianen und einem kleinen Wasserfall. Integriere dichtes Farn- und Moosbewuchs, eine geschwungene Erkundungspfad und versteckte Ruinen-Bögen."
+  },
+  {
+    "id": "R2",
+    "priority": 2,
+    "category": "Natur & Landschaft",
+    "markedObjects": ["Feld"],
+    "environmentObjects": ["Wald"],
+    "userInput": "Maisfeld",
+    "promptTemplate": "Ersetze den Bereich **{AreaID}** durch endlose Reihen hoher Maispflanzen. Füge einen Traktorpfad hinzu, vereinzelte Vogelscheuchen und einen schmalen Entwässerungsgraben am Waldrand ein."
+  },
+  {
+    "id": "R3",
+    "priority": 3,
+    "category": "Natur & Landschaft",
+    "markedObjects": ["Grünflächen"],
+    "environmentObjects": ["Fluss"],
+    "userInput": "Sumpf",
+    "promptTemplate": "Ersetze den Bereich **{AreaID}** durch ein feuchtes Sumpfgebiet mit Schilfzonen und Moorgewässern. Integriere Holzstege, die über stilles Wasser führen, und vereinzelte Seerosen-Inselchen."
+  }
+]
+
+### Abgeleitete Design-Prinzipien fürs Regelwerk auf Basis der Heatmaps
 
 Die generierten Heatmaps liefern nicht nur eine räumliche Übersicht über die Prompts, sondern dienen auch als **Gestaltungs-Trigger** für ein darauf aufbauendes Regelwerk. Daraus lassen sich drei zentrale Design-Prinzipien ableiten:
 
@@ -211,36 +261,15 @@ Die generierten Heatmaps liefern nicht nur eine räumliche Übersicht über die 
 | **2. Heatmap als Design-Trigger**<br>- **Prinzip:** Die räumliche Lage auf der Heatmap bestimmt die Kontextualisierung.<br>- **Beispiel:**<br>  - Stadtkern → typische Elemente ergänzen (Rathaus, Marktplatz)<br>  - Randbereiche → mehr Kontext hinzufügen (Wohnviertel, Natur)<br>- **Vorteil:** Der **Ortscharakter bleibt erhalten**, und die Prompts werden spezifisch, nicht austauschbar. |
 | **3. Variation & Differenzierung**<br>- **Prinzip:** Gleiche Begriffe werden unterschiedlich ausformuliert, um Vielfalt zu schaffen.<br>- **Beispiel:** „Schule“ → moderne Schule mit Glasfassaden / alte Schule mit Pausenhof<br>- **Kernaussage:** Heatmaps zeigen **Tendenzen** auf, während das Regelwerk dafür sorgt, dass die Prompts **reichhaltig, vielfältig und kontextgetreu** bleiben. |
 
+### Bedeutung des Regelwerks
 
-### 3. Regelwerk – Aufbau und Logik
-Der Chatbot folgt einem **geführten Prompting**, das in mehreren Phasen abläuft:
+Das Regelwerk bildet das Fundament für intelligentes Prompting.  
 
-1. **Eingabephase**
-   - Nutzer wählt Ort auf der Karte → System erhält Koordinaten + Metadaten.
-   - Nutzer gibt Idee ein (z. B. „Ich möchte hier ein Hochhaus“).
-
-2. **Kontextanalyse**
-   - Topologie-Abgleich (Hügel, Fluss, Altstadt, freie Natur).
-   - Objekterkennung über Keywords/Regex/GPT-NLU.
-   - Kategorie-Mapping auf Regelwerk.
-
-3. **Regelabgleich**
-   - Prüfung, welche Regeln zutreffen.
-   - Feedback bei Regelverletzungen.
-   - Vorschläge bei erfüllten Regeln.
-
-4. **Vorschlagsphase**
-   - 3–5 kontextgerechte Vorschläge aus dem Regelwerk.
-   - Darstellung als Klickoptionen.
-
-5. **Prompt-Konstruktion**
-   - Kombination von Basisidee + gewählten Vorschlägen zu optimiertem Prompt.
-
-6. **Feedback- und Lernphase**
-   - Anpassung der Vorschläge bei wiederholten Nutzereingaben.
-   - Optional: Erklärung der Regeln zur besseren Nachvollziehbarkeit.
-
-> **Hinweis:** Das Regelwerk wird dabei in **JSON-Format** umgewandelt, sodass der Chatbot strukturiert auf die Regeln zugreifen kann.
+**Warum ist das wichtig?**
+- Verhindert austauschbare, generische Prompts  
+- Sichert Vielfalt & inhaltliche Tiefe  
+- Erhöht Qualität, Realitätsnähe und Kontextsicherheit der Bilder  
+- Fördert kreatives, kontextbasiertes Lernen
 
 
 ## 🤖 KI-Chatbot Integration
@@ -300,7 +329,34 @@ Die Wahl fiel auf eine Eule, da sie seit jeher für Weisheit, Wissen und einen w
 ### Chatbot-Logik
 Die entwickelte Chatbot-Logik verfolgt das Ziel, Nutzerinnen beim strukturierten Prompting zu unterstützen, indem sie Kontextinformationen einbezieht, passende Kategorien aus dem Regelwerk zuordnet und nutzbare Vorschläge generiert. Ausgangspunkt ist stets die Eingabephase, in der Nutzerinnen einen Ort auf der Karte markieren und eine freie Idee eintragen (z. B. „Ich hätte gern hier ein Hochhaus“). Anschließend erfolgt eine Kontextanalyse, bei der Geodaten und vordefinierte Kartenlayer genutzt werden, um topologische Bedingungen (z. B. Hügel, Flussnähe, historische Altstadt) zu prüfen und das Objekt über Keyword-Erkennung einer passenden Oberkategorie (z. B. Architektur, Infrastruktur, Grünflächen) zuzuordnen. Darauf aufbauend findet ein Regelabgleich statt: Stimmen Idee und Kontext überein, schlägt der Chatbot weiterführende Optionen vor; wird eine Regel verletzt, liefert er alternatives Feedback, das die Nutzeridee anpasst, ohne den Gestaltungsprozess zu unterbrechen. In der Vorschlagsphase werden daraufhin mehrere kontextgerechte Handlungsoptionen (z. B. Serpentinenstraße, Tunnel, Aussichtspunkt) präsentiert, die Nutzerinnen auswählen oder kombinieren können. Diese Eingaben werden schließlich in einen optimierten Prompt überführt, der sowohl die ursprüngliche Idee als auch die kontextsensitiven Ergänzungen berücksichtigt. Eine Feedback- und Lernphase rundet die Logik ab, indem wiederholt gewählte Optionen erkannt und zukünftige Vorschläge angepasst werden. Optional kann der Chatbot seine Entscheidungen begründen, um den Regelkontext transparent zu machen und das Verständnis der Nutzerinnen zu fördern.
 
-[Uploading chatbot_logik_horizontal.pdf…]()
+Der Chatbot folgt einem **geführten Prompting**, das in mehreren Phasen abläuft:
+
+1. **Eingabephase**
+   - Nutzer wählt Ort auf der Karte → System erhält Koordinaten + Metadaten.
+   - Nutzer gibt Idee ein (z. B. „Ich möchte hier ein Hochhaus“).
+
+2. **Kontextanalyse**
+   - Topologie-Abgleich (Hügel, Fluss, Altstadt, freie Natur).
+   - Objekterkennung über Keywords/Regex/GPT-NLU.
+   - Kategorie-Mapping auf Regelwerk.
+
+3. **Regelabgleich**
+   - Prüfung, welche Regeln zutreffen.
+   - Feedback bei Regelverletzungen.
+   - Vorschläge bei erfüllten Regeln.
+
+4. **Vorschlagsphase**
+   - 3–5 kontextgerechte Vorschläge aus dem Regelwerk.
+   - Darstellung als Klickoptionen.
+
+5. **Prompt-Konstruktion**
+   - Kombination von Basisidee + gewählten Vorschlägen zu optimiertem Prompt.
+
+6. **Feedback- und Lernphase**
+   - Anpassung der Vorschläge bei wiederholten Nutzereingaben.
+   - Optional: Erklärung der Regeln zur besseren Nachvollziehbarkeit.
+
+
 
 
 ## ⚙️ KI-Chatbot Umsetzung und LLM-Anbindung
