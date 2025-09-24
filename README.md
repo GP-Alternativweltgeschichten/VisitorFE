@@ -1,12 +1,14 @@
 ##   Besucher-Frontend: AI CHAT- Feature Dokumentation
-Agenda:
-1. [📌 Beschreibung der Ausgangssituation](#-beschreibung-der-ausgangssituation)  
-2. [🚀 Ziel des Semesterprojektes 2025](#-ziel-des-semesterprojektes-2025)  
-3. [🛠 Vorgehensweise](#-vorgehensweise)  
-4. [📚 Kontextanalyse
-5. [🤖 KI-Chatbot Integration](#-ki-chatbot-integration)  
-6. [⚙️ KI-Chatbot Umsetzung und LLM-Anbindung](#-ki-chatbot-umsetzung-und-llm-anbindung)  
-7. [(Zusatz) Einbettung des Regelwerks in Unity](#-zusatz-einbettung-des-regelwerks-in-unity-perspektivisch)  
+### Agenda
+
+1. [📌 Beschreibung der Ausgangssituation](#beschreibung-der-ausgangssituation)  
+2. [🚀 Ziel des Semesterprojektes 2025](#ziel-des-semesterprojektes-2025)  
+3. [🛠 Vorgehensweise](#vorgehensweise)  
+4. [📚 Kontextanalyse](#kontextanalyse)  
+5. [⚙️ Regelwerk](#-regelwerk)  
+6. [🤖 KI-Chatbot Integration](#-ki-chatbot-integration)  
+7. [⚙️ KI-Chatbot Umsetzung und LLM-Anbindung](#-ki-chatbot-umsetzung-und-llm-anbindung)  
+8. [(Zusatz) Einbettung des Regelwerks in Unity](#-zusatz-einbettung-des-regelwerks-in-unity-perspektivisch) 
 
 ## 📌 Beschreibung der Ausgangssituation
    - Trennung in die Teilteams (POC KI-Kontext & Unity)
