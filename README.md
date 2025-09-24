@@ -5,7 +5,7 @@
    - Frontend des Vorgänderprojekts (Verlinkung)
    - Recherche wie gehts weiter (Miro-Link)
   
-Die Analyse des Vorgängerprojekts aus dem Wintersemester 2024/2025 (Hier Link) verdeutlichte, dass das eingesetzte KI-Modell in seiner derzeitigen Form noch nicht über die notwendige Reife verfügt, um durchgehend überzeugende Ergebnisse zu liefern. Insbesondere die Qualität und Präzision der generierten Inhalte erwiesen sich als unzureichend, was die Notwendigkeit einer gezielten Weiterentwicklung deutlich machte.
+Die Analyse des Vorgängerprojekts aus dem Wintersemester 2024/2025 verdeutlichte, dass das eingesetzte KI-Modell in seiner derzeitigen Form noch nicht über die notwendige Reife verfügt, um durchgehend überzeugende Ergebnisse zu liefern. Insbesondere die Qualität und Präzision der generierten Inhalte erwiesen sich als unzureichend, was die Notwendigkeit einer gezielten Weiterentwicklung deutlich machte.
 Darauf aufbauend wurde im Guided Project des Sommersemester 2025 zunächst der IST-Status eingehend analysiert und durch eine tiefergehende Recherchephase ergänzt. Ziel war es zu prüfen, welche Ansätze und Ideen aus dem Vorgängerprojekt weiterverfolgt werden können und welche hingegen verworfen werden sollten.
 
 Im Anschluss daran erfolgte die Aufteilung in zwei Teilgruppen:
