@@ -1,5 +1,5 @@
 ##   Besucher-Frontend: AI CHAT- Feature Dokumentation
-Agena:
+Agenda:
 1. [📌 Beschreibung der Ausgangssituation](#-beschreibung-der-ausgangssituation)  
 2. [🚀 Ziel des Semesterprojektes 2025](#-ziel-des-semesterprojektes-2025)  
 3. [🛠 Vorgehensweise](#-vorgehensweise)  
@@ -79,8 +79,6 @@ Basierend auf den Ergebnissen der Umfrage und der Recherche erfolgte die Aufteil
 - **Teilgruppe POC KI-Kontext**
 Diese Gruppe widmete sich der Erweiterung des bestehenden **IST-Status**. Im Vordergrund stand die Konzeption und Evaluation eines **Chatbot-Interfaces**, das Nutzer*innen beim Prompting unterstützt. Durch eine bessere Strukturierung und Aufbereitung der Eingaben sollte die Qualität der KI-Generierungen gesteigert und die Interaktion insgesamt verbessert werden. Die Entscheidung, den Schwerpunkt auf diesen Aspekt zu legen, resultierte aus der Erkenntnis, dass die Effektivität des Gesamtsystems maßgeblich von der Qualität der Nutzereingaben und der darauf basierenden Modellantworten abhängt. Damit konnte ein unmittelbarer Beitrag zur Nutzbarkeit und Akzeptanz des Projekts geleistet werden, während die Optimierung des KI-Modells selbst als langfristige Entwicklungsaufgabe bestehen bleibt.
 
-  
-
 - **Teilgruppe Unity**  
 Parallel dazu wurde die Stadtkarte von Olpe in Unity nachgebaut, um perspektivisch neue visuelle und interaktive Möglichkeiten zu eröffnen und das Projekt langfristig um immersive Darstellungsformen zu ergänzen.
 
@@ -155,7 +153,7 @@ Im zweiten Schritt wurden die von den Schüler*innen eingegebenen **Prompts** an
 
 > Diese Analyse bildete die Grundlage dafür, die Kategorien im Regelwerk zu strukturieren und die **häufigsten Begriffe** gezielt zu berücksichtigen.
 
-### 3.Ergebnisse der Prompts (Heatmap und Kategorie) 
+### 3. Ergebnisse der Prompts (Heatmap und Kategorie) 
 Die Ergebnisse der Kontextanalyse lassen sich in zwei Hauptaspekte gliedern:  
 1. **Heatmap** der markierten Bereiche auf der Stadtkarte.  
 2. **Kategorisierung der Prompts** nach Oberbegriffen und Schlüsselbegriffen.  
@@ -203,6 +201,15 @@ Zur Visualisierung der Verteilung der markierten Bereiche wurde ein Python-Skrip
 |---------------|----------------|
 | <img src="https://github.com/user-attachments/assets/433009e1-a7f5-4051-a17d-36dc1cd1ee72" width="350"/> | <img src="https://github.com/user-attachments/assets/278bf66e-d0b6-4230-8b0d-c632ffc12214" width="350"/> |
 
+#### Abgeleitete Design-Prinzipien fürs Regelwerk auf Basis der generierten Heatmap
+
+Die generierten Heatmaps liefern nicht nur eine räumliche Übersicht über die Prompts, sondern dienen auch als **Gestaltungs-Trigger** für ein darauf aufbauendes Regelwerk. Daraus lassen sich drei zentrale Design-Prinzipien ableiten:
+
+| Design-Prinzipien |
+|------------------|
+| **1. Kontextanreicherung**<br>- **Prinzip:** Einfache Begriffe werden durch reichhaltige Beschreibungen ergänzt.<br>- **Beispiel:** „Wald“ → „dichter Wald mit Kiefern und Eichen“<br>- **Vorteil:** Mehr Bilddetails ermöglichen eine **präzisere Visualisierung** und regen das **Lernen durch Imagination** an. |
+| **2. Heatmap als Design-Trigger**<br>- **Prinzip:** Die räumliche Lage auf der Heatmap bestimmt die Kontextualisierung.<br>- **Beispiel:**<br>  - Stadtkern → typische Elemente ergänzen (Rathaus, Marktplatz)<br>  - Randbereiche → mehr Kontext hinzufügen (Wohnviertel, Natur)<br>- **Vorteil:** Der **Ortscharakter bleibt erhalten**, und die Prompts werden spezifisch, nicht austauschbar. |
+| **3. Variation & Differenzierung**<br>- **Prinzip:** Gleiche Begriffe werden unterschiedlich ausformuliert, um Vielfalt zu schaffen.<br>- **Beispiel:** „Schule“ → moderne Schule mit Glasfassaden / alte Schule mit Pausenhof<br>- **Kernaussage:** Heatmaps zeigen **Tendenzen** auf, während das Regelwerk dafür sorgt, dass die Prompts **reichhaltig, vielfältig und kontextgetreu** bleiben. |
 
 
 ### 3. Regelwerk – Aufbau und Logik
@@ -245,39 +252,41 @@ Für die Umsetzung wurde eine sechsstufige Vorgehensweise mit klaren To-Dos entw
 
 ### Chatbot-Features
 
-*Vorgehensweise in 5 Schritten*:
+Zunächst wurde festgelegt, welche Aufgaben der Chatbot übernehmen soll. Der Schwerpunkt liegt dabei auf der **Unterstützung der Nutzer*innen beim Prompting**, z. B.:  
 
-Die Entwicklung des Chatbots erfolgte entlang eines klar definierten sechsstufigen Vorgehensmodells:
-1. Funktionsdefinition: Zunächst wurde festgelegt, welche Aufgaben der Chatbot übernehmen soll. Im Vordergrund stand die Unterstützung der Nutzer*innen beim Prompting, etwa durch gezielte Rückfragen („Wie möchtest du das Gebäude gestalten?“), regelbasierte Vorschläge („Möchtest du moderne oder traditionelle Architektur?“) sowie kontextbezogenes Feedback („In diesem Bereich wäre ein Hochhaus ungewöhnlich, da…“).
-   
-2.Auswahl des Language Models: Anschließend wurde ein geeignetes LLM identifiziert, das sich über eine API einbinden lässt. Die Wahl fiel auf OpenAI GPT-4, da dieses Modell eine hohe Leistungsfähigkeit und starke Kontextverarbeitung bietet. Alternative Modelle wie Mistral oder Gemini wurden geprüft, jedoch verworfen.
+- **Gezielte Rückfragen:** „Wie möchtest du das Gebäude gestalten?“  
+- **Regelbasierte Vorschläge:** „Möchtest du moderne oder traditionelle Architektur?“  
+- **Kontextbezogenes Feedback:** „In diesem Bereich wäre ein Hochhaus ungewöhnlich, da…“  
 
-3. Entwicklung der Prompting-Logik: In einem nächsten Schritt wurde die Interaktionslogik definiert. Der Chatbot agiert als „Stadtplanungs-Assistent“, der auf markierte Bereiche im Stadtplan reagiert, Regelwerke berücksichtigt und durch Rückfragen eine nutzerorientierte Planung ermöglicht.
-4. API-Anbindung: Darauf aufbauend wurde die technische Schnittstelle implementiert, um die Kommunikation zwischen Frontend und LLM zu gewährleisten.
-   
-5.  Integration ins System: Der Chatbot wurde in die bestehende Anwendung eingebettet, sodass er nahtlos mit den vorhandenen Funktionen genutzt werden kann.
-  
-(Zusatz, nicht realisiert) Testing & Prompt-Optimierung: Als letzter Schritt ist die systematische Evaluation und
-Optimierung des Chatbot-Promptings vorgesehen. Dieser Teil konnte bislang noch nicht umgesetzt werden und stellt eine zentrale Aufgabe für die kommenden Projektphasen dar.
+Um die Funktionen übersichtlich zu strukturieren, wurde eine **Mindmap** erstellt, in der alle identifizierten Features in folgende Kategorien unterteilt wurden:  
 
-Zur Ergänzung dieser Schritte wurde eine Mindmap erstellt, in der sämtliche identifizierten Funktionen in Core Features (unmittelbar notwendige Funktionen) und Nice-to-have Features (optionale Erweiterungen) gegliedert wurden ([siehe Abbildung]). Diese Einteilung erleichtert die Priorisierung der weiteren Entwicklungsarbeit.
+- **Core Features:** Unmittelbar notwendige Funktionen  
+- **Nice-to-have Features:** Optionale Erweiterungen  
+
+> Diese Einteilung erleichtert die **Priorisierung der weiteren Entwicklungsarbeit** und dient als Grundlage für die Implementierung.  
 
 <img width="768" height="517" alt="Bildschirmfoto 2025-09-05 um 15 34 56" src="https://github.com/user-attachments/assets/4e1c7a50-0b83-4232-8cb7-6344b912fc62" />
 
 Im Anschluss an die konzeptionellen Überlegungen wurden die geplanten Funktionen in Wireframes (Figma) visualisiert, um die spätere Nutzerführung frühzeitig zu evaluieren. Dabei standen sowohl grundlegende Funktionen als auch erweiterte Interaktionsmöglichkeiten im Fokus.
 
 Zu den dargestellten Features zählen:
-1. Text-Eingabe für direkte Nutzeranfragen (Core)
-2. Chat-Interface zur fortlaufenden Interaktion (Core)
-3. Export- und Teilen-Funktion, um Ergebnisse extern verfügbar zu machen (Nice-to-have)
-4. Markierten Bereich senden, um Kontextinformationen präzise an das Modell zu übermitteln
-5. Progress Bar zur Visualisierung des Bearbeitungsstatus
-6. Option für Freifeld-Text, um zusätzliche Eingaben flexibel zu ermöglichen
-7. Vorschlagsliste mit Drag-and-Drop, zur interaktiven Auswahl und Anpassung von KI-Vorschlägen
-8. Hilfs- und Info-Bereich für Unterstützung und Systemerklärung
-9. Verlauf & Navigation zur Rückverfolgung von Arbeitsschritten (vgl. Figma-Prototyp)
-10. Chatbot-Avatar, der als visuelle Repräsentation der Interaktion dient
-11. Die Wireframes dienten somit nicht nur der Visualisierung einzelner Funktionen, sondern auch der Erprobung der Interaktionslogik und der Priorisierung nach Core-Features und Nice-to-have Features für die weitere Entwicklung.
+
+| Feature | Kategorie | Beschreibung | Umgesetzt |
+|---------|-----------|--------------|-----------|
+| 💬 Text-Eingabe | **Core** | Direkte Nutzeranfragen an den Chatbot ermöglichen | ✅ |
+| 💻 Chat-Interface | **Core** | Fortlaufende Interaktion inkl. Chat-Verlauf und kontextbezogenen Antworten | ✅ |
+| 📍 Markierten Bereich senden | **Core** | Kontextinformationen präzise an das Modell übermitteln | ✅ |
+| ❓ Hilfs- und Info-Bereich | **Core** | Unterstützung und Erklärung des Systems | ✅ |
+| ✏️ Freitext-Option / Vorschlagsliste mit Drag & Drop | **Core** | Flexible Eingaben und interaktive Auswahl von KI-Vorschlägen | ❌ |
+| 📤 Export- und Teilen-Funktion | **Nice-to-have** | Ergebnisse extern verfügbar machen (z. B. mittels QR-Code) | ✅ |
+| 🔄 Verlauf & Navigation | **Nice-to-have** | Rückverfolgung der Arbeitsschritte (vgl. Figma-Prototyp) | ❌ |
+| ✋ Haptik, Sound | **Nice-to-have** | Sensorische Rückmeldungen zur Unterstützung der Interaktion | ❌ |
+| ⚡ Echtzeit Feedback / Vorschläge | **Nice-to-have** | Sofortige Hinweise und Vorschläge während der Eingabe | ✅ |
+| 🌀 Hybrid Eingabemöglichkeiten | **Nice-to-have** | Kombination aus Text, Auswahlbuttons und markierten Bereichen (ohne Spracheingabe) | ✅ |
+| 🧑‍💻 Chatbot-Avatar | **Nice-to-have** | Visuelle Repräsentation der Interaktion | ✅ |
+| 🧙 Fantasy Button | **Nice-to-have** | Kreative, spielerische Interaktionen oder alternative Optionen | ❌ |
+
+> Die Wireframes dienten somit nicht nur der **Visualisierung einzelner Funktionen**, sondern auch der **Erprobung der Interaktionslogik** und der **Priorisierung nach Core-Features und Nice-to-have Features** für die weitere Entwicklung.
 
 #### Warum ein Avatar?
 Um Geschichte lebendig, nahbar und interaktiv zu vermitteln, haben wir uns bewusst für die Entwicklung eines Avatars entschieden. Statt rein textbasierter Informationen ermöglicht ein Avatar eine emotionale Bindung: Er begleitet die Nutzer*innen, vermittelt Inhalte spielerisch und macht komplexe Zusammenhänge leichter zugänglich. So entsteht ein persönlicher Zugang, der über klassische Infoboxen hinausgeht.
@@ -295,7 +304,20 @@ Die entwickelte Chatbot-Logik verfolgt das Ziel, Nutzerinnen beim strukturierten
 
 
 ## ⚙️ KI-Chatbot Umsetzung und LLM-Anbindung
-??????
+
+Inspo:
+ 
+A) Auswahl des Language Models: Anschließend wurde ein geeignetes LLM identifiziert, das sich über eine API einbinden lässt. Die Wahl fiel auf OpenAI GPT-4, da dieses Modell eine hohe Leistungsfähigkeit und starke Kontextverarbeitung bietet. Alternative Modelle wie Mistral oder Gemini wurden geprüft, jedoch verworfen.
+
+B) Entwicklung der Prompting-Logik: In einem nächsten Schritt wurde die Interaktionslogik definiert. Der Chatbot agiert als „Stadtplanungs-Assistent“, der auf markierte Bereiche im Stadtplan reagiert, Regelwerke berücksichtigt und durch Rückfragen eine nutzerorientierte Planung ermöglicht.
+
+C) API-Anbindung: Darauf aufbauend wurde die technische Schnittstelle implementiert, um die Kommunikation zwischen Frontend und LLM zu gewährleisten.
+   
+D) Integration ins System: Der Chatbot wurde in die bestehende Anwendung eingebettet, sodass er nahtlos mit den vorhandenen Funktionen genutzt werden kann.
+  
+E) (Zusatz, nicht realisiert) Testing & Prompt-Optimierung: Als letzter Schritt ist die systematische Evaluation und
+Optimierung des Chatbot-Promptings vorgesehen. Dieser Teil konnte bislang noch nicht umgesetzt werden und stellt eine zentrale Aufgabe für die kommenden Projektphasen dar.
+
 
 
 ## (Zusatz) Einbettung des Regelwerks in Unity
