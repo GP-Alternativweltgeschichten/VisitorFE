@@ -5,7 +5,7 @@
 2. [🚀 Ziel des Semesterprojektes 2025](#-ziel-des-semesterprojektes-2025)  
 3. [🛠 Vorgehensweise](#-vorgehensweise)  
 4. [📚 Kontextanalyse](#-kontextanalyse)  
-5. [⚙️ Regelwerk](#-regelwerk)  
+5. [⚙️ Regelwerk](#%EF%B8%8F-regelwerk)  
 6. [🤖 KI-Chatbot Integration](#-ki-chatbot-integration)  
 7. [⚙️ KI-Chatbot Umsetzung und LLM-Anbindung](#%EF%B8%8F-ki-chatbot-umsetzung-und-llm-anbindun)  
 8. [(Zusatz) Einbettung des Regelwerks in Unity](#-zusatz-einbettung-des-regelwerks-in-unity-perspektivisch) 
