@@ -1,29 +1,80 @@
 ##   Besucher-Frontend: AI CHAT- Feature Dokumentation
 
 ## 📌 Beschreibung der Ausgangssituation
-   - Trennung in die Teilteams (POC KI-Kontext & Unity (Link zu Unity-Doku))
-   - Frontend des Vorgänderprojekts (Verlinkung)
-   - Recherche wie gehts weiter [Mein Miro-Board](https://miro.com/welcomeonboard/SHNTeGxTcmVhNk04eURzaStycHFKYUpGczJUeVNFWlBVR3JxcEVGaUJ2eHVTejZ2enEwK2pPeDhlMlplU3BoSU1lODBCWjUvNmkxZnFrV3FTWlZiQzRNdVBYdWM4dGFzbjY4VTk1YUlNWExJbUVVblJLRkxCaGRvbFdSQTBqYkNBS2NFMDFkcUNFSnM0d3FEN050ekl3PT0hdjE=?share_link_id=717421375236)
+   - Trennung in die Teilteams (POC KI-Kontext & Unity)
+   - Frontend des Vorgänderprojekts
+   - Recherche wie gehts weiter [Miro-Board](https://miro.com/welcomeonboard/SHNTeGxTcmVhNk04eURzaStycHFKYUpGczJUeVNFWlBVR3JxcEVGaUJ2eHVTejZ2enEwK2pPeDhlMlplU3BoSU1lODBCWjUvNmkxZnFrV3FTWlZiQzRNdVBYdWM4dGFzbjY4VTk1YUlNWExJbUVVblJLRkxCaGRvbFdSQTBqYkNBS2NFMDFkcUNFSnM0d3FEN050ekl3PT0hdjE=?share_link_id=717421375236)
+
+Die Analyse des Vorgängerprojekts aus dem **Wintersemester 2024/2025** verdeutlichte, dass das eingesetzte KI-Modell in seiner derzeitigen Form noch nicht über die notwendige Reife verfügt, um durchgehend überzeugende Ergebnisse zu liefern. Insbesondere die Qualität und Präzision der generierten Inhalte erwiesen sich als unzureichend, was die Notwendigkeit einer gezielten Weiterentwicklung deutlich machte.  
+
+Darauf aufbauend wurde im **Guided Project des Sommersemesters 2025** zunächst der IST-Status eingehend analysiert und durch eine tiefergehende Recherchephase ergänzt. Ziel war es zu prüfen, welche Ansätze und Ideen aus dem Vorgängerprojekt weiterverfolgt werden können und welche hingegen verworfen werden sollten.
+
+## 🔍 Was wir haben
+- Vorgängerprojekt aus dem **Wintersemester 2024/2025**  
+- Demonstrator mit statischer Karte  
+- Generierung mit **DALLE** und **Olpe-AI**  
+- Vorgefertigte Themenwelten / Szenarien  
+
+## 🎯 Was wir wollen
+- Fortsetzung des Projekts  
+- Optimierung der Karte  
+- Bessere Nutzer-Interaktion  
+- Multimediales Erlebnis (**durch bspw.Animation**)
+
+## 🛠 Vorgehen vor der Aufteilung
+Bevor die Arbeit in die beiden Teilgruppen erfolgte, bestand unser Vorgehen aus drei Schritten:
+
+1. **Anknüpfungspunkte**  
+   - Analyse der Ideen aus dem Vorgängerprojekt  
+   - Beispiele:  
+     - *CityScope* – Stadtplanung mit greifbaren Objekten  
+     - *Tangible Map Exploration* – Inspiration aus HCI-Forschung  
+     - *BYO\** – 3D-gedruckte Werkzeuge für interaktive Oberflächen  
+
+2. **Recherche-Phase**  
+   - Breite Untersuchung verschiedener Ansätze  
+   - Erkenntnis: Nutzererfahrung sollte gesteigert werden  
+   - Mögliche Ideen:  
+     - Animationen in Unity  
+     - Physische Bauklötze  
+     - Digitale Bauklötze  
+     - Zeichnen mit dem Finger  
+
+3. **Festlegung der Idee (Stimmungsabfrage)**  
+   - Drei Interaktionsoptionen wurden entwickelt und Schüler*innen aus Olpe vorgestellt:  
+     1.Physisches Stempeln der Karte  
+     2. Dialog mit verstehendem Modell  
+     3. Stempel mit Prompt  
+   - Ergebnis: **Die zweite Idee (Dialog mit Modell) war am beliebtesten.**  
+
+## 👥 Aufteilung in Teilgruppen
+Basierend auf den Ergebnissen der Umfrage und der Recherche erfolgte die Aufteilung in zwei Teilgruppen:
+
+- **Teilgruppe POC KI-Kontext**
+Diese Gruppe widmete sich der Erweiterung des bestehenden **IST-Status**. Im Vordergrund stand die Konzeption und Evaluation eines **Chatbot-Interfaces**, das Nutzer*innen beim Prompting unterstützt. Durch eine bessere Strukturierung und Aufbereitung der Eingaben sollte die Qualität der KI-Generierungen gesteigert und die Interaktion insgesamt verbessert werden. Die Entscheidung, den Schwerpunkt auf diesen Aspekt zu legen, resultierte aus der Erkenntnis, dass die Effektivität des Gesamtsystems maßgeblich von der Qualität der Nutzereingaben und der darauf basierenden Modellantworten abhängt. Damit konnte ein unmittelbarer Beitrag zur Nutzbarkeit und Akzeptanz des Projekts geleistet werden, während die Optimierung des KI-Modells selbst als langfristige Entwicklungsaufgabe bestehen bleibt.
 
   
-Die Analyse des Vorgängerprojekts aus dem Wintersemester 2024/2025 verdeutlichte, dass das eingesetzte KI-Modell in seiner derzeitigen Form noch nicht über die notwendige Reife verfügt, um durchgehend überzeugende Ergebnisse zu liefern. Insbesondere die Qualität und Präzision der generierten Inhalte erwiesen sich als unzureichend, was die Notwendigkeit einer gezielten Weiterentwicklung deutlich machte.
-Darauf aufbauend wurde im Guided Project des Sommersemester 2025 zunächst der IST-Status eingehend analysiert und durch eine tiefergehende Recherchephase ergänzt. Ziel war es zu prüfen, welche Ansätze und Ideen aus dem Vorgängerprojekt weiterverfolgt werden können und welche hingegen verworfen werden sollten.
 
-Im Anschluss daran erfolgte die Aufteilung in zwei Teilgruppen:
-
-- Teilgruppe POC KI-Kontext: Diese Gruppe widmete sich der Erweiterung des bestehenden IST-Status. Im Vordergrund stand die Konzeption und Evaluation eines Chatbot-Interfaces, das Nutzer*innen beim Prompting unterstützt. Durch eine bessere Strukturierung und Aufbereitung der Eingaben sollte die Qualität der KI-Generierungen gesteigert und die Interaktion insgesamt verbessert werden. Die Entscheidung, den Schwerpunkt auf diesen Aspekt zu legen, resultierte aus der Erkenntnis, dass die Effektivität des Gesamtsystems maßgeblich von der Qualität der Nutzereingaben und der darauf basierenden Modellantworten abhängt. Damit konnte ein unmittelbarer Beitrag zur Nutzbarkeit und Akzeptanz des Projekts geleistet werden, während die Optimierung des KI-Modells selbst als langfristige Entwicklungsaufgabe bestehen bleibt.
-  
-- Teilgruppe Unity: Parallel dazu wurde die Stadtkarte von Olpe in Unity nachgebaut, um perspektivisch neue visuelle und interaktive Möglichkeiten zu eröffnen und das Projekt langfristig um immersive Darstellungsformen zu ergänzen.
+- **Teilgruppe Unity**  
+Parallel dazu wurde die Stadtkarte von Olpe in Unity nachgebaut, um perspektivisch neue visuelle und interaktive Möglichkeiten zu eröffnen und das Projekt langfristig um immersive Darstellungsformen zu ergänzen.
 
 ## 🚀 Ziel des Semesterprojektes 2025
 
 Aufbauend auf den Ergebnissen der Analyse und Recherche verfolgte das Guided Project im Sommersemester 2025 das Ziel, die bisherigen Strukturen gezielt weiterzuentwickeln und in eine nächste Entwicklungsstufe zu überführen.
+
 Zentrale Leitfragen waren dabei:
-Wo wollen wir hin?
+
+**Wo wollen wir hin?**
 → Hin zu einem System, das Nutzer*innen stärker unterstützt, indem es durch ein Chatbot-Interface die Qualität der Interaktion mit dem KI-Modell unmittelbar verbessert und perspektivisch durch immersive Visualisierungen erweitert wird.
-Was brauchen wir dafür?
+
+**Was brauchen wir dafür?**
 → Ein verbessertes Prompting durch ein nutzerorientiertes Interface, die sukzessive Erweiterung und Präzisierung des Trainingsdatensatzes sowie die Entwicklung zusätzlicher visueller Darstellungsformen (Unity), die alternative Stadtgeschichten anschaulich und interaktiv erlebbar machen.
+
 Das Semesterprojekt legte damit den Grundstein für eine zweigleisige Weiterentwicklung: kurzfristig die Optimierung der Nutzerinteraktion durch verbesserte Eingaben und unmittelbare Systemunterstützung, langfristig die Stärkung der Modellqualität und visuellen Dimension des Projekts.
+
+
+## 🌐 Übergeordnete Motivation: Verknüpfung der beiden Teil-Ergebnisse:
+Die übergeordnete Motivation bestand darin, die **beiden Teilprojekte und deren Ergebnisse zu verknüpfen**, um das Gesamtsystem intuitiv, interaktiv und erlebbar zu machen.
 
 ## 🤖 Integration eines KI-Chatbot in das User Interface
 
