@@ -475,8 +475,8 @@ Die Kommunikation erfolgt über die *"/text"* URL
 Dort gesendete POST anfragen werden werden durch die in ["request_types.py"](#request_typespy) Definierten typen differenziert. 
 
 Insgesamt umfasst der Chatbot 2 Haupt interaktionen: 
-1. : Das senden einer Nachricht an den Chatbot durch eine Texteingabe
-2. : Das senden eines Bilden mit dem Markierten Bereich. 
+1. Das senden einer Nachricht an den Chatbot durch eine Texteingabe
+2. Das senden eines Bilden mit dem Markierten Bereich. 
 Die Unterscheidung beider Interaktionen hängt von den jeweiligen gesendeten daten ab. 
 
 Wenn eine neue Instance des Chatbots erstellt wird, wird auch eine Neue ConversationID Vergeben, die die jeweiligen Conversationen speichert. Bei einer neuen Conversation werden die System und Developer Prompts als Initale Promts an die API übergeben.
